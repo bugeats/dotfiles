@@ -1,0 +1,9 @@
+[user]
+	name = Chadwick Dahlquist
+	email = chadwick@bugeats.net
+[push]
+	default = simple
+[rerere]
+	enabled = true
+[credential]
+	helper = osxkeychain
