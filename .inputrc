@@ -1,0 +1,8 @@
+set editing-mode vi
+
+# https://www.gnu.org/software/bash/manual/html_node/Readline-Init-File-Syntax.html#index-vi_002dcmd_002dmode_002dstring
+
+# set cursor to pipe on insert mode
+set vi-ins-mode-string \1\e[6 q\2
+# restore cursor to box on command mode
+set vi-cmd-mode-string \1\e[2 q\2
