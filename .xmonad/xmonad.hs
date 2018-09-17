@@ -9,20 +9,21 @@ import qualified Data.Map as M
 main :: IO ()
 main = do
   xmonad $ defaultConfig
-    { borderWidth        = 1
+    { borderWidth        = 6
     , modMask            = mod4Mask -- Use Super instead of Alt
     , terminal           = "alacritty"
-    , focusedBorderColor = "#645851"
+    , focusedBorderColor = "#a57b55"
     , normalBorderColor  = "#272524"
     , layoutHook         = myLayout
     } `additionalKeys` myKeys
 
-windowMargin = 16
+windowMargin = 6
 goldenRatio = toRational (2/(1+sqrt(5)::Double)) -- golden ratio
 
 myLayout = spacingWithEdge windowMargin $ ThreeColMid 1 (1/12) goldenRatio
 
 myKeys = [ ((mod4Mask, xK_x), spawn "slock")
+         , ((mod4Mask, xK_s), spawn "slock & systemctl suspend")
          -- TODO shellPrompt isn't doing anything
          , ((mod4Mask, xK_o), shellPrompt myXPConfig)
          ]

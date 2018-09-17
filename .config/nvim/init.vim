@@ -20,6 +20,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Core / UI
 Plug 'Lokaltog/vim-easymotion'
+Plug 'PhilRunninger/nerdtree-buffer-ops'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/unite.vim'
@@ -46,6 +47,7 @@ Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
+Plug 'vim-ruby/vim-ruby'
 Plug 'yuku-t/unite-git'
 Plug 'zhaocai/GoldenView.Vim'
 
@@ -57,6 +59,7 @@ Plug 'nono/vim-handlebars',       { 'for': ['handlebars'] }
 Plug 'plasticboy/vim-markdown',   { 'for': ['markdown'] }
 Plug 'vim-python/python-syntax',  { 'for': ['python'] }
 Plug 'wavded/vim-stylus',         { 'for': ['stylus'] }
+Plug 'jparise/vim-graphql',       { 'for': ['graphql'] }
 
 " Javascript Plugins
 Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'], 'do': 'npm install -g tern' }
