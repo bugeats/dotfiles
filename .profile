@@ -10,10 +10,13 @@ export PATH="/usr/local/share/npm/bin:$PATH"
 export PATH="/usr/local/heroku/bin:$PATH"
 
 # dotfiles/bin
-export PATH="/Users/chadwick/bin:$PATH"
+export PATH="~/bin:$PATH"
 
 # added by Anaconda3 5.1.0 installer
 export PATH="/Users/chadwick/anaconda3/bin:$PATH"
+
+# genymotion adb sharing with expo
+export PATH="/opt/genymotion/tools:$PATH"
 
 # rust cargo package manager
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -46,6 +49,7 @@ alias gaaa='git add --all'
 alias gau='git add --update'
 alias gb='git branch'
 alias gbd='git branch --delete '
+alias gbda='git branch | egrep -v "(^\*|master|dev)" | xargs git branch -D'
 alias gc='git commit'
 alias gcf='git commit --fixup'
 alias gcm='git commit --message'

@@ -17,3 +17,6 @@ xinput set-button-map 'ETPS/2 Elantech Touchpad' 1 1 3 4 5 6 7
 
 # set custom background image
 feh --bg-tile ~/.config/assets/xbg.png
+
+# make shitty java apps work with xmonad
+wmname LG3D

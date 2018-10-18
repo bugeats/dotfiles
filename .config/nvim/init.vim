@@ -20,7 +20,6 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Core / UI
 Plug 'Lokaltog/vim-easymotion'
-Plug 'PhilRunninger/nerdtree-buffer-ops'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Shougo/neosnippet.vim'
 Plug 'Shougo/unite.vim'
@@ -253,10 +252,10 @@ cabbrev Ack LAg
 " Window Movement --------------------------------------------------------------
 
 " Resize window (arrow keys)
-nmap <left>  :3wincmd <<cr>
-nmap <right> :3wincmd ><cr>
-nmap <up>    :3wincmd +<cr>
-nmap <down>  :3wincmd -<cr>
+nmap <left>  :3wincmd ><cr>
+nmap <right> :3wincmd <<cr>
+nmap <down>  :3wincmd +<cr>
+nmap <up>    :3wincmd -<cr>
 
 
 " GoldenView -------------------------------------------------------------------
