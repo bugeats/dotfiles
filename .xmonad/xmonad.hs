@@ -20,7 +20,7 @@ main = do
 windowMargin = 6
 goldenRatio = toRational (2/(1+sqrt(5)::Double)) -- golden ratio
 
-myLayout = spacingWithEdge windowMargin $ ThreeColMid 1 (1/12) goldenRatio
+myLayout = spacingWithEdge windowMargin $ ThreeColMid 1 (1/24) goldenRatio
 
 myKeys = [ ((mod4Mask, xK_x), spawn "slock")
          , ((mod4Mask, xK_s), spawn "slock & systemctl suspend")

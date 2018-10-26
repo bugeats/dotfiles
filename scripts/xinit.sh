@@ -1,8 +1,7 @@
 #!/usr/bin/bash
 
 # swap caps lock with escape on native keyboard only
-# TODO use sed to get device id from name
-# setxkbmap -device 'AT Translated Set 2 keyboard' -option caps:swapescape
+setxkbmap -device 'AT Translated Set 2 keyboard' -option caps:swapescape
 
 # set laptop display under main display
 xrandr --output eDP1 --pos 760x1400 --below DP1 --output DP1 --primary --above eDP1
