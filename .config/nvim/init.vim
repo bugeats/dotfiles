@@ -47,6 +47,7 @@ Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
+Plug 'vim-ruby/vim-ruby'
 Plug 'yuku-t/unite-git'
 Plug 'zhaocai/GoldenView.Vim'
 
@@ -59,6 +60,7 @@ Plug 'nono/vim-handlebars',       { 'for': ['handlebars'] }
 Plug 'plasticboy/vim-markdown',   { 'for': ['markdown'] }
 Plug 'vim-python/python-syntax',  { 'for': ['python'] }
 Plug 'wavded/vim-stylus',         { 'for': ['stylus'] }
+Plug 'jparise/vim-graphql',       { 'for': ['graphql'] }
 
 " Javascript Plugins
 Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'], 'do': 'npm install -g tern' }
@@ -252,10 +254,10 @@ cabbrev Ack LAg
 " Window Movement --------------------------------------------------------------
 
 " Resize window (arrow keys)
-nmap <left>  :3wincmd <<cr>
-nmap <right> :3wincmd ><cr>
-nmap <up>    :3wincmd +<cr>
-nmap <down>  :3wincmd -<cr>
+nmap <left>  :3wincmd ><cr>
+nmap <right> :3wincmd <<cr>
+nmap <down>  :3wincmd +<cr>
+nmap <up>    :3wincmd -<cr>
 
 
 " GoldenView -------------------------------------------------------------------

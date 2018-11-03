@@ -10,10 +10,13 @@ export PATH="/usr/local/share/npm/bin:$PATH"
 export PATH="/usr/local/heroku/bin:$PATH"
 
 # dotfiles/bin
-export PATH="/Users/chadwick/bin:$PATH"
+export PATH="~/bin:$PATH"
 
 # added by Anaconda3 5.1.0 installer
 export PATH="/Users/chadwick/anaconda3/bin:$PATH"
+
+# genymotion adb sharing with expo
+export PATH="/opt/genymotion/tools:$PATH"
 
 # rust cargo package manager
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -32,10 +35,7 @@ export NVIM_TUI_ENABLE_TRUE_COLOR=1
 export NODE_PATH=$NODE_PATH:`npm root -g`
 
 # nvm / node version manager
-# https://github.com/creationix/nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+source /usr/share/nvm/init-nvm.sh
 
 
 # Aliases ----------------------------------------------------------------------
@@ -49,6 +49,7 @@ alias gaaa='git add --all'
 alias gau='git add --update'
 alias gb='git branch'
 alias gbd='git branch --delete '
+alias gbda='git branch | egrep -v "(^\*|master|dev)" | xargs git branch -D'
 alias gc='git commit'
 alias gcf='git commit --fixup'
 alias gcm='git commit --message'
@@ -57,7 +58,7 @@ alias gcob='git checkout -b'
 alias gcod='git checkout develop'
 alias gcom='git checkout master'
 alias gcos='git checkout staging'
-alias gd='git diff'
+alias gd='git diff -- . ":(exclude)*/yarn.lock"'
 alias gda='git diff HEAD'
 alias gi='git init'
 alias gld='git log --pretty=format:"%h %ad %s" --date=short --all'
