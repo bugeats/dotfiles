@@ -330,6 +330,7 @@ call s:linkGroup('RedshiftKeyword', [
     \"cssProp",
     \"cssTextProp",
     \"cssVisualProp",
+    \"graphqlStructure",
     \"haskellImportKeywords",
     \"haskellKeyword",
     \"javascriptBranch",
