@@ -202,6 +202,7 @@ augroup filetypes
     autocmd Filetype cucumber   setlocal ts=2 sw=2 expandtab
     autocmd Filetype feature    setlocal ts=2 sw=2 expandtab
     autocmd Filetype haml       setlocal ts=2 sw=2 expandtab
+    autocmd Filetype haskell    setlocal ts=2 sw=2 expandtab
     autocmd Filetype html       setlocal ts=2 sw=2 expandtab
     autocmd Filetype jade       setlocal ts=2 sw=2 expandtab
     autocmd Filetype less       setlocal ts=2 sw=2 expandtab
