@@ -98,6 +98,7 @@ set autoread
 set background=dark
 set backupdir=./.backup,.,/tmp
 set clipboard=unnamed                         " support OS X clipboard
+set conceallevel=0                            " don't ever hide text in the name of concealing syntax
 set cursorline                                " highlighted cursor row
 set expandtab                                 " insert spaces instead when pressing <tab>
 set formatoptions-=cro                        " no annoying comment autoformat foo
@@ -192,12 +193,15 @@ nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 augroup filetypes
     autocmd!
+    autocmd FileType 4dgl       setlocal ts=4 sw=4 expandtab
+    autocmd FileType c          setlocal equalprg=clang-format
     autocmd FileType clojure    setlocal ts=2 sw=2 expandtab
     autocmd FileType javascript setlocal ts=4 sw=4 expandtab equalprg=eslint-pretty ff=unix
     autocmd FileType json       setlocal equalprg=json_reformat " json_reformat is part of yajl: http://lloyd.github.com/yajl/
     autocmd FileType xml        setlocal equalprg=xmllint\ --format\ -
     autocmd Filetype css        setlocal ts=2 sw=2 expandtab
     autocmd Filetype cucumber   setlocal ts=2 sw=2 expandtab
+    autocmd Filetype dot        setlocal ts=2 sw=2 expandtab
     autocmd Filetype feature    setlocal ts=2 sw=2 expandtab
     autocmd Filetype haml       setlocal ts=2 sw=2 expandtab
     autocmd Filetype html       setlocal ts=2 sw=2 expandtab
@@ -217,6 +221,7 @@ augroup END
 
 augroup filetypedetect
     au BufRead,BufNewFile *.js set filetype=javascript
+    au BufRead,BufNewFile *.4dg set filetype=4dgl
 augroup END
 
 " No git-gutter for taskpaper files
@@ -351,6 +356,7 @@ let g:gitgutter_eager = 0
 
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_conceal = 0
+let g:vim_markdown_conceal_code_blocks = 0
 
 
 " EasyAlign --------------------------------------------------------------------

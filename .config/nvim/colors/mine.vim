@@ -17,7 +17,7 @@ au TermOpen * setlocal nolist
 
 autocmd BufRead,BufNewFile * syn match generalParens /[(){}]/
 autocmd BufRead,BufNewFile * syn match generalBrackets /[\[\]]/
-autocmd BufRead,BufNewFile * syn match generalControlChar /[\.:\+!=;]/
+autocmd BufRead,BufNewFile * syn match generalControlChar /[\.:\+!=;\,*<>|]/
 
 " Palette ----------------------------------------------------------------------
 
@@ -140,9 +140,9 @@ endfunction
 call s:smartHi('Normal',                    s:p.d1, s:p.a6)
 call s:smartHi('RedshiftAttention',         s:p.t1, s:p.t4)
 call s:smartHi('RedshiftAttentionFg',       s:p.t1, '')
+call s:smartHi('RedshiftChromeHighlighted', s:p.a1, s:p.a6)
 call s:smartHi('RedshiftChromeMin',         s:p.a3, s:p.a6)
 call s:smartHi('RedshiftChromeNormal',      s:p.a2, s:p.a6)
-call s:smartHi('RedshiftChromeHighlighted', s:p.a1, s:p.a6)
 call s:smartHi('RedshiftChromePanel',       s:p.a2, s:p.a4)
 call s:smartHi('RedshiftChromePanelActive', s:p.a1, s:p.a4)
 call s:smartHi('RedshiftComment',           s:p.d2, '')
@@ -242,6 +242,7 @@ call s:linkGroup('RedshiftComment', [
 \])
 
 call s:linkGroup('RedshiftControl', [
+    \"rubyInterpolationDelimiter",
     \"clojureParen",
     \"cssBraces",
     \"cssNoise",
@@ -316,8 +317,13 @@ call s:linkGroup('RedshiftControlActive', [
 \])
 
 call s:linkGroup('RedshiftKeyword', [
+    \"4dglKeyword",
+    \"rubyDefine",
     \"Boolean",
     \"Keyword",
+    \"cInclude",
+    \"cStatement",
+    \"cType",
     \"clojureCond",
     \"clojureConstant",
     \"clojureDefine",
@@ -335,10 +341,10 @@ call s:linkGroup('RedshiftKeyword', [
     \"graphqlStructure",
     \"haskellDecl",
     \"haskellDeclKeyword",
-    \"haskellWhere",
     \"haskellDerive",
     \"haskellImportKeywords",
     \"haskellKeyword",
+    \"haskellWhere",
     \"javascriptBranch",
     \"javascriptCase",
     \"javascriptConditional",
@@ -373,6 +379,10 @@ call s:linkGroup('RedshiftKeyword', [
     \"pythonRepeat",
     \"pythonStatement",
     \"rubyControl",
+    \"rubyExceptional",
+    \"rubyConditional",
+    \"rubyInclude",
+    \"rubyMacro",
     \"shEcho",
     \"shFunctionKey",
     \"stylusImport",
@@ -405,6 +415,7 @@ call s:linkGroup('RedshiftLiteral', [
     \"markdownCode",
     \"markdownCodeBlock",
     \"pugPipedText",
+    \"rubyStringDelimiter",
     \"yamlPlainScalar",
 \])
 
@@ -460,6 +471,7 @@ call s:linkGroup('RedshiftChromeNormal', [
     \"NERDTreeDir",
     \"NERDTreeExecFile",
     \"NERDTreeFile",
+    \"NERDTreeLinkFile",
 \])
 
 call s:linkGroup('RedshiftChromeHighlighted', [
@@ -470,6 +482,7 @@ call s:linkGroup('RedshiftChromeMin', [
     \"NERDTreeClosable",
     \"NERDTreeDirSlash",
     \"NERDTreeFlags",
+    \"NERDTreeLinkTarget",
     \"NERDTreeOpenable",
 \])
 

@@ -3,8 +3,10 @@
 # swap caps lock with escape on native keyboard only
 setxkbmap -device 'AT Translated Set 2 keyboard' -option caps:swapescape
 
+# make sure main display is set correctly
+xrandr --output DP1 --above eDP1 --mode 3440x1440 --primary
 # set laptop display under main display
-xrandr --output eDP1 --pos 760x1400 --below DP1 --output DP1 --primary --above eDP1
+xrandr --output eDP1 --pos 760x1400 --below DP1
 
 # trackpad and mouse natural scrolling (reverse)
 xinput set-prop 'ETPS/2 Elantech Touchpad' 'libinput Natural Scrolling Enabled' 1
