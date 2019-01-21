@@ -28,6 +28,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'airblade/vim-rooter'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'freitass/todo.txt-vim'
 Plug 'godlygeek/tabular'
 Plug 'ivyl/vim-bling'
 Plug 'jeetsukumaran/vim-buffergator'
@@ -53,6 +54,7 @@ Plug 'zhaocai/GoldenView.Vim'
 " Misc Language
 Plug 'digitaltoad/vim-pug',       { 'for': ['pug'] }
 Plug 'elzr/vim-json',             { 'for': ['json'] }
+Plug 'jparise/vim-graphql'
 Plug 'neovimhaskell/haskell-vim', { 'for': ['haskell'] }
 Plug 'nono/vim-handlebars',       { 'for': ['handlebars'] }
 Plug 'plasticboy/vim-markdown',   { 'for': ['markdown'] }
@@ -204,6 +206,7 @@ augroup filetypes
     autocmd Filetype dot        setlocal ts=2 sw=2 expandtab
     autocmd Filetype feature    setlocal ts=2 sw=2 expandtab
     autocmd Filetype haml       setlocal ts=2 sw=2 expandtab
+    autocmd Filetype haskell    setlocal ts=2 sw=2 expandtab
     autocmd Filetype html       setlocal ts=2 sw=2 expandtab
     autocmd Filetype jade       setlocal ts=2 sw=2 expandtab
     autocmd Filetype less       setlocal ts=2 sw=2 expandtab
