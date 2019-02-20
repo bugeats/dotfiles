@@ -18,6 +18,9 @@ filetype off " required!
 
 call plug#begin('~/.config/nvim/plugged')
 
+" TODO figure out coc
+" Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+
 " Core / UI
 Plug 'Lokaltog/vim-easymotion'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -26,21 +29,20 @@ Plug 'Shougo/unite.vim'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
 Plug 'airblade/vim-rooter'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'freitass/todo.txt-vim'
 Plug 'godlygeek/tabular'
 Plug 'ivyl/vim-bling'
 Plug 'jeetsukumaran/vim-buffergator'
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'mkitt/tabline.vim'
 Plug 'neomake/neomake', { 'do': 'npm install -g eslint htmlhint' }
 Plug 'neovim/node-host'
 Plug 'ntpeters/vim-better-whitespace' " causes all trailing whitespace characters to be highlighted.
+Plug 'numkil/ag.vim'
 Plug 'othree/csscomplete.vim'
-Plug 'rking/ag.vim'
 Plug 'sbdchd/neoformat'
 Plug 'scrooloose/nerdtree'
 Plug 'tomtom/tcomment_vim'
@@ -99,7 +101,7 @@ set autoindent
 set autoread
 set background=dark
 set backupdir=./.backup,.,/tmp
-set clipboard=unnamed                         " support OS X clipboard
+set clipboard=unnamedplus                     " support OS clipboard
 set conceallevel=0                            " don't ever hide text in the name of concealing syntax
 set cursorline                                " highlighted cursor row
 set expandtab                                 " insert spaces instead when pressing <tab>
@@ -233,28 +235,17 @@ autocmd BufReadPre *.taskpaper let g:gitgutter_enabled = 0
 let g:vim_json_syntax_conceal = 0
 
 
-" Fuzzy Search -----------------------------------------------------------------
-
-let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\.git$\|\.hg$\|\.svn$\|bower_components$\|dist$\|node_modules$\|build$\|test$',
-    \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
-
-
 " NerdTree ---------------------------------------------------------------------
 
 let NERDTreeShowHidden=1
 let NERDTreeMinimalUI=1
-let NERDTreeIgnore=['\.DS_Store$']
+let NERDTreeIgnore=['\.DS_Store$', '^__pycache__$']
 
 
 " Ag / Project Search ----------------------------------------------------------
 
-let g:ag_prg = "/usr/local/bin/ag --column"
-
-let g:ag_highlight = 1
-
-" Alias Ack command for Ag (old habbit)
-cabbrev Ack LAg
+" let g:agprg = "/usr/local/bin/ag --column"
+let g:agprg = "/usr/local/bin/ag"
 
 
 " Window Movement --------------------------------------------------------------
@@ -649,9 +640,7 @@ nnoremap <leader>Q :qa!<CR>
 " \d show/hide NerdTree
 nnoremap <leader>d :NERDTreeToggle<cr>
 " \p to show fuzzy search
-nnoremap <leader>p :CtrlP<cr>
-" \P clear fuzzy search cache
-nnoremap <leader>P :CtrlPClearCache<cr>
+nnoremap <leader>p :FZF<cr>
 " dup a line/selection, with commented version above <-- this is awesome
 vnoremap <leader>c y gv :TComment<cr> gv<Esc> p
 nnoremap <leader>c V y gv :TComment<cr> gv<Esc> p

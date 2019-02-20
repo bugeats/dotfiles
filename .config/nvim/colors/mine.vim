@@ -154,6 +154,7 @@ call s:smartHi('RedshiftHighlighted',       s:p.d1, s:p.t4)
 call s:smartHi('RedshiftHighlightedAlt',    s:p.a6, s:p.a1)
 call s:smartHi('RedshiftKeyword',           s:p.b1, '')
 call s:smartHi('RedshiftLiteral',           s:p.g1, s:p.a6)
+call s:smartHi('RedshiftLiteralDim',        s:p.g2, s:p.a6)
 call s:smartHi('RedshiftLocated',           '',     s:p.a5)
 call s:smartHi('RedshiftNormal',            s:p.d1, s:p.a6)
 call s:smartHi('RedshiftSelected',          '',     s:p.k4)
@@ -238,11 +239,11 @@ call s:linkGroup('RedshiftComment', [
     \"javascriptDocParamName",
     \"javascriptDocParamType",
     \"javascriptDocTags",
+    \"pythonRun",
     \"vimLineComment",
 \])
 
 call s:linkGroup('RedshiftControl', [
-    \"rubyInterpolationDelimiter",
     \"clojureParen",
     \"cssBraces",
     \"cssNoise",
@@ -293,6 +294,8 @@ call s:linkGroup('RedshiftControl', [
     \"pugAttributesDelimiter",
     \"pugInterpolationDelimiter",
     \"pugPipeChar",
+    \"pythonDot",
+    \"rubyInterpolationDelimiter",
     \"shVarAssign",
     \"stylusProperty",
     \"stylusVariableAssignment",
@@ -374,7 +377,7 @@ call s:linkGroup('RedshiftKeyword', [
     \"pugScriptStatement",
     \"pugTag",
     \"pythonConditional",
-    \"pythonExecption",
+    \"pythonException",
     \"pythonImport",
     \"pythonInclude",
     \"pythonOperator",
@@ -420,6 +423,10 @@ call s:linkGroup('RedshiftLiteral', [
     \"pugPipedText",
     \"rubyStringDelimiter",
     \"yamlPlainScalar",
+\])
+
+call s:linkGroup('RedshiftLiteralDim', [
+    \"pythonBytesEscape",
 \])
 
 call s:linkGroup('RedshiftGhost', [
@@ -475,6 +482,7 @@ call s:linkGroup('RedshiftChromeNormal', [
     \"NERDTreeExecFile",
     \"NERDTreeFile",
     \"NERDTreeLinkFile",
+    \"qfFileName",
 \])
 
 call s:linkGroup('RedshiftChromeHighlighted', [
@@ -487,6 +495,7 @@ call s:linkGroup('RedshiftChromeMin', [
     \"NERDTreeFlags",
     \"NERDTreeLinkTarget",
     \"NERDTreeOpenable",
+    \"qfSeparator",
 \])
 
 call s:linkGroup('RedshiftChromePanel', [
@@ -528,3 +537,22 @@ call s:linkGroup('RedShiftRed', [
     \"GitGutterDelete",
     \"GitGutterDeleteDefault",
 \])
+
+
+" Other ------------------------------------------------------------------------
+
+" FZF fuzzy finder color scheme
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'RedshiftChromeMin'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'RedshiftChromeHighlighted'],
+  \ 'fg+':     ['fg', 'RedshiftChromeNormal'],
+  \ 'bg+':     ['bg', 'Normal'],
+  \ 'hl+':     ['fg', 'RedshiftChromeNormal'],
+  \ 'info':    ['fg', 'RedshiftChromeNormal'],
+  \ 'border':  ['fg', 'RedshiftChromeNormal'],
+  \ 'prompt':  ['fg', 'RedshiftChromeNormal'],
+  \ 'pointer': ['fg', 'RedshiftChromeHighlighted'],
+  \ 'marker':  ['fg', 'RedshiftChromeNormal'],
+  \ 'spinner': ['fg', 'RedshiftChromeNormal'],
+  \ 'header':  ['fg', 'RedshiftChromeNormal'] }
