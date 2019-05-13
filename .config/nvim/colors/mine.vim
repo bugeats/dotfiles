@@ -321,7 +321,6 @@ call s:linkGroup('RedshiftControlActive', [
 
 call s:linkGroup('RedshiftKeyword', [
     \"4dglKeyword",
-    \"rubyDefine",
     \"Boolean",
     \"Keyword",
     \"cInclude",
@@ -384,9 +383,10 @@ call s:linkGroup('RedshiftKeyword', [
     \"pythonRaiseFromStatement",
     \"pythonRepeat",
     \"pythonStatement",
-    \"rubyControl",
-    \"rubyExceptional",
     \"rubyConditional",
+    \"rubyControl",
+    \"rubyDefine",
+    \"rubyExceptional",
     \"rubyInclude",
     \"rubyMacro",
     \"shEcho",
@@ -472,6 +472,7 @@ call s:linkGroup('RedshiftAttentionFg', [
     \"Error",
     \"ErrorMsg",
     \"NeomakeErrorMsg",
+    \"WarningMsg",
 \])
 
 " ----
