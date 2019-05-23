@@ -418,6 +418,7 @@ call neomake#configure#automake('nrwi', 500)
 
 " let g:neomake_javascript_enabled_makers = ['eslint_d']
 let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_python_enabled_makers = ['pylint']
 let g:neomake_pug_enabled_makers = ['puglint']
 let g:neomake_html_enabled_makers = ['htmlhint']
 "
