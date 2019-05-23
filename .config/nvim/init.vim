@@ -46,6 +46,7 @@ Plug 'othree/csscomplete.vim'
 Plug 'sbdchd/neoformat'
 Plug 'scrooloose/nerdtree'
 Plug 'tomtom/tcomment_vim'
+Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
@@ -57,19 +58,18 @@ Plug 'zhaocai/GoldenView.Vim'
 Plug 'digitaltoad/vim-pug',       { 'for': ['pug'] }
 Plug 'elzr/vim-json',             { 'for': ['json'] }
 Plug 'jparise/vim-graphql'
+Plug 'jparise/vim-graphql',       { 'for': ['graphql'] }
 Plug 'neovimhaskell/haskell-vim', { 'for': ['haskell'] }
 Plug 'nono/vim-handlebars',       { 'for': ['handlebars'] }
 Plug 'plasticboy/vim-markdown',   { 'for': ['markdown'] }
-Plug 'vim-python/python-syntax',  { 'for': ['python'] }
+Plug 'vim-python/python-syntax'
 Plug 'wavded/vim-stylus',         { 'for': ['stylus'] }
-Plug 'jparise/vim-graphql',       { 'for': ['graphql'] }
 
 " Javascript Plugins
 Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'], 'do': 'npm install -g tern' }
+Plug 'chemzqm/vim-jsx-improve',  { 'for': ['javascript.jsx'] }
 Plug 'jiangmiao/auto-pairs',     { 'for': ['javascript', 'javascript.jsx'] }
-" Plug 'mxw/vim-jsx',              { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'othree/yajs.vim',          { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'chemzqm/vim-jsx-improve'
 
 " Clojure Plugins
 " Plug 'guns/vim-clojure-highlight', { 'for': ['clojure'] }
@@ -123,6 +123,7 @@ set shell=/bin/bash
 set shiftwidth=4                              " default to 4 spaces for indentation
 set showtabline=2                             " always show tab line
 set smartindent
+set spellfile=~/.config/nvim/spell/en.utf-8.add
 set synmaxcol=160                             " Don't syntax highlight past 160 cols (perf)
 set t_ut=
 set tabstop=4                                 " use four space chars when pressing <tab>
@@ -147,6 +148,7 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " never ever use tab characters you filthy heathens
 autocmd BufReadPre set expandtab
+
 
 
 " Mappings ---------------------------------------------------------------------
@@ -625,6 +627,10 @@ nnoremap <leader>xB :!open /Applications/Google\ Chrome.app<CR>
 " \xs to open Spotify
 nnoremap <leader>xs :!open /Applications/Spotify.app<CR>
 
+" (r)e-format tasks ------------------
+" (r)e-format (l)ines - sort paragraph lines
+nnoremap <leader>rl vip:sort<CR>
+
 
 " Misc Tasks ---------------------------
 
@@ -653,8 +659,6 @@ nnoremap <silent> <leader>k :set paste<CR>m`O<Esc>``:set nopaste<CR>
 nnoremap <leader>ts :%s/test(/test.skip(/g<CR>
 " \tu unskip tests
 nnoremap <leader>tu :%s/test.skip(/test(/g<CR>
-" \r to reload REPL and show last REPL message (Clojure only right now)
-nnoremap <leader>r :Require<CR>
 
 " ------------------------------------------------------------------------------
 "
