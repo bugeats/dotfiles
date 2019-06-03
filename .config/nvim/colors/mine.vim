@@ -240,6 +240,7 @@ call s:linkGroup('RedshiftComment', [
     \"javascriptDocParamType",
     \"javascriptDocTags",
     \"pythonRun",
+    \"rustCommentLineDoc",
     \"vimLineComment",
 \])
 
@@ -313,6 +314,8 @@ call s:linkGroup('RedshiftControl', [
     \"xmlEqual",
     \"xmlTag",
     \"yamlKeyValueDelimiter",
+    \"rustSigil",
+    \"rustArrowCharacter",
 \])
 
 call s:linkGroup('RedshiftControlActive', [
@@ -389,6 +392,8 @@ call s:linkGroup('RedshiftKeyword', [
     \"rubyExceptional",
     \"rubyInclude",
     \"rubyMacro",
+    \"rustType",
+    \"rustSelf",
     \"shEcho",
     \"shFunctionKey",
     \"stylusImport",
@@ -410,6 +415,9 @@ call s:linkGroup('RedshiftKeyword', [
     \"typescriptVariable",
     \"vimCommand",
     \"vimLet",
+    \"rustRepeat",
+    \"rustConditional",
+    \"rustStorage",
 \])
 
 call s:linkGroup('RedshiftLiteral', [

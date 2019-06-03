@@ -57,11 +57,11 @@ Plug 'zhaocai/GoldenView.Vim'
 " Misc Language
 Plug 'digitaltoad/vim-pug',       { 'for': ['pug'] }
 Plug 'elzr/vim-json',             { 'for': ['json'] }
-Plug 'jparise/vim-graphql'
 Plug 'jparise/vim-graphql',       { 'for': ['graphql'] }
 Plug 'neovimhaskell/haskell-vim', { 'for': ['haskell'] }
 Plug 'nono/vim-handlebars',       { 'for': ['handlebars'] }
 Plug 'plasticboy/vim-markdown',   { 'for': ['markdown'] }
+Plug 'rust-lang/rust.vim',        { 'for': ['rust'] }
 Plug 'vim-python/python-syntax'
 Plug 'wavded/vim-stylus',         { 'for': ['stylus'] }
 
@@ -204,6 +204,7 @@ augroup filetypes
     autocmd FileType clojure    setlocal ts=2 sw=2 expandtab
     autocmd FileType javascript setlocal ts=4 sw=4 expandtab equalprg=eslint-pretty ff=unix
     autocmd FileType json       setlocal equalprg=json_reformat " json_reformat is part of yajl: http://lloyd.github.com/yajl/
+    autocmd FileType rust       setlocal ts=4 sw=4 expandtab equalprg=rustfmt
     autocmd FileType xml        setlocal equalprg=xmllint\ --format\ -
     autocmd Filetype css        setlocal ts=2 sw=2 expandtab
     autocmd Filetype cucumber   setlocal ts=2 sw=2 expandtab
