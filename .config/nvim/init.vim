@@ -18,14 +18,8 @@ filetype off " required!
 
 call plug#begin('~/.config/nvim/plugged')
 
-" TODO figure out coc
-" Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
-
 " Core / UI
 Plug 'Lokaltog/vim-easymotion'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/neosnippet.vim'
-Plug 'Shougo/unite.vim'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
 Plug 'airblade/vim-rooter'
@@ -34,25 +28,24 @@ Plug 'freitass/todo.txt-vim'
 Plug 'godlygeek/tabular'
 Plug 'ivyl/vim-bling'
 Plug 'jeetsukumaran/vim-buffergator'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'mkitt/tabline.vim'
-Plug 'neomake/neomake', { 'do': 'npm install -g eslint htmlhint' }
 Plug 'neovim/node-host'
 Plug 'ntpeters/vim-better-whitespace' " causes all trailing whitespace characters to be highlighted.
-Plug 'numkil/ag.vim'
 Plug 'othree/csscomplete.vim'
-Plug 'sbdchd/neoformat'
 Plug 'scrooloose/nerdtree'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
-Plug 'vim-ruby/vim-ruby'
 Plug 'yuku-t/unite-git'
 Plug 'zhaocai/GoldenView.Vim'
+
+" COC
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'} " latest release tag
+Plug 'honza/vim-snippets'
 
 " Misc Language
 Plug 'digitaltoad/vim-pug',       { 'for': ['pug'] }
@@ -62,38 +55,18 @@ Plug 'neovimhaskell/haskell-vim', { 'for': ['haskell'] }
 Plug 'nono/vim-handlebars',       { 'for': ['handlebars'] }
 Plug 'plasticboy/vim-markdown',   { 'for': ['markdown'] }
 Plug 'rust-lang/rust.vim',        { 'for': ['rust'] }
-Plug 'vim-python/python-syntax'
+Plug 'vim-python/python-syntax',  { 'for': ['python'] }
+Plug 'vim-ruby/vim-ruby',         { 'for': ['ruby'] }
 Plug 'wavded/vim-stylus',         { 'for': ['stylus'] }
 
 " Javascript Plugins
-Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'], 'do': 'npm install -g tern' }
 Plug 'chemzqm/vim-jsx-improve',  { 'for': ['javascript.jsx'] }
-Plug 'jiangmiao/auto-pairs',     { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'othree/yajs.vim',          { 'for': ['javascript', 'javascript.jsx'] }
-
-" Clojure Plugins
-" Plug 'guns/vim-clojure-highlight', { 'for': ['clojure'] }
-" Plug 'guns/vim-clojure-static',    { 'for': ['clojure'] }
-" Plug 'snoe/nvim-parinfer.js',      { 'for': ['clojure'], 'do': ':UpdateRemotePlugins' }
-" Plug 'tpope/vim-classpath',        { 'for': ['clojure'] }
-" Plug 'tpope/vim-dispatch',         { 'for': ['clojure'] }
-" Plug 'tpope/vim-fireplace',        { 'for': ['clojure'] }
-" Plug 'tpope/vim-projectionist',    { 'for': ['clojure'] }
-" Plug 'tpope/vim-salve',            { 'for': ['clojure'] }
-" Plug 'venantius/vim-cljfmt',       { 'for': ['clojure'] }
-" Plug 'venantius/vim-eastwood',     { 'for': ['clojure'] }
-
-" Maybes
-" Plug 'yuttie/comfortable-motion.vim'
-" Plug 'tpope/vim-unimpaired'
-" Plug 'kassio/neoterm'
-" Plug 'henrik/vim-indexed-search'
-" Plug 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 
 call plug#end()
 
 
-" Preferences / Defaults -------------------------------------------------------
+" Preferences / Defaults -----------------------------------------------------------------------------------------------
 
 syntax on
 
@@ -151,7 +124,7 @@ autocmd BufReadPre set expandtab
 
 
 
-" Mappings ---------------------------------------------------------------------
+" Mappings -------------------------------------------------------------------------------------------------------------
 
 " Pressing 'K' will split the line ('cause 'J' will join it)
 nnoremap K i<CR><Esc>
@@ -245,12 +218,6 @@ let NERDTreeMinimalUI=1
 let NERDTreeIgnore=['\.DS_Store$', '^__pycache__$']
 
 
-" Ag / Project Search ----------------------------------------------------------
-
-" let g:agprg = "/usr/local/bin/ag --column"
-let g:agprg = "/usr/local/bin/ag"
-
-
 " Window Movement --------------------------------------------------------------
 
 " Resize window (arrow keys)
@@ -266,6 +233,7 @@ let g:goldenview__enable_at_startup = 1
 
 " dunno why GoldenView stopped init'ing at startup, but this fixes it
 autocmd VimEnter * EnableGoldenViewAutoResize
+
 
 " Tests Navigation -------------------------------------------------------------
 
@@ -365,78 +333,32 @@ vmap <Enter> <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)"
 
 
-" Auto Pairs -------------------------------------------------------------------
-
-let g:AutoPairsFlyMode = 0
-let g:AutoPairsShortcutBackInsert = '<M-b>'
-
-
-" Deoplete ---------------------------------------------------------------------
-
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#file#enable_buffer_path = 1
-
-" incantation to get normal tab completion behavior with deoplete
-inoremap <silent><expr> <TAB>
-\ pumvisible() ? "\<C-n>" :
-\ <SID>check_back_space() ? "\<TAB>" :
-\ deoplete#mappings#manual_complete()
-function! s:check_back_space() abort "{{{
-let col = col('.') - 1
-return !col || getline('.')[col - 1]  =~ '\s'
-endfunction"}}}
-
-aug omnicomplete
-  au!
-  au FileType css,stylus setl omnifunc=csscomplete#CompleteCSS
-  au FileType javascript,jsx setl omnifunc=tern#Complete
-aug END
-
-
-" Neosnippets ------------------------------------------------------------------
-
-" disable all runtime snippets
-let g:neosnippet#disable_runtime_snippets = { '_' : 1,  }
-
-" only use custom snippets
-let g:neosnippet#snippets_directory='~/.config/nvim/snippets'
-
-imap <right>    <Plug>(neosnippet_expand_or_jump)
-smap <right>    <Plug>(neosnippet_expand_or_jump)
-xmap <right>    <Plug>(neosnippet_expand_target)
-
-" SuperTab like snippets behavior.
-imap <expr><TAB> pumvisible() ? "\<C-n>" : neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-" For conceal markers.
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
-
-
-" Neomake ----------------------------------------------------------------------
-
-call neomake#configure#automake('nrwi', 500)
-
-" let g:neomake_javascript_enabled_makers = ['eslint_d']
-let g:neomake_javascript_enabled_makers = ['eslint']
-let g:neomake_python_enabled_makers = ['pylint']
-let g:neomake_pug_enabled_makers = ['puglint']
-let g:neomake_html_enabled_makers = ['htmlhint']
-"
-let g:neomake_warning_sign={'texthl': 'NeomakeErrorMsg'}
-let g:neomake_error_sign={'texthl': 'NeomakeErrorMsg'}
-
-" let g:neomake_verbose=3
-" autocmd! BufWritePost * Neomake
-
-
 " Supertab ---------------------------------------------------------------------
 
 " Fix deoplete menu order
 " https://github.com/ervandew/supertab#frequently-asked-questions
 let g:SuperTabDefaultCompletionType = "<c-n>"
+
+
+" Conquer of Completion (coc)---------------------------------------------------
+
+" use <tab> for trigger completion and navigate to the next complete item
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <Tab>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<Tab>" :
+      \ coc#refresh()
+
+" ---- coc-snippets ----
+
+" exand current snippet on right arrow
+imap <right> <Plug>(coc-snippets-expand)
+smap <right> <Plug>(coc-snippets-expand)
+xmap <right> <Plug>(coc-snippets-expand)
 
 
 " Neovim Terminal Mode ---------------------------------------------------------
@@ -468,16 +390,6 @@ endfunc
 colorscheme mine
 
 
-" Javascript Stuff -------------------------------------------------------------
-
-" let g:jsx_ext_required = 0 " Allow JSX in normal JS files
-
-
-" Clojure Stuff ----------------------------------------------------------------
-
-let g:parinfer_preview_cursor_scope = 1
-autocmd FileType clojure     set cursorcolumn
-
 " Misc Stuff -------------------------------------------------------------------
 
 let g:comfortable_motion_scroll_down_key = "j"
@@ -494,101 +406,164 @@ let mapleader = "\<Space>"
 " DER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEAD
 " ADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEA
 
-" Language Tasks -----------------------
+" (c)oc tasks --------------------------
 
-nnoremap <leader>xc :call LanguageClient_contextMenu()<cr>
+" (c)oc (d)iagnostic (i)nfo            Show diagnostic message of current position, no truncate.
+nnoremap <leader>cdi                   <Plug>(coc-diagnostic-info)<cr>
 
-" File Tasks ---------------------------
+" (c)oc (d)iagnostic (n)ext            Jump to next diagnostic position.
+nnoremap <leader>cdn                   <Plug>(coc-diagnostic-next)
+
+" (c)oc (d)iagnostic (p)rev            Jump to previous diagnostic position.
+nnoremap <leader>cdp                   <Plug>(coc-diagnostic-prev)
+
+" (c)oc (d)efinition (j)ump            Jump to definition(s) of current symbol.
+nnoremap <leader>cdj                   <Plug>(coc-definition)
+
+" (c)oc de(c)laration (j)ump           Jump to declaration(s) of current symbol.
+nnoremap <leader>ccj                   <Plug>(coc-declaration)
+
+" (c)oc (i)mplementation (j)ump        Jump to implementation(s) of current symbol.
+nnoremap <leader>cij                   <Plug>(coc-implementation)
+
+" (c)oc (t)ype-efinition (j)ump        Jump to type definition(s) of current symbol.
+nnoremap <leader>ctj                   <Plug>(coc-type-definition)
+
+" (c)oc (r)eferences (j)ump            Jump to references of current symbol.
+nnoremap <leader>crj                   <Plug>(coc-references)
+
+" (c)oc (f)ormat (s)elected            Format selected range, would work in both visual mode and normal mode, when used in normal mode, the selection works on the motion object.
+nnoremap <leader>cfs                   <Plug>(coc-format-selected)
+vnoremap <leader>cfs                   <Plug>(coc-format-selected)
+
+" (c)oc (f)ormat (b)uffer              Format the whole buffer
+nnoremap <leader>cfb                   <Plug>(coc-format)
+
+" (c)oc (r)ename (s)ymbol              Rename symbol under cursor to a new word.
+nnoremap <leader>crs                   <Plug>(coc-rename)
+
+" (c)oc (c)odeaction (l)ine            Get and run code action(s) for current line.
+nnoremap <leader>cgc                   <Plug>(coc-codeaction)
+
+" (c)oc (c)odeaction (s)elected        Get and run code action(s) with the selected region. Works with both normal and visual mode.
+nnoremap <leader>ccs                   <Plug>(coc-codeaction-selected)
+vnoremap <leader>ccs                   <Plug>(coc-codeaction-selected)
+
+" (c)oc (o)pen (l)ink                  Open link under cursor.
+nnoremap <leader>col                   <Plug>(coc-openlink)
+
+" (c)oc (d)o-command (i)line           Do command from codeLens of current line.
+nnoremap <leader>cdi                   <Plug>(coc-codelens-action)
+
+" (c)oc (f)ix (c)urrent                Try to run quickfix action for diagnostics on the current line.
+nnoremap <leader>cfc                   <Plug>(coc-fix-current)
+
+" (c)oc (h)ide (f)loats                Hide all float windows.
+nnoremap <leader>chf                   <Plug>(coc-float-hide)
+
+" (c)oc (f)loat (j)ump                 Jump to first float window.
+nnoremap <leader>cfj                   <Plug>(coc-float-jump)
+
+
+" (f)ile tasks -------------------------
 
 " toggle between tests and implementation with vertical splits
-nnoremap <leader>ft :call CurrentFileTestSplit()<cr>
+nnoremap <leader>ft                    :call CurrentFileTestSplit()<cr>
 
-nnoremap <leader>fs :w<cr>
-nnoremap <leader>fd :lcd %:p:h<cr>
-nnoremap <leader>fec :e ~/.config/nvim/colors/mine.vim<cr>
-nnoremap <leader>fed :e ~/Desktop<cr>
-nnoremap <leader>fes :e ~/.config/nvim/snippets<cr>
-nnoremap <leader>fev :e $MYVIMRC<cr>
-nnoremap <leader>fet :call EditCurrentFileAlternate()<cr>
+nnoremap <leader>ft                    :call CurrentFileTestSplit()<cr>
+
+nnoremap <leader>fd                    :lcd %:p:h<cr>
+nnoremap <leader>fec                   :e ~/.config/nvim/colors/mine.vim<cr>
+nnoremap <leader>fed                   :e ~/Desktop<cr>
+nnoremap <leader>feq                   :e ~/.config/coc<cr>
+
+" (f)ile (e)dit (s)nippets
+nnoremap <leader>fes                   :CocCommand snippets.editSnippets<cr>
+
+nnoremap <leader>fet                   :call EditCurrentFileAlternate()<cr>
+nnoremap <leader>fev                   :e $MYVIMRC<cr>
+nnoremap <leader>fs                    :w<cr>
 
 " copy current file path
-nnoremap <leader>fcp :let @+ = expand("%:p")<cr>:echo @+<cr>
+nnoremap <leader>fcp                   :let @+ = expand("%:p")<cr>:echo @+<cr>
+
 " copy current file relative path
-nnoremap <leader>fcr :let @+ = expand("%")<cr>:echo @+<cr>
+nnoremap <leader>fcr                   :let @+ = expand("%")<cr>:echo @+<cr>
+
 " copy current file relative path with 'tape' prefix
-nnoremap <leader>fct :let @+ = "tape ".expand("%")<cr>:echo @+<cr>
+nnoremap <leader>fct                   :let @+ = "tape ".expand("%")<cr>:echo @+<cr>
 
 " list git modified files
-nnoremap <leader>flm :Unite git_modified<cr>
+nnoremap <leader>flm                   :Unite git_modified<cr>
 " list git cached files
-nnoremap <leader>flc :Unite git_cached<cr>
+nnoremap <leader>flc                   :Unite git_cached<cr>
 " list git untracked files
-nnoremap <leader>flu :Unite git_untracked<cr>
-nnoremap <leader>fln :Unite git_untracked<cr>
+nnoremap <leader>flu                   :Unite git_untracked<cr>
+nnoremap <leader>fln                   :Unite git_untracked<cr>
 
 " re-read vim config
-nnoremap <leader>frv :so $MYVIMRC<cr>
+nnoremap <leader>frv                   :so $MYVIMRC<cr>
 
 " (w)indow tasks -------------------------
 
 " (w)indow (f)ocus
-nnoremap <leader>wf :only<cr>:NERDTreeFind<cr>:wincmd l<cr>:GoldenViewResize<cr>
+nnoremap <leader>wf                    :only<cr>:NERDTreeFind<cr>:wincmd l<cr>:GoldenViewResize<cr>
 " (w)indow (F)ocus
-nnoremap <leader>wF :only<cr>:NERDTreeFind<cr>:wincmd l<cr>:Goyo<cr>
-nnoremap <leader>wQ :qa!<cr>
-nnoremap <leader>wd :q<cr>
-nnoremap <leader>wh :wincmd h<cr>
-nnoremap <leader>wj :wincmd j<cr>
-nnoremap <leader>wk :wincmd k<cr>
-nnoremap <leader>wl :wincmd l<cr>
-nnoremap <leader>wm :only<cr>
-nnoremap <leader>wq :wincmd q<cr>
-nnoremap <leader>wq wincmd d<cr>
-nnoremap <leader>wr :wincmd r<cr>
-nnoremap <leader>ws :wincmd s<cr>:wincmd j<cr>
-nnoremap <leader>wv :wincmd v<cr>:wincmd l<cr>
+nnoremap <leader>wF                    :only<cr>:NERDTreeFind<cr>:wincmd l<cr>:Goyo<cr>
+nnoremap <leader>wQ                    :qa!<cr>
+nnoremap <leader>wd                    :q<cr>
+nnoremap <leader>wh                    :wincmd h<cr>
+nnoremap <leader>wj                    :wincmd j<cr>
+nnoremap <leader>wk                    :wincmd k<cr>
+nnoremap <leader>wl                    :wincmd l<cr>
+nnoremap <leader>wm                    :only<cr>
+nnoremap <leader>wq                    :wincmd q<cr>
+nnoremap <leader>wq                    :wincmd d<cr>
+nnoremap <leader>wr                    :wincmd r<cr>
+nnoremap <leader>ws                    :wincmd s<cr>:wincmd j<cr>
+nnoremap <leader>wv                    :wincmd v<cr>:wincmd l<cr>
 " (w)indow resi(z)e
-nnoremap <leader>wz :GoldenViewResize<cr>
+nnoremap <leader>wz                    :GoldenViewResize<cr>
 
 
 " (n)ERDTree tasks -----------------------
 
-nnoremap <leader>nf :NERDTreeFind<cr>
+nnoremap <leader>nf                    :NERDTreeFind<cr>
 
 
 " (t)ab tasks ----------------------------
 
-nnoremap <leader>1 :tabn 1<CR>
-nnoremap <leader>2 :tabn 2<CR>
-nnoremap <leader>3 :tabn 3<CR>
-nnoremap <leader>4 :tabn 4<CR>
-nnoremap <leader>5 :tabn 5<CR>
-nnoremap <leader>6 :tabn 6<CR>
-nnoremap <leader>7 :tabn 7<CR>
-nnoremap <leader>8 :tabn 8<CR>
-nnoremap <leader>9 :tabn 9<CR>
+nnoremap <leader>1                     :tabn 1<CR>
+nnoremap <leader>2                     :tabn 2<CR>
+nnoremap <leader>3                     :tabn 3<CR>
+nnoremap <leader>4                     :tabn 4<CR>
+nnoremap <leader>5                     :tabn 5<CR>
+nnoremap <leader>6                     :tabn 6<CR>
+nnoremap <leader>7                     :tabn 7<CR>
+nnoremap <leader>8                     :tabn 8<CR>
+nnoremap <leader>9                     :tabn 9<CR>
 
-nnoremap <leader>td  :tabclose<CR>
-nnoremap <leader>th  :tabnext<CR>
-nnoremap <leader>tj  :tabnext<CR>
-nnoremap <leader>tk  :tabprev<CR>
-nnoremap <leader>tl  :tabprev<CR>
-nnoremap <leader>tm  :tabm<Space>
-nnoremap <leader>tn  :tabnew<CR>
-nnoremap <leader>tt  :tabedit<Space>
+nnoremap <leader>td                    :tabclose<CR>
+nnoremap <leader>th                    :tabnext<CR>
+nnoremap <leader>tj                    :tabnext<CR>
+nnoremap <leader>tk                    :tabprev<CR>
+nnoremap <leader>tl                    :tabprev<CR>
+nnoremap <leader>tm                    :tabm<Space>
+nnoremap <leader>tn                    :tabnew<CR>
+nnoremap <leader>tt                    :tabedit<Space>
 
 " tf 'tab floor' move the current tab all the way left
-nnoremap <leader>tf :tabm 0<CR>
+nnoremap <leader>tf                    :tabm 0<CR>
 
-nnoremap <leader>t1  :tabn 1<CR>
-nnoremap <leader>t2  :tabn 2<CR>
-nnoremap <leader>t3  :tabn 3<CR>
-nnoremap <leader>t4  :tabn 4<CR>
-nnoremap <leader>t5  :tabn 5<CR>
-nnoremap <leader>t6  :tabn 6<CR>
-nnoremap <leader>t7  :tabn 7<CR>
-nnoremap <leader>t8  :tabn 8<CR>
-nnoremap <leader>t9  :tabn 9<CR>
+nnoremap <leader>t1                    :tabn 1<CR>
+nnoremap <leader>t2                    :tabn 2<CR>
+nnoremap <leader>t3                    :tabn 3<CR>
+nnoremap <leader>t4                    :tabn 4<CR>
+nnoremap <leader>t5                    :tabn 5<CR>
+nnoremap <leader>t6                    :tabn 6<CR>
+nnoremap <leader>t7                    :tabn 7<CR>
+nnoremap <leader>t8                    :tabn 8<CR>
+nnoremap <leader>t9                    :tabn 9<CR>
 
 " (m)ake tasks ---------------------------
 
@@ -601,65 +576,65 @@ autocmd FileType javascript nnoremap <leader>m :w<CR>:!open /Applications/Google
 " Lint Tasks ---------------------------
 
 " neomake open location window
-nnoremap <leader>lo :lopen<CR>
+nnoremap <leader>lo                    :lopen<CR>
 " neomake close location window
-nnoremap <leader>lc :lclose<CR>
+nnoremap <leader>lc                    :lclose<CR>
 " neomake go to current error/warning
-nnoremap <leader>ll :ll<CR>
+nnoremap <leader>ll                    :ll<CR>
 " neomake next error/warning
-nnoremap <leader>ln :lnext<CR>
+nnoremap <leader>ln                    :lnext<CR>
 " neomake previous error/warning
-nnoremap <leader>lp :lprev<CR>
+nnoremap <leader>lp                    :lprev<CR>
 
 " Buffer Tasks -------------------------
 
 " (b)(n) nuke buffers that are not visible
-nnoremap <leader>bn :call NukeUnusedBuffers()<CR>
+nnoremap <leader>bn                    :call NukeUnusedBuffers()<CR>
 " (b)(l) list buffers in Buffergator
-nnoremap <leader>bl :BuffergatorOpen<CR>
+nnoremap <leader>bl                    :BuffergatorOpen<CR>
 
 
 " eXternal Tasks -----------------------
 
 " \xb to open web browser
-nnoremap <leader>xb :!open /Applications/Google\ Chrome\ Canary.app<CR>
+nnoremap <leader>xb                    :!open /Applications/Google\ Chrome\ Canary.app<CR>
 " \xB to open chrome
-nnoremap <leader>xB :!open /Applications/Google\ Chrome.app<CR>
+nnoremap <leader>xB                    :!open /Applications/Google\ Chrome.app<CR>
 " \xs to open Spotify
-nnoremap <leader>xs :!open /Applications/Spotify.app<CR>
+nnoremap <leader>xs                    :!open /Applications/Spotify.app<CR>
 
 " (r)e-format tasks ------------------
 " (r)e-format (l)ines - sort paragraph lines
-nnoremap <leader>rl vip:sort<CR>
+nnoremap <leader>rl                    vip:sort<CR>
 
 
 " Misc Tasks ---------------------------
 
 " global search with Ag
-nnoremap <leader>/ :Ag<space>
+nnoremap <leader>/                      CocList rep<cr>
 " \; auto append semicolon
-nnoremap <silent> <leader>; meA;<Esc>`e
+nnoremap <silent><leader>;              meA;<Esc>`e
 " \, auto append comma
-nnoremap <silent> <leader>, meA,<Esc>`e
+nnoremap <silent><leader>,              meA,<Esc>`e
 " \q ever so slightly faster quit command
-nnoremap <leader>q :q<CR>
+nnoremap <leader>q                     :q<CR>
 " \Q quit hard!
-nnoremap <leader>Q :qa!<CR>
+nnoremap <leader>Q                     :qa!<CR>
 " \d show/hide NerdTree
-nnoremap <leader>d :NERDTreeToggle<cr>
+nnoremap <leader>d                     :NERDTreeToggle<cr>
 " \p to show fuzzy search
-nnoremap <leader>p :FZF<cr>
+nnoremap <leader>p                     :CocList files<cr>
 " dup a line/selection, with commented version above <-- this is awesome
-vnoremap <leader>c y gv :TComment<cr> gv<Esc> p
-nnoremap <leader>c V y gv :TComment<cr> gv<Esc> p
+vnoremap <leader>c                     y gv :TComment<cr> gv<Esc> p
+nnoremap <leader>c                     V y gv :TComment<cr> gv<Esc> p
 " j - insert blank line below
-nnoremap <silent> <leader>j :set paste<CR>m`o<Esc>``:set nopaste<CR>
+nnoremap <silent><leader>j             :set paste<CR>m`o<Esc>``:set nopaste<CR>
 " k - insert blank line above
-nnoremap <silent> <leader>k :set paste<CR>m`O<Esc>``:set nopaste<CR>
+nnoremap <silent><leader>k             :set paste<CR>m`O<Esc>``:set nopaste<CR>
 " \ts skip tests
-nnoremap <leader>ts :%s/test(/test.skip(/g<CR>
+nnoremap <leader>ts                    :%s/test(/test.skip(/g<CR>
 " \tu unskip tests
-nnoremap <leader>tu :%s/test.skip(/test(/g<CR>
+nnoremap <leader>tu                    :%s/test.skip(/test(/g<CR>
 
 " ------------------------------------------------------------------------------
 "

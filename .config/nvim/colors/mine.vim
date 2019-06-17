@@ -140,11 +140,18 @@ endfunction
 call s:smartHi('Normal',                    s:p.d1, s:p.a6)
 call s:smartHi('RedshiftAttention',         s:p.t1, s:p.t4)
 call s:smartHi('RedshiftAttentionFg',       s:p.t1, '')
+
 call s:smartHi('RedshiftChromeHighlighted', s:p.a1, s:p.a6)
 call s:smartHi('RedshiftChromeMin',         s:p.a3, s:p.a6)
 call s:smartHi('RedshiftChromeNormal',      s:p.a2, s:p.a6)
 call s:smartHi('RedshiftChromePanel',       s:p.a2, s:p.a4)
 call s:smartHi('RedshiftChromePanelActive', s:p.a1, s:p.a4)
+
+
+call s:smartHi('RedshiftChromeWarning',     s:p.t1, s:p.a4)
+call s:smartHi('RedshiftChromeError',       s:p.t1, s:p.a4)
+
+
 call s:smartHi('RedshiftComment',           s:p.d2, '')
 call s:smartHi('RedshiftControl',           s:p.a2, '')
 call s:smartHi('RedshiftControlActive',     s:p.a1, '')
@@ -158,6 +165,7 @@ call s:smartHi('RedshiftLiteralDim',        s:p.g2, s:p.a6)
 call s:smartHi('RedshiftLocated',           '',     s:p.a5)
 call s:smartHi('RedshiftNormal',            s:p.d1, s:p.a6)
 call s:smartHi('RedshiftSelected',          '',     s:p.k4)
+
 
 call s:smartHi('RedshiftGreen',  s:p.greennormal, '')
 call s:smartHi('RedshiftYellow', s:p.yellownormal, '')
@@ -474,6 +482,10 @@ call s:linkGroup('RedshiftAttention', [
     \"JavascriptCommentTodo",
     \"SpellBad",
     \"Todo",
+    \"CocErrorHighlight",
+    \"CocWarningHighlight",
+    \"CocInfoHighlight",
+    \"CocHintHighlight",
 \])
 
 call s:linkGroup('RedshiftAttentionFg', [
@@ -518,6 +530,7 @@ call s:linkGroup('RedshiftChromePanel', [
 \])
 
 call s:linkGroup('RedshiftChromePanelActive', [
+    \"CocFloating",
     \"PmenuSel",
     \"StatusLine",
     \"TabLineSel",
@@ -530,6 +543,8 @@ call s:linkGroup('RedShiftGreen', [
     \"GitGutterAdd",
     \"GitGutterAddDefault",
     \"NERDTreeGitStatusModified",
+    \"CocInfoSign",
+    \"CocHintSign",
 \])
 
 call s:linkGroup('RedShiftYellow', [
@@ -539,14 +554,38 @@ call s:linkGroup('RedShiftYellow', [
     \"GitGutterChangeDelete",
     \"GitGutterChangeDeleteDefault",
     \"NERDTreeGitStatusDirDirty",
+    \"CocWarningSign",
 \])
 
 call s:linkGroup('RedShiftRed', [
     \"DiffDelete",
     \"GitGutterDelete",
     \"GitGutterDeleteDefault",
+    \"CocErrorSign",
 \])
 
+call s:linkGroup('RedshiftChromeWarning', [
+    \"CocWarningFloat",
+\])
+
+call s:linkGroup('RedshiftChromeError', [
+    \"CocErrorFloat",
+\])
+
+" coc TODO
+" \"CocErrorVirtualText", " The highlight used for error signs.
+" \"CocWarningVirtualText", " The highlight used for warning signs.
+" \"CocInfoVirtualText", " The highlight used for information signs.
+" \"CocHintVirtualText", " The highlight used for hint signs.
+
+" \"CocHighlightText", " The highlight used for document highlight feature. Normally used for
+" \"CocHighlightTextRead", " Highlight for `Read` kind of document symbol.
+" \"CocHighlightTextWrite", " Highlight for `Write` kind of document symbol.
+"
+" \"CocCodeLens", " Highlight group of virtual text for codeLens.
+" \"CocFloating", " Highlight group of a floating window.
+" \"CocInfoFloat", " The highlight used for a floating window with information.
+" \"CocHintFloat", " The highlight used for a floating window with hints.
 
 " Other ------------------------------------------------------------------------
 
