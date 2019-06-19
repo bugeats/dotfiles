@@ -44,7 +44,7 @@ Plug 'yuku-t/unite-git'
 Plug 'zhaocai/GoldenView.Vim'
 
 " COC
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'} " latest release tag
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
 
 " Misc Language
@@ -610,8 +610,8 @@ nnoremap <leader>rl                    vip:sort<CR>
 
 " Misc Tasks ---------------------------
 
-" global search with Ag
-nnoremap <leader>/                      CocList rep<cr>
+" global text search (grep)
+nnoremap <leader>/                      :CocList grep<cr>
 " \; auto append semicolon
 nnoremap <silent><leader>;              meA;<Esc>`e
 " \, auto append comma
