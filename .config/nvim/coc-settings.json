@@ -1,0 +1,5 @@
+{
+    "diagnostic.checkCurrentLine": true,
+    "eslint.autoFixOnSave": true,
+    "suggest.enablePreview": true
+}

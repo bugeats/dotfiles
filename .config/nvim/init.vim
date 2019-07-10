@@ -585,6 +585,8 @@ nnoremap <leader>ll                    :ll<CR>
 nnoremap <leader>ln                    :lnext<CR>
 " neomake previous error/warning
 nnoremap <leader>lp                    :lprev<CR>
+" (l)int (f)ix
+nnoremap <leader>lf                    :CocCommand eslint.executeAutofix<CR>
 
 " Buffer Tasks -------------------------
 
