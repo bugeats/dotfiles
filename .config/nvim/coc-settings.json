@@ -1,5 +1,8 @@
 {
+    "coc.preferences.colorSupport": false,
     "diagnostic.checkCurrentLine": true,
     "eslint.autoFixOnSave": true,
-    "suggest.enablePreview": true
+    "html.validate.scripts": true,
+    "suggest.enablePreview": true,
+    "tsserver.enable": false
 }

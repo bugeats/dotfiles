@@ -8,7 +8,7 @@ module.exports = {
         'comma-style': [2, 'last'],
         'consistent-return': 2,
         'eqeqeq': 2,
-        'indent': [2, 4],
+        'indent': [2, 2],
         'linebreak-style': [2, 'unix'],
         'no-else-return': 2,
         'no-redeclare': 0,

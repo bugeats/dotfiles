@@ -43,6 +43,8 @@ Plug 'tpope/vim-surround'
 Plug 'yuku-t/unite-git'
 Plug 'zhaocai/GoldenView.Vim'
 
+Plug 'jremmen/vim-ripgrep'
+
 " COC
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
@@ -106,6 +108,7 @@ set titlestring=%{fnamemodify(getcwd(),':t')} " set iTerm tab/window title to th
 set ttimeoutlen=50                            " Time in milliseconds to wait for a key code sequence to complete.
 set visualbell                                " don't beep
 set wildignore=*.swp,*.pyc
+set switchbuf+=split                          " open new buffers in a split if possible
 
 " statusline (line below the window pane)
 set statusline=%f:%l:%c                       " minimal status line with file name
@@ -611,9 +614,14 @@ nnoremap <leader>rl                    vip:sort<CR>
 
 
 " Misc Tasks ---------------------------
+" noremap <expr> <F4> ':Gtags -di '.expand('<cword>').'<cr>' \ . ':Gtagsa -ri '.expand('<cword>').'<cr>'
+" :nnoremap <leader>gg :Grep <C-r><C-w> 
 
 " global text search (grep)
-nnoremap <leader>/                      :CocList grep<cr>
+" nnoremap <leader>/                      :CocList grep<cr>
+nnoremap <leader>/                      :Rg<Space>
+" global text search for word under cursor
+nnoremap <leader>?                      :Rg<Space>"<C-r><C-w>"<CR>
 " \; auto append semicolon
 nnoremap <silent><leader>;              meA;<Esc>`e
 " \, auto append comma
