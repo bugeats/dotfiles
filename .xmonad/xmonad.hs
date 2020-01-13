@@ -27,7 +27,7 @@ myLayout = spacingWithEdge windowMargin $ hiddenWindows $ ThreeColMid 1 (1/24) g
 -- main = xmonad def { layoutHook = myLayout }
 
 myKeys = [ ((mod4Mask, xK_x), spawn "slock")
-         , ((mod4Mask, xK_s), spawn "slock & systemctl suspend")
+         , ((mod4Mask, xK_s), spawn "systemctl suspend & slock")
          , ((mod4Mask, xK_backslash), withFocused hideWindow)
          , ((mod4Mask .|. shiftMask, xK_backslash), popOldestHiddenWindow)
          -- TODO shellPrompt isn't doing anything
