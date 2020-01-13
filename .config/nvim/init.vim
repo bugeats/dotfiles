@@ -52,6 +52,7 @@ Plug 'honza/vim-snippets'
 " Misc Language
 Plug 'digitaltoad/vim-pug',       { 'for': ['pug'] }
 Plug 'elzr/vim-json',             { 'for': ['json'] }
+Plug 'fatih/vim-go',              { 'for': ['go'] }
 Plug 'jparise/vim-graphql',       { 'for': ['graphql'] }
 Plug 'neovimhaskell/haskell-vim', { 'for': ['haskell'] }
 Plug 'nono/vim-handlebars',       { 'for': ['handlebars'] }
@@ -60,6 +61,7 @@ Plug 'rust-lang/rust.vim',        { 'for': ['rust'] }
 Plug 'vim-python/python-syntax',  { 'for': ['python'] }
 Plug 'vim-ruby/vim-ruby',         { 'for': ['ruby'] }
 Plug 'wavded/vim-stylus',         { 'for': ['stylus'] }
+Plug 'jjo/vim-cue',               { 'for': ['cue'] }
 
 " Javascript Plugins
 Plug 'chemzqm/vim-jsx-improve',  { 'for': ['javascript.jsx'] }
