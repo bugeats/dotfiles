@@ -21,6 +21,13 @@ export PATH="/opt/genymotion/tools:$PATH"
 # rust cargo package manager
 export PATH="$HOME/.cargo/bin:$PATH"
 
+# ripgrep grep replacement
+export RIPGREP_CONFIG_PATH="~/.config/ripgrep/ripgreprc"
+
+# golang junk
+export PATH=$PATH:$(go env GOPATH)/bin
+export GOPATH=$(go env GOPATH)
+
 
 # Neovim -----------------------------------------------------------------------
 
@@ -49,7 +56,7 @@ alias gaaa='git add --all'
 alias gau='git add --update'
 alias gb='git branch'
 alias gbd='git branch --delete '
-alias gbda='git branch | egrep -v "(^\*|master|dev)" | xargs git branch -D'
+alias gbda='git branch | egrep -v "(^\*|master|develop)" | xargs git branch -D'
 alias gc='git commit'
 alias gcf='git commit --fixup'
 alias gcm='git commit --message'
@@ -79,7 +86,13 @@ alias gstl='git stash list'
 alias gstp='git stash pop'
 alias gsts='git stash save'
 
+
 # Misc -------------------------------------------------------------------------
 
 ssh-add -K ~/.ssh/id_rsa &> /dev/null
 
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*

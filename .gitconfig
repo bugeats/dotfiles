@@ -1,7 +1,11 @@
 [user]
 	name = Chadwick Dahlquist
-	email = chadwick@bugeats.net
+	email = cdahlquist@lo3energy.com
 [push]
-	default = simple
+	default = matching
 [rerere]
 	enabled = true
+[credential]
+	helper = cache --timeout=86400
+[core]
+	autocrfl = false
