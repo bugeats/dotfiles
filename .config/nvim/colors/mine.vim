@@ -19,6 +19,10 @@ autocmd BufRead,BufNewFile * syn match generalParens /[(){}]/
 autocmd BufRead,BufNewFile * syn match generalBrackets /[\[\]]/
 autocmd BufRead,BufNewFile * syn match generalControlChar /[\.:\+!=;\,*<>|]/
 
+augroup FileType_javascript
+    autocmd FileType javascript syn match jsReturn /return/
+augroup END
+
 " Palette ----------------------------------------------------------------------
 
 let s:p = {}
@@ -155,6 +159,7 @@ call s:smartHi('RedshiftChromeError',       s:p.t1, s:p.a4)
 call s:smartHi('RedshiftComment',           s:p.d2, '')
 call s:smartHi('RedshiftControl',           s:p.a2, '')
 call s:smartHi('RedshiftControlActive',     s:p.a1, '')
+call s:smartHi('RedshiftControlDim',        s:p.a2, s:p.g5)
 call s:smartHi('RedshiftGhost',             s:p.a3, '')
 call s:smartHi('RedshiftGhostActive',       s:p.a2, s:p.a5)
 call s:smartHi('RedshiftHighlighted',       s:p.d1, s:p.t4)
@@ -164,6 +169,7 @@ call s:smartHi('RedshiftLiteral',           s:p.g1, s:p.a6)
 call s:smartHi('RedshiftLiteralDim',        s:p.g2, s:p.a6)
 call s:smartHi('RedshiftLocated',           '',     s:p.a5)
 call s:smartHi('RedshiftNormal',            s:p.d1, s:p.a6)
+call s:smartHi('RedshiftNormalDim',         s:p.d1, s:p.g5)
 call s:smartHi('RedshiftSelected',          '',     s:p.k4)
 
 
@@ -238,6 +244,10 @@ call s:linkGroup('RedshiftNormal', [
     \"xmlTagName",
 \])
 
+call s:linkGroup('RedshiftNormalDim', [
+    \"jsTemplateExpression",
+\])
+
 call s:linkGroup('RedshiftComment', [
     \"Comment",
     \"javascriptDocComment",
@@ -289,9 +299,20 @@ call s:linkGroup('RedshiftControl', [
     \"jsNoise",
     \"jsObjectBraces",
     \"jsOperator",
+    \"jsBrackets",
+    \"jsBraces",
+    \"jsRepeatBraces",
+    \"jsDestructuringBraces",
+    \"jsObjectSeparator",
+    \"jsSpreadOperator",
+    \"jsFuncArgOperator",
+    \"jsFuncArgCommas",
+    \"jsIfElseBraces",
+    \"jsDot",
     \"jsParens",
     \"jsonBraces",
     \"jsonNoise",
+    \"jsonRepeatBraces",
     \"jsxAttributeBraces",
     \"jsxCloseString",
     \"jsxCloseTag",
@@ -330,6 +351,10 @@ call s:linkGroup('RedshiftControl', [
 
 call s:linkGroup('RedshiftControlActive', [
     \"MatchParen",
+\])
+
+call s:linkGroup('RedshiftControlDim', [
+    \"jsTemplateBraces",
 \])
 
 call s:linkGroup('RedshiftKeyword', [
@@ -386,6 +411,15 @@ call s:linkGroup('RedshiftKeyword', [
     \"javascriptVariable",
     \"jsGlobalObjects",
     \"jsStorageClass",
+    \"jsOperatorKeyword",
+    \"jsException",
+    \"jsConditional",
+    \"jsExport",
+    \"jsRepeat",
+    \"jsReturn",
+    \"jsExportDefault",
+    \"jsFunction",
+    \"jsStatement",
     \"jsonNull",
     \"luaCond",
     \"luaFunction",

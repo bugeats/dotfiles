@@ -70,6 +70,27 @@ Plug 'othree/yajs.vim',          { 'for': ['javascript', 'javascript.jsx'] }
 call plug#end()
 
 
+" COC Extensions -------------------------------------------------------------------------------------------------------
+
+" Global extension names to install when they aren't installed.
+let g:coc_global_extensions = [
+    \'coc-conjure',
+    \'coc-eslint',
+    \'coc-highlight',
+    \'coc-html',
+    \'coc-json',
+    \'coc-lists',
+    \'coc-marketplace',
+    \'coc-pairs',
+    \'coc-python',
+    \'coc-rls',
+    \'coc-sh',
+    \'coc-snippets',
+    \'coc-tsserver',
+    \'coc-yaml'
+\]
+
+
 " Preferences / Defaults -----------------------------------------------------------------------------------------------
 
 syntax on
@@ -180,7 +201,7 @@ augroup filetypes
     autocmd FileType 4dgl       setlocal ts=4 sw=4 expandtab
     autocmd FileType c          setlocal equalprg=clang-format
     autocmd FileType clojure    setlocal ts=2 sw=2 expandtab
-    autocmd FileType javascript setlocal ts=4 sw=4 expandtab equalprg=eslint-pretty ff=unix
+    autocmd FileType javascript setlocal ts=2 sw=2 expandtab equalprg=eslint-pretty ff=unix
     autocmd FileType json       setlocal equalprg=json_reformat " json_reformat is part of yajl: http://lloyd.github.com/yajl/
     autocmd FileType rust       setlocal ts=4 sw=4 expandtab equalprg=rustfmt
     autocmd FileType xml        setlocal equalprg=xmllint\ --format\ -
