@@ -5,21 +5,14 @@
 env:
   TERM: screen-256color # this is what neovim needs
 
-dimensions:
-  columns: 80
-  lines: 24
-
-# Adds this many blank pixels of padding around the window Units are physical pixels;
-# this is not DPI aware.  (change requires restart)
-padding:
-  x: 6
-  y: 6
-
-# The FreeType rasterizer needs to know the device DPI for best results
-# (changes require restart)
-dpi:
-  x: 96.0
-  y: 96.0
+window:
+  dimensions:
+    columns: 80
+    lines: 24
+  padding:
+    x: 6
+    y: 6
+  # decorations: false
 
 # Display tabs using this many cells (changes require restart)
 tabspaces: 4
@@ -29,6 +22,7 @@ tabspaces: 4
 
 font:
   use_thin_strokes: true
+  # scale_with_dpi: false
 
   normal:
     family: DejaVu Sans Mono
@@ -38,13 +32,13 @@ font:
   italic:
     family: DejaVu Sans Mono
     style: Bold Oblique
-  size: 13.0
+  size: 11
 
   # Offset is the extra space around each character.
   # offset.y can be thought of as modifying the linespacing, and offset.x as modifying the letter spacing.
   offset:
-    x: 2
-    y: 2
+    x: 1
+    y: 1
 
   # Glyph offset determines the locations of the glyphs within their cells with the default being at the bottom.
   # Increase the x offset to move the glyph to the right, increase the y offset to move the glyph upward.
@@ -57,12 +51,6 @@ font:
 
 # Custom generated pallete based on HSLUV colors
 
-# default: &default_title This Post Has No Title
-# title: *default_title
-
-# https://www.dropbox.com/s/nj8zhimo4ykoxp0/redshift_perlin_alt3.png?dl=0
-# https://www.dropbox.com/s/iaqq8i3erc0n2yg/algo_worlds_edit.png?dl=0
-
 # salmon
 p_a1: &p_a1 '0xd8af8e'
 p_a2: &p_a2 '0xa57b55'
@@ -70,6 +58,7 @@ p_a3: &p_a3 '0x645851'
 p_a4: &p_a4 '0x413c39'
 p_a5: &p_a5 '0x2d2b29'
 p_a6: &p_a6 '0x272524'
+
 # green
 p_b1: &p_b1 '0x94c390'
 p_b2: &p_b2 '0x5d9058'
@@ -77,6 +66,7 @@ p_b3: &p_b3 '0x525e51'
 p_b4: &p_b4 '0x393e39'
 p_b5: &p_b5 '0x2a2c29'
 p_b6: &p_b6 '0x242624'
+
 # white
 p_d1: &p_d1 '0xb8b8aa'
 p_d2: &p_d2 '0x84847c'
@@ -84,6 +74,7 @@ p_d3: &p_d3 '0x5b5b56'
 p_d4: &p_d4 '0x3d3d3a'
 p_d5: &p_d5 '0x2c2c29'
 p_d6: &p_d6 '0x262624'
+
 # yellow
 p_g1: &p_g1 '0xbbba81'
 p_g2: &p_g2 '0x888744'
@@ -91,6 +82,7 @@ p_g3: &p_g3 '0x5c5b4e'
 p_g4: &p_g4 '0x3d3d37'
 p_g5: &p_g5 '0x2c2c29'
 p_g6: &p_g6 '0x262624'
+
 # blue
 p_k1: &p_k1 '0x83bfda'
 p_k2: &p_k2 '0x418da9'
@@ -98,6 +90,7 @@ p_k3: &p_k3 '0x4f5d64'
 p_k4: &p_k4 '0x383e41'
 p_k5: &p_k5 '0x292c2d'
 p_k6: &p_k6 '0x242627'
+
 # pink
 p_t1: &p_t1 '0xe6a4be'
 p_t2: &p_t2 '0xb46f8c'
@@ -105,6 +98,7 @@ p_t3: &p_t3 '0x67565c'
 p_t4: &p_t4 '0x433b3e'
 p_t5: &p_t5 '0x2e2a2c'
 p_t6: &p_t6 '0x282526'
+
 # ascii
 p_blacknormal:   &p_blacknormal   '0x5f5955'
 p_blackbright:   &p_blackbright   '0x5f5955'
@@ -185,91 +179,22 @@ key_bindings:
   - { key: V,        mods: Control|Shift, action: Paste                  }
   - { key: C,        mods: Control|Shift, action: Copy                   }
 
-  - { key: V,        mods: Command, action: Paste                        }
-  - { key: C,        mods: Command, action: Copy                         }
-  - { key: Q,        mods: Command, action: Quit                         }
+  - { key: Equals,   mods: Control,       action: ResetFontSize }
+  - { key: Add,      mods: Control|Shift, action: IncreaseFontSize }
+  - { key: Minus,    mods: Control,       action: DecreaseFontSize }
 
-  - { key: Home,                    chars: "\x1bOH",   mode: AppCursor   }
-  - { key: Home,                    chars: "\x1b[H",   mode: ~AppCursor  }
-  - { key: End,                     chars: "\x1bOF",   mode: AppCursor   }
-  - { key: End,                     chars: "\x1b[F",   mode: ~AppCursor  }
-  - { key: PageUp,   mods: Shift,   chars: "\x1b[5;2~"                   }
-  - { key: PageUp,   mods: Control, chars: "\x1b[5;5~"                   }
-  - { key: PageUp,                  chars: "\x1b[5~"                     }
-  - { key: PageDown, mods: Shift,   chars: "\x1b[6;2~"                   }
-  - { key: PageDown, mods: Control, chars: "\x1b[6;5~"                   }
-  - { key: PageDown,                chars: "\x1b[6~"                     }
-  - { key: Left,     mods: Shift,   chars: "\x1b[1;2D"                   }
-  - { key: Left,     mods: Control, chars: "\x1b[1;5D"                   }
-  - { key: Left,     mods: Alt,     chars: "\x1b[1;3D"                   }
-  - { key: Left,                    chars: "\x1b[D",   mode: ~AppCursor  }
-  - { key: Left,                    chars: "\x1bOD",   mode: AppCursor   }
-  - { key: Right,    mods: Shift,   chars: "\x1b[1;2C"                   }
-  - { key: Right,    mods: Control, chars: "\x1b[1;5C"                   }
-  - { key: Right,    mods: Alt,     chars: "\x1b[1;3C"                   }
-  - { key: Right,                   chars: "\x1b[C",   mode: ~AppCursor  }
-  - { key: Right,                   chars: "\x1bOC",   mode: AppCursor   }
-  - { key: Up,       mods: Shift,   chars: "\x1b[1;2A"                   }
-  - { key: Up,       mods: Control, chars: "\x1b[1;5A"                   }
-  - { key: Up,       mods: Alt,     chars: "\x1b[1;3A"                   }
-  - { key: Up,                      chars: "\x1b[A",   mode: ~AppCursor  }
-  - { key: Up,                      chars: "\x1bOA",   mode: AppCursor   }
-  - { key: Down,     mods: Shift,   chars: "\x1b[1;2B"                   }
-  - { key: Down,     mods: Control, chars: "\x1b[1;5B"                   }
-  - { key: Down,     mods: Alt,     chars: "\x1b[1;3B"                   }
-  - { key: Down,                    chars: "\x1b[B",   mode: ~AppCursor  }
-  - { key: Down,                    chars: "\x1bOB",   mode: AppCursor   }
-  - { key: Tab,      mods: Shift,   chars: "\x1b[Z"                      }
-  - { key: F1,                      chars: "\x1bOP"                      }
-  - { key: F2,                      chars: "\x1bOQ"                      }
-  - { key: F3,                      chars: "\x1bOR"                      }
-  - { key: F4,                      chars: "\x1bOS"                      }
-  - { key: F5,                      chars: "\x1b[15~"                    }
-  - { key: F6,                      chars: "\x1b[17~"                    }
-  - { key: F7,                      chars: "\x1b[18~"                    }
-  - { key: F8,                      chars: "\x1b[19~"                    }
-  - { key: F9,                      chars: "\x1b[20~"                    }
-  - { key: F10,                     chars: "\x1b[21~"                    }
-  - { key: F11,                     chars: "\x1b[23~"                    }
-  - { key: F12,                     chars: "\x1b[24~"                    }
-  - { key: Back,                    chars: "\x7f"                        }
-  - { key: Back,     mods: Alt,     chars: "\x1b\x7f"                    }
-  - { key: Insert,                  chars: "\x1b[2~"                     }
-  - { key: Delete,                  chars: "\x1b[3~"                     }
-
-  # make ctrl+space work as tmux prefix
-  - { key: Space,    mods: Control, chars: "\x00"                        }
-
-  # increment derps-per-hour counter
-  - { key: D, mods: Command, command: { program: "bash", args: ["/Users/chadwick/bin/derp"] } }
-
-  - { key: B, mods: Command, command: { program: "bash", args: ["-c", "env | tee /tmp/alacritty_env2"] } }
-
-  # Pass macOS standard Command keys to tmux
-  # Command-1 actually sends Alt-1, which tmux interprets at M-1
-
-  - { key: Key0, mods: Command, chars: "\x1b0" }
-  - { key: Key1, mods: Command, chars: "\x1b1" }
-  - { key: Key2, mods: Command, chars: "\x1b2" }
-  - { key: Key3, mods: Command, chars: "\x1b3" }
-  - { key: Key4, mods: Command, chars: "\x1b4" }
-  - { key: Key5, mods: Command, chars: "\x1b5" }
-  - { key: Key6, mods: Command, chars: "\x1b6" }
-  - { key: Key7, mods: Command, chars: "\x1b7" }
-  - { key: Key8, mods: Command, chars: "\x1b8" }
-  - { key: Key9, mods: Command, chars: "\x1b9" }
-
-  # Command-` same as Command-0 (for tmux)
-  - { key: Grave, mods: Command, chars: "\x1b0" }
-
-  - { key: K, mods: Command, chars: "\x1bk" }
-  - { key: N, mods: Command, chars: "\x1bn" }
-  - { key: T, mods: Command, chars: "\x1bt" }
-  - { key: W, mods: Command, chars: "\x1bw" }
-  - { key: X, mods: Command, chars: "\x1bx" }
-
-  - { key: Left,  mods: Command, chars: "\x1b[1;9D" }
-  - { key: Right, mods: Command, chars: "\x1b[1;9C" }
+  # The "\x1b0" actually sends Alt-<number>, which tmux can respond to.
+  # Terminal emulators are bad at supporting direct Control-<number>.
+  - { key: Key0, mods: Control, chars: "\x1b0" }
+  - { key: Key1, mods: Control, chars: "\x1b1" }
+  - { key: Key2, mods: Control, chars: "\x1b2" }
+  - { key: Key3, mods: Control, chars: "\x1b3" }
+  - { key: Key4, mods: Control, chars: "\x1b4" }
+  - { key: Key5, mods: Control, chars: "\x1b5" }
+  - { key: Key6, mods: Control, chars: "\x1b6" }
+  - { key: Key7, mods: Control, chars: "\x1b7" }
+  - { key: Key8, mods: Control, chars: "\x1b8" }
+  - { key: Key9, mods: Control, chars: "\x1b9" }
 
 
 # Mouse Bindings ---------------------------------------------------------------
@@ -287,16 +212,16 @@ selection:
 
 # Other ------------------------------------------------------------------------
 
-hide_cursor_when_typing: false
+# hide_cursor_when_typing: false
 
 # Live config reload (changes require restart)
 live_config_reload: true
 
 # Should display the render timer
-render_timer: false
+# render_timer: false
 
 # When true, bold text is drawn using the bright variant of colors.
-draw_bold_text_with_bright_colors: false
+# draw_bold_text_with_bright_colors: false
 
 visual_bell:
   animation: EaseOutExpo
