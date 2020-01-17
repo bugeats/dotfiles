@@ -31,7 +31,7 @@ export GOPATH=$(go env GOPATH)
 
 # Neovim -----------------------------------------------------------------------
 
-export EDITOR="/usr/local/bin/nvim -f"
+export EDITOR="nvim -f"
 export NVIM_TUI_ENABLE_TRUE_COLOR=1
 # This will force Neovim use 24 bit colors
 # export TERM="screen-256color"
@@ -42,7 +42,7 @@ export NVIM_TUI_ENABLE_TRUE_COLOR=1
 export NODE_PATH=$NODE_PATH:`npm root -g`
 
 # nvm / node version manager
-source /usr/share/nvm/init-nvm.sh
+# source /usr/share/nvm/init-nvm.sh
 
 
 # Aliases ----------------------------------------------------------------------

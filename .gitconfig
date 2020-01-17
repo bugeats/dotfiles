@@ -9,3 +9,5 @@
 	helper = cache --timeout=86400
 [core]
 	autocrfl = false
+[commit]
+	gpgsign = true
