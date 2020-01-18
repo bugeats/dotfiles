@@ -552,11 +552,6 @@ nnoremap <leader>wv                    :wincmd v<cr>:wincmd l<cr>
 nnoremap <leader>wz                    :GoldenViewResize<cr>
 
 
-" (n)ERDTree tasks -----------------------
-
-nnoremap <leader>nf                    :NERDTreeFind<cr>
-
-
 " (t)ab tasks ----------------------------
 
 nnoremap <leader>1                     :tabn 1<CR>
@@ -669,8 +664,14 @@ nnoremap <leader>ts                    :%s/test(/test.skip(/g<CR>
 " \tu unskip tests
 nnoremap <leader>tu                    :%s/test.skip(/test(/g<CR>
 
-" ------------------------------------------------------------------------------
-"
+
+
+" The New Unified Keybindings Attempt ------------------------------------------
+
+" (n)ew tab
+nnoremap <leader>n :tabnew<CR>
+
+
 " < That's all folks >
 "  ------------------
 "         \   ^__^
