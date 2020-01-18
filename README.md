@@ -9,15 +9,20 @@ My environment is based around [alacritty](https://github.com/jwilm/alacritty), 
 
 There are three nested layers in which operations are performed.
 
-*Super* - Window Manager / xmonad
-*Control* - Application / tmux
-*Space* - Application Context / neovim
+**Super** - Window Manager / xmonad
+**Control** - Application / tmux
+**Space** - Application Context / neovim
 
 The goal is to have keys perform the same conceptual operation within the given layer.  Where *X* is the modifier to target a layer.
 
+
 ### DONE
 
-*X-n* - new item (xmonad window, tmux session, neovim tab)
+**X-n** - (n)ew item (xmonad window, tmux session, neovim tab)
+**X-<number>** - jump to <number> (xmonad workspace, tmux tab, neovim tab)
+**X-0** - show all available (xmonad windows, tmux sessions, neovim buffers)
+**X-g** - to(g)gle minimalist layout (xmonad panel gap, tmux status bar, neovim focus mode)
+
 
 ### TODO
 
@@ -25,9 +30,6 @@ The goal is to have keys perform the same conceptual operation within the given 
 *X-k* - " up
 *X-h* - " left
 *X-l* - " right
-
-*X-<number>* - jump to <number> (xmonad window, tmux tab, neovim tab)
-*X-0* - show all available (xmonad window, tmux tab, neovim tab)
 
 *X-Tab* - rotate between (xmonad window, tmux tab, neovim tab)
 *X-Shift-Tab* - " reversed

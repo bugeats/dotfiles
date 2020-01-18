@@ -632,8 +632,6 @@ nnoremap <leader>rl                    vip:sort<CR>
 
 
 " Misc Tasks ---------------------------
-" noremap <expr> <F4> ':Gtags -di '.expand('<cword>').'<cr>' \ . ':Gtagsa -ri '.expand('<cword>').'<cr>'
-" :nnoremap <leader>gg :Grep <C-r><C-w> 
 
 " global text search (grep)
 " nnoremap <leader>/                      :CocList grep<cr>
@@ -668,8 +666,12 @@ nnoremap <leader>tu                    :%s/test.skip(/test(/g<CR>
 
 " The New Unified Keybindings Attempt ------------------------------------------
 
-" (n)ew tab
-nnoremap <leader>n :tabnew<CR>
+" X-n (n)ew tab
+nnoremap <leader>n                     :tabnew<CR>
+" X-0 show all available buffers
+nnoremap <leader>0                     :BuffergatorOpen<CR>
+" X-g to(g)gle minimalist layout
+nnoremap <leader>g                     :Goyo<CR>
 
 
 " < That's all folks >
