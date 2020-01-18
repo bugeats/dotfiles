@@ -18,10 +18,10 @@ The goal is to have keys perform the same conceptual operation within the given 
 
 ### DONE
 
-**X-n** - (n)ew item (xmonad window, tmux session, neovim tab)
-**X-<number>** - jump to <number> (xmonad workspace, tmux tab, neovim tab)
-**X-0** - show all available (xmonad windows, tmux sessions, neovim buffers)
-**X-g** - to(g)gle minimalist layout (xmonad panel gap, tmux status bar, neovim focus mode)
+- **X-n** - (n)ew item (xmonad window, tmux session, neovim tab)
+- **X-<number>** - jump to <number> (xmonad workspace, tmux tab, neovim tab)
+- **X-0** - show all available (xmonad windows, tmux sessions, neovim buffers)
+- **X-g** - to(g)gle minimalist layout (xmonad panel gap, tmux status bar, neovim focus mode)
 
 
 ### TODO
