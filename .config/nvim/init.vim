@@ -198,32 +198,33 @@ nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
 
 augroup filetypes
     autocmd!
-    autocmd FileType 4dgl       setlocal ts=4 sw=4 expandtab
-    autocmd FileType c          setlocal equalprg=clang-format
-    autocmd FileType clojure    setlocal ts=2 sw=2 expandtab
-    autocmd FileType javascript setlocal ts=2 sw=2 expandtab equalprg=eslint-pretty ff=unix
-    autocmd FileType json       setlocal equalprg=json_reformat " json_reformat is part of yajl: http://lloyd.github.com/yajl/
-    autocmd FileType rust       setlocal ts=4 sw=4 expandtab equalprg=rustfmt
-    autocmd FileType xml        setlocal equalprg=xmllint\ --format\ -
-    autocmd Filetype css        setlocal ts=2 sw=2 expandtab
-    autocmd Filetype cucumber   setlocal ts=2 sw=2 expandtab
-    autocmd Filetype dot        setlocal ts=2 sw=2 expandtab
-    autocmd Filetype feature    setlocal ts=2 sw=2 expandtab
-    autocmd Filetype haml       setlocal ts=2 sw=2 expandtab
-    autocmd Filetype haskell    setlocal ts=2 sw=2 expandtab
-    autocmd Filetype html       setlocal ts=2 sw=2 expandtab
-    autocmd Filetype jade       setlocal ts=2 sw=2 expandtab
-    autocmd Filetype less       setlocal ts=2 sw=2 expandtab
-    autocmd Filetype markdown   setlocal ts=2 sw=2 expandtab wrap linebreak nolist spell
-    autocmd Filetype pug        setlocal ts=2 sw=2 expandtab
-    autocmd Filetype ruby       setlocal ts=2 sw=2 expandtab
-    autocmd Filetype sass       setlocal ts=2 sw=2 expandtab
-    autocmd Filetype scss       setlocal ts=2 sw=2 expandtab
-    autocmd Filetype stylus     setlocal ts=2 sw=2 expandtab
-    autocmd Filetype taskpaper  setlocal tabstop=2 shiftwidth=2 noexpandtab nolist spell
-    autocmd Filetype text       setlocal ts=2 sw=2 expandtab wrap linebreak nolist spell
-    autocmd Filetype txt        setlocal ts=2 sw=2 expandtab wrap linebreak nolist spell
-    autocmd Filetype yaml       setlocal ts=2 sw=2 expandtab
+    autocmd FileType 4dgl            setlocal ts=4 sw=4 expandtab
+    autocmd FileType c               setlocal equalprg=clang-format
+    autocmd FileType clojure         setlocal ts=2 sw=2 expandtab
+    autocmd FileType javascript      setlocal ts=2 sw=2 expandtab equalprg=eslint-pretty ff=unix
+    autocmd FileType javascriptreact setlocal ts=2 sw=2 expandtab equalprg=eslint-pretty ff=unix
+    autocmd FileType json            setlocal equalprg=json_reformat " json_reformat is part of yajl: http://lloyd.github.com/yajl/
+    autocmd FileType rust            setlocal ts=4 sw=4 expandtab equalprg=rustfmt
+    autocmd FileType xml             setlocal equalprg=xmllint\ --format\ -
+    autocmd Filetype css             setlocal ts=2 sw=2 expandtab
+    autocmd Filetype cucumber        setlocal ts=2 sw=2 expandtab
+    autocmd Filetype dot             setlocal ts=2 sw=2 expandtab
+    autocmd Filetype feature         setlocal ts=2 sw=2 expandtab
+    autocmd Filetype haml            setlocal ts=2 sw=2 expandtab
+    autocmd Filetype haskell         setlocal ts=2 sw=2 expandtab
+    autocmd Filetype html            setlocal ts=2 sw=2 expandtab
+    autocmd Filetype jade            setlocal ts=2 sw=2 expandtab
+    autocmd Filetype less            setlocal ts=2 sw=2 expandtab
+    autocmd Filetype markdown        setlocal ts=2 sw=2 expandtab wrap linebreak nolist spell
+    autocmd Filetype pug             setlocal ts=2 sw=2 expandtab
+    autocmd Filetype ruby            setlocal ts=2 sw=2 expandtab
+    autocmd Filetype sass            setlocal ts=2 sw=2 expandtab
+    autocmd Filetype scss            setlocal ts=2 sw=2 expandtab
+    autocmd Filetype stylus          setlocal ts=2 sw=2 expandtab
+    autocmd Filetype taskpaper       setlocal tabstop=2 shiftwidth=2 noexpandtab nolist spell
+    autocmd Filetype text            setlocal ts=2 sw=2 expandtab wrap linebreak nolist spell
+    autocmd Filetype txt             setlocal ts=2 sw=2 expandtab wrap linebreak nolist spell
+    autocmd Filetype yaml            setlocal ts=2 sw=2 expandtab
 augroup END
 
 augroup filetypedetect
@@ -341,6 +342,7 @@ call tcomment#type#Define('slim', '/ %s')
 
 " Back off there gitgutter, and stop slowing down tab rendering
 let g:gitgutter_eager = 0
+let g:gitgutter_map_keys=0
 
 
 " Markdown ---------------------------------------------------------------------
@@ -596,18 +598,18 @@ autocmd FileType javascript nnoremap <leader>m :w<CR>:!open /Applications/Google
 
 " Lint Tasks ---------------------------
 
-" neomake open location window
-nnoremap <leader>lo                    :lopen<CR>
-" neomake close location window
-nnoremap <leader>lc                    :lclose<CR>
-" neomake go to current error/warning
-nnoremap <leader>ll                    :ll<CR>
-" neomake next error/warning
-nnoremap <leader>ln                    :lnext<CR>
-" neomake previous error/warning
-nnoremap <leader>lp                    :lprev<CR>
-" (l)int (f)ix
-nnoremap <leader>lf                    :CocCommand eslint.executeAutofix<CR>
+" " neomake open location window
+" nnoremap <leader>lo                    :lopen<CR>
+" " neomake close location window
+" nnoremap <leader>lc                    :lclose<CR>
+" " neomake go to current error/warning
+" nnoremap <leader>ll                    :ll<CR>
+" " neomake next error/warning
+" nnoremap <leader>ln                    :lnext<CR>
+" " neomake previous error/warning
+" nnoremap <leader>lp                    :lprev<CR>
+" " (l)int (f)ix
+" nnoremap <leader>lf                    :CocCommand eslint.executeAutofix<CR>
 
 " Buffer Tasks -------------------------
 
@@ -654,9 +656,9 @@ nnoremap <leader>p                     :CocList files<cr>
 vnoremap <leader>c                     y gv :TComment<cr> gv<Esc> p
 nnoremap <leader>c                     V y gv :TComment<cr> gv<Esc> p
 " j - insert blank line below
-nnoremap <silent><leader>j             :set paste<CR>m`o<Esc>``:set nopaste<CR>
+" nnoremap <silent><leader>j             :set paste<CR>m`o<Esc>``:set nopaste<CR>
 " k - insert blank line above
-nnoremap <silent><leader>k             :set paste<CR>m`O<Esc>``:set nopaste<CR>
+" nnoremap <silent><leader>k             :set paste<CR>m`O<Esc>``:set nopaste<CR>
 " \ts skip tests
 nnoremap <leader>ts                    :%s/test(/test.skip(/g<CR>
 " \tu unskip tests
@@ -672,6 +674,12 @@ nnoremap <leader>n                     :tabnew<CR>
 nnoremap <leader>0                     :BuffergatorOpen<CR>
 " X-g to(g)gle minimalist layout
 nnoremap <leader>g                     :Goyo<CR>
+
+" Xg-[h, j, k, l] - move focus
+nnoremap <leader>h                     :wincmd h<cr>
+nnoremap <leader>j                     :wincmd j<cr>
+nnoremap <leader>k                     :wincmd k<cr>
+nnoremap <leader>l                     :wincmd l<cr>
 
 
 " < That's all folks >

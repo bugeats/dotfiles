@@ -4,5 +4,27 @@
     "eslint.autoFixOnSave": true,
     "html.validate.scripts": true,
     "suggest.enablePreview": true,
-    "tsserver.enable": false
+    "tsserver.enable": false,
+    "diagnostic.messageTarget": "echo",
+    "languageserver": {
+      "haskell": {
+        "command": "hie-wrapper",
+        "args": ["--lsp"],
+        "rootPatterns": [
+          "stack.yaml",
+          "cabal.config",
+          "package.yaml"
+        ],
+        "filetypes": [
+          "hs",
+          "lhs",
+          "haskell"
+        ],
+        "initializationOptions": {
+          "languageServerHaskell": {
+            "hlintOn": true
+          }
+        }
+      }
+    }
 }
