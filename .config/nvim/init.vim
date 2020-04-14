@@ -62,6 +62,8 @@ Plug 'vim-python/python-syntax',  { 'for': ['python'] }
 Plug 'vim-ruby/vim-ruby',         { 'for': ['ruby'] }
 Plug 'wavded/vim-stylus',         { 'for': ['stylus'] }
 Plug 'jjo/vim-cue',               { 'for': ['cue'] }
+Plug 'andys8/vim-elm-syntax',     { 'for': ['elm'] }
+Plug 'dart-lang/dart-vim-plugin', { 'for': ['dart'] }
 
 " Javascript Plugins
 Plug 'chemzqm/vim-jsx-improve',  { 'for': ['javascript.jsx'] }
@@ -437,60 +439,60 @@ let mapleader = "\<Space>"
 " (c)oc tasks --------------------------
 
 " (c)oc (d)iagnostic (i)nfo            Show diagnostic message of current position, no truncate.
-nnoremap <leader>cdi                   <Plug>(coc-diagnostic-info)<cr>
+nmap <leader>cdi                       <Plug>(coc-diagnostic-info)<cr>
 
 " (c)oc (d)iagnostic (n)ext            Jump to next diagnostic position.
-nnoremap <leader>cdn                   <Plug>(coc-diagnostic-next)
+nmap <leader>cdn                       <Plug>(coc-diagnostic-next)
 
 " (c)oc (d)iagnostic (p)rev            Jump to previous diagnostic position.
-nnoremap <leader>cdp                   <Plug>(coc-diagnostic-prev)
+nmap <leader>cdp                       <Plug>(coc-diagnostic-prev)
 
 " (c)oc (d)efinition (j)ump            Jump to definition(s) of current symbol.
-nnoremap <leader>cdj                   <Plug>(coc-definition)
+nmap <leader>cdj                       <Plug>(coc-definition)
 
 " (c)oc de(c)laration (j)ump           Jump to declaration(s) of current symbol.
-nnoremap <leader>ccj                   <Plug>(coc-declaration)
+nmap <leader>ccj                       <Plug>(coc-declaration)
 
 " (c)oc (i)mplementation (j)ump        Jump to implementation(s) of current symbol.
-nnoremap <leader>cij                   <Plug>(coc-implementation)
+nmap <leader>cij                       <Plug>(coc-implementation)
 
 " (c)oc (t)ype-efinition (j)ump        Jump to type definition(s) of current symbol.
-nnoremap <leader>ctj                   <Plug>(coc-type-definition)
+nmap <leader>ctj                       <Plug>(coc-type-definition)
 
 " (c)oc (r)eferences (j)ump            Jump to references of current symbol.
-nnoremap <leader>crj                   <Plug>(coc-references)
+nmap <leader>crj                       <Plug>(coc-references)
 
 " (c)oc (f)ormat (s)elected            Format selected range, would work in both visual mode and normal mode, when used in normal mode, the selection works on the motion object.
-nnoremap <leader>cfs                   <Plug>(coc-format-selected)
-vnoremap <leader>cfs                   <Plug>(coc-format-selected)
+nmap <leader>cfs                       <Plug>(coc-format-selected)
+vmap <leader>cfs                       <Plug>(coc-format-selected)
 
 " (c)oc (f)ormat (b)uffer              Format the whole buffer
-nnoremap <leader>cfb                   <Plug>(coc-format)
+nmap <leader>cfb                       <Plug>(coc-format)
 
 " (c)oc (r)ename (s)ymbol              Rename symbol under cursor to a new word.
-nnoremap <leader>crs                   <Plug>(coc-rename)
+nmap <leader>crs                       <Plug>(coc-rename)
 
 " (c)oc (c)odeaction (l)ine            Get and run code action(s) for current line.
-nnoremap <leader>cgc                   <Plug>(coc-codeaction)
+nmap <leader>cgc                       <Plug>(coc-codeaction)
 
 " (c)oc (c)odeaction (s)elected        Get and run code action(s) with the selected region. Works with both normal and visual mode.
-nnoremap <leader>ccs                   <Plug>(coc-codeaction-selected)
-vnoremap <leader>ccs                   <Plug>(coc-codeaction-selected)
+nmap <leader>ccs                       <Plug>(coc-codeaction-selected)
+vmap <leader>ccs                       <Plug>(coc-codeaction-selected)
 
 " (c)oc (o)pen (l)ink                  Open link under cursor.
-nnoremap <leader>col                   <Plug>(coc-openlink)
+nmap <leader>col                       <Plug>(coc-openlink)
 
 " (c)oc (d)o-command (i)line           Do command from codeLens of current line.
-nnoremap <leader>cdi                   <Plug>(coc-codelens-action)
+nmap <leader>cdi                       <Plug>(coc-codelens-action)
 
 " (c)oc (f)ix (c)urrent                Try to run quickfix action for diagnostics on the current line.
-nnoremap <leader>cfc                   <Plug>(coc-fix-current)
+nmap <leader>cfc                       <Plug>(coc-fix-current)
 
 " (c)oc (h)ide (f)loats                Hide all float windows.
-nnoremap <leader>chf                   <Plug>(coc-float-hide)
+nmap <leader>chf                       <Plug>(coc-float-hide)
 
 " (c)oc (f)loat (j)ump                 Jump to first float window.
-nnoremap <leader>cfj                   <Plug>(coc-float-jump)
+nmap <leader>cfj                       <Plug>(coc-float-jump)
 
 
 " (f)ile tasks -------------------------
@@ -653,8 +655,8 @@ nnoremap <leader>d                     :NERDTreeToggle<cr>
 " \p to show fuzzy search
 nnoremap <leader>p                     :CocList files<cr>
 " dup a line/selection, with commented version above <-- this is awesome
-vnoremap <leader>c                     y gv :TComment<cr> gv<Esc> p
-nnoremap <leader>c                     V y gv :TComment<cr> gv<Esc> p
+vnoremap <leader>C                     y gv :TComment<cr> gv<Esc> p
+nnoremap <leader>C                     V y gv :TComment<cr> gv<Esc> p
 " j - insert blank line below
 " nnoremap <silent><leader>j             :set paste<CR>m`o<Esc>``:set nopaste<CR>
 " k - insert blank line above
