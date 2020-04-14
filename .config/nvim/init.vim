@@ -76,8 +76,10 @@ call plug#end()
 
 " Global extension names to install when they aren't installed.
 let g:coc_global_extensions = [
+    \'coc-clangd',
     \'coc-conjure',
     \'coc-eslint',
+    \'coc-flutter',
     \'coc-highlight',
     \'coc-html',
     \'coc-json',
