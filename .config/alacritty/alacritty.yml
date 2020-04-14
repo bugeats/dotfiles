@@ -14,9 +14,6 @@ window:
     y: 6
   # decorations: false
 
-# Display tabs using this many cells (changes require restart)
-tabspaces: 4
-
 
 # Font -------------------------------------------------------------------------
 
