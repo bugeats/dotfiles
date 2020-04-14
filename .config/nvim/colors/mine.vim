@@ -17,7 +17,7 @@ au TermOpen * setlocal nolist
 
 autocmd BufRead,BufNewFile * syn match generalParens /[(){}]/
 autocmd BufRead,BufNewFile * syn match generalBrackets /[\[\]]/
-autocmd BufRead,BufNewFile * syn match generalControlChar /[\.:\+!=;\,*<>|]/
+autocmd BufRead,BufNewFile * syn match generalControlChar /[\?\.:\+!=;\,*<>|]/
 
 augroup FileType_javascript
     autocmd FileType javascript syn match jsReturn /return/
@@ -269,6 +269,7 @@ call s:linkGroup('RedshiftControl', [
     \"dotBraceEncl",
     \"dotBrackEncl",
     \"dotKeyChar",
+    \"elmOperator",
     \"generalBrackets",
     \"generalControlChar",
     \"generalParens",
@@ -337,6 +338,7 @@ call s:linkGroup('RedshiftControl', [
     \"pythonDot",
     \"rubyInterpolationDelimiter",
     \"rustArrowCharacter",
+    \"rustOperator",
     \"rustSigil",
     \"shVarAssign",
     \"stylusProperty",
@@ -369,6 +371,7 @@ call s:linkGroup('RedshiftKeyword', [
     \"4dglKeyword",
     \"Boolean",
     \"Keyword",
+    \"cConditional",
     \"cInclude",
     \"cStatement",
     \"cType",
@@ -386,6 +389,17 @@ call s:linkGroup('RedshiftKeyword', [
     \"cssProp",
     \"cssTextProp",
     \"cssVisualProp",
+    \"dartClassDecl",
+    \"dartCoreType",
+    \"dartLibrary",
+    \"dartSdkClass",
+    \"dartStatement",
+    \"dartStorageClass",
+    \"dartTypedef",
+    \"elmCaseBlockDefinition",
+    \"elmConditional",
+    \"elmImport",
+    \"elmTypedef",
     \"goDirective",
     \"goImport",
     \"goPackage",
@@ -489,6 +503,7 @@ call s:linkGroup('RedshiftKeyword', [
 
 call s:linkGroup('RedshiftLiteral', [
     \"String",
+    \"dartString",
     \"javascriptPropertyNameString",
     \"javascriptRegexpString",
     \"javascriptString",
