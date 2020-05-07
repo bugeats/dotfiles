@@ -1,6 +1,6 @@
 [user]
 	name = Chadwick Dahlquist
-	email = cdahlquist@lo3energy.com
+	email = chadwick@bugeats.net
 [push]
 	default = matching
 [rerere]
@@ -10,4 +10,4 @@
 [core]
 	autocrfl = false
 [commit]
-	gpgsign = true
+	gpgsign = false

@@ -22,7 +22,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'Lokaltog/vim-easymotion'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
-Plug 'airblade/vim-rooter'
+" Plug 'airblade/vim-rooter'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'freitass/todo.txt-vim'
 Plug 'godlygeek/tabular'
@@ -76,6 +76,7 @@ call plug#end()
 
 " Global extension names to install when they aren't installed.
 let g:coc_global_extensions = [
+    \'coc-actions',
     \'coc-clangd',
     \'coc-conjure',
     \'coc-eslint',
@@ -205,6 +206,7 @@ augroup filetypes
     autocmd FileType 4dgl            setlocal ts=4 sw=4 expandtab
     autocmd FileType c               setlocal equalprg=clang-format
     autocmd FileType clojure         setlocal ts=2 sw=2 expandtab
+    autocmd FileType dart            setlocal ts=2 sw=2 expandtab
     autocmd FileType javascript      setlocal ts=2 sw=2 expandtab equalprg=eslint-pretty ff=unix
     autocmd FileType javascriptreact setlocal ts=2 sw=2 expandtab equalprg=eslint-pretty ff=unix
     autocmd FileType json            setlocal equalprg=json_reformat " json_reformat is part of yajl: http://lloyd.github.com/yajl/
@@ -240,6 +242,13 @@ augroup END
 autocmd BufReadPre *.taskpaper let g:gitgutter_enabled = 0
 
 let g:vim_json_syntax_conceal = 0
+
+
+" Dart / Flutter ---------------------------------------------------------------
+
+let g:dart_style_guide = 2
+
+nnoremap <silent><tab> :CocCommand actions.open<CR>
 
 
 " NerdTree ---------------------------------------------------------------------
@@ -475,7 +484,7 @@ nmap <leader>cfb                       <Plug>(coc-format)
 nmap <leader>crs                       <Plug>(coc-rename)
 
 " (c)oc (c)odeaction (l)ine            Get and run code action(s) for current line.
-nmap <leader>cgc                       <Plug>(coc-codeaction)
+nmap <leader>ccl                       <Plug>(coc-codeaction)
 
 " (c)oc (c)odeaction (s)elected        Get and run code action(s) with the selected region. Works with both normal and visual mode.
 nmap <leader>ccs                       <Plug>(coc-codeaction-selected)
@@ -596,8 +605,10 @@ nnoremap <leader>t9                    :tabn 9<CR>
 
 " \m to 'make' save changes / reload REPL, switch to browser
 autocmd FileType clojure    nnoremap <leader>m :w<CR>:Require<CR>:!open /Applications/Google\ Chrome\ Canary.app<CR>
-autocmd FileType pug        nnoremap <leader>m :w<CR>:Require<CR>:!open /Applications/Google\ Chrome\ Canary.app<CR>
+autocmd FileType dart       nnoremap <leader>M :CocCommand flutter.dev.hotRestart<CR>
+autocmd FileType dart       nnoremap <leader>m :CocCommand flutter.dev.hotReload<CR>
 autocmd FileType javascript nnoremap <leader>m :w<CR>:!open /Applications/Google\ Chrome\ Canary.app<CR>
+autocmd FileType pug        nnoremap <leader>m :w<CR>:Require<CR>:!open /Applications/Google\ Chrome\ Canary.app<CR>
 
 
 " Lint Tasks ---------------------------

@@ -28,6 +28,9 @@ export RIPGREP_CONFIG_PATH="~/.config/ripgrep/ripgreprc"
 export PATH=$PATH:$(go env GOPATH)/bin
 export GOPATH=$(go env GOPATH)
 
+# flutter
+export CHROME_EXECUTABLE="/usr/bin/chromium"
+
 
 # Neovim -----------------------------------------------------------------------
 
@@ -89,7 +92,7 @@ alias gsts='git stash save'
 
 # Misc -------------------------------------------------------------------------
 
-ssh-add -K ~/.ssh/id_rsa &> /dev/null
+# ssh-add -K ~/.ssh/id_rsa &> /dev/null
 
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.

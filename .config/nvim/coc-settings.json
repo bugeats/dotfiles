@@ -1,11 +1,15 @@
 {
     "coc.preferences.colorSupport": false,
+    "coc.preferences.formatOnSaveFiletypes": [
+      "dart"
+    ],
     "diagnostic.checkCurrentLine": true,
     "eslint.autoFixOnSave": true,
     "html.validate.scripts": true,
     "suggest.enablePreview": true,
     "tsserver.enable": false,
     "diagnostic.messageTarget": "echo",
+    "coc-actions.hideCursor": false,
     "languageserver": {
       "haskell": {
         "command": "hie-wrapper",

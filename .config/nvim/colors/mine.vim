@@ -64,6 +64,9 @@ let s:p.t4 = "#433b3e"
 let s:p.t5 = "#2e2a2c"
 let s:p.t6 = "#282526"
 
+" let s:p.d1_shade = #b8b8aa
+let s:p.d1_shade = "#aaaa9c"
+
 let s:p.blacknormal   = "#5f5955"
 let s:p.blackbright   = "#5f5955"
 let s:p.blackdim      = "#403c3a"
@@ -165,6 +168,7 @@ call s:smartHi('RedshiftGhostActive',       s:p.a2, s:p.a5)
 call s:smartHi('RedshiftHighlighted',       s:p.d1, s:p.t4)
 call s:smartHi('RedshiftHighlightedAlt',    s:p.a6, s:p.a1)
 call s:smartHi('RedshiftKeyword',           s:p.b1, '')
+call s:smartHi('RedshiftType',              s:p.d1_shade, '')
 call s:smartHi('RedshiftLiteral',           s:p.g1, s:p.a6)
 call s:smartHi('RedshiftLiteralDim',        s:p.g2, s:p.a6)
 call s:smartHi('RedshiftLocated',           '',     s:p.a5)
@@ -176,6 +180,9 @@ call s:smartHi('RedshiftSelected',          '',     s:p.k4)
 call s:smartHi('RedshiftGreen',  s:p.greennormal, '')
 call s:smartHi('RedshiftYellow', s:p.yellownormal, '')
 call s:smartHi('RedshiftRed',    s:p.rednormal, '')
+
+highlight RedshiftType gui=bold
+highlight RedshiftType cterm=bold
 
 " Links ------------------------------------------------------------------------
 
@@ -365,6 +372,10 @@ call s:linkGroup('RedshiftControlActive', [
 
 call s:linkGroup('RedshiftControlDim', [
     \"jsTemplateBraces",
+\])
+
+call s:linkGroup('RedshiftType', [
+    \"dartUserType",
 \])
 
 call s:linkGroup('RedshiftKeyword', [
