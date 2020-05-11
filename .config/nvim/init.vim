@@ -115,18 +115,22 @@ set hlsearch
 set ignorecase
 set list
 set listchars=tab:▸\ ,eol:¬                   " Use same symbols as TextMate for tabstops & EOLs
-set nobackup
+set nobackup                                  " Some language servers have issues with backup files
 set noerrorbells                              " don't beep, asshole
 set noswapfile
 set nowrap
+set nowritebackup                             " Some language servers have issues with backup files
 set number
 set ruler
 set rulerformat=%cx%l%V%=%P
 set shell=/bin/bash
 set shiftwidth=4                              " default to 4 spaces for indentation
+set shortmess+=c                              " Don't pass messages to ins-completion-menu
 set showtabline=2                             " always show tab line
+set signcolumn=yes                            " Always show the signcolumn, otherwise it would shift the text each time diagnostics appear/become resolved.
 set smartindent
 set spellfile=~/.config/nvim/spell/en.utf-8.add
+set switchbuf+=split                          " open new buffers in a split if possible
 set synmaxcol=160                             " Don't syntax highlight past 160 cols (perf)
 set t_ut=
 set tabstop=4                                 " use four space chars when pressing <tab>
@@ -134,9 +138,9 @@ set termguicolors                             " enable true color support
 set timeoutlen=500                            " Time in milliseconds to wait for a mapped sequence to complete.
 set titlestring=%{fnamemodify(getcwd(),':t')} " set iTerm tab/window title to the current working directory name (project name)
 set ttimeoutlen=50                            " Time in milliseconds to wait for a key code sequence to complete.
+set updatetime=300                            " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable delays and poor user experience.
 set visualbell                                " don't beep
 set wildignore=*.swp,*.pyc
-set switchbuf+=split                          " open new buffers in a split if possible
 
 " statusline (line below the window pane)
 set statusline=%f:%l:%c                       " minimal status line with file name
@@ -244,11 +248,116 @@ autocmd BufReadPre *.taskpaper let g:gitgutter_enabled = 0
 let g:vim_json_syntax_conceal = 0
 
 
+" Conquer of Completion (coc)---------------------------------------------------
+
+" ---- coc tab behavior ----
+
+" Use tab for trigger completion with characters ahead and navigate.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <TAB> for selections ranges.
+nmap <silent> <TAB> <Plug>(coc-range-select)
+xmap <silent> <TAB> <Plug>(coc-range-select)
+
+
+" ---- coc shift-tab behavior ----
+
+nnoremap <silent><S-Tab> :CocCommand actions.open<CR>
+xmap <silent><S-Tab> <Plug>(coc-codeaction-selected)
+
+" ---- coc misc behavior ----
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> (carriage return) to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+if exists('*complete_info')
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder.
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Introduce function text object
+" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+xmap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap if <Plug>(coc-funcobj-i)
+omap af <Plug>(coc-funcobj-a)
+
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
+
+" Add `:Fold` command to fold current buffer.
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" Add `:OR` command for organize imports of the current buffer.
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+" Add (Neo)Vim's native statusline support.
+" NOTE: Please see `:h coc-status` for integrations with external plugins that
+" provide custom statusline: lightline.vim, vim-airline.
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+" ---- coc-snippets ----
+
+" exand current snippet on right arrow
+imap <right> <Plug>(coc-snippets-expand)
+smap <right> <Plug>(coc-snippets-expand)
+xmap <right> <Plug>(coc-snippets-expand)
+
+
 " Dart / Flutter ---------------------------------------------------------------
 
 let g:dart_style_guide = 2
 
-nnoremap <silent><tab> :CocCommand actions.open<CR>
+augroup flutter
+  autocmd!
+  " organize import on save buffer
+  autocmd BufWritePre *.dart :OR
+augroup end
 
 
 " NerdTree ---------------------------------------------------------------------
@@ -374,34 +483,6 @@ vmap <Enter> <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)"
 
 
-" Supertab ---------------------------------------------------------------------
-
-" Fix deoplete menu order
-" https://github.com/ervandew/supertab#frequently-asked-questions
-let g:SuperTabDefaultCompletionType = "<c-n>"
-
-
-" Conquer of Completion (coc)---------------------------------------------------
-
-" use <tab> for trigger completion and navigate to the next complete item
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-
-inoremap <silent><expr> <Tab>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<Tab>" :
-      \ coc#refresh()
-
-" ---- coc-snippets ----
-
-" exand current snippet on right arrow
-imap <right> <Plug>(coc-snippets-expand)
-smap <right> <Plug>(coc-snippets-expand)
-xmap <right> <Plug>(coc-snippets-expand)
-
-
 " Neovim Terminal Mode ---------------------------------------------------------
 
 if has('nvim')
@@ -484,7 +565,10 @@ nmap <leader>cfb                       <Plug>(coc-format)
 nmap <leader>crs                       <Plug>(coc-rename)
 
 " (c)oc (c)odeaction (l)ine            Get and run code action(s) for current line.
-nmap <leader>ccl                       <Plug>(coc-codeaction)
+" nmap <leader>ccl                       <Plug>(coc-codeaction)
+
+" (c)oc (c)ommand (l)ist
+nmap <leader>ccl                       :CocCommand<CR>
 
 " (c)oc (c)odeaction (s)elected        Get and run code action(s) with the selected region. Works with both normal and visual mode.
 nmap <leader>ccs                       <Plug>(coc-codeaction-selected)
@@ -499,11 +583,41 @@ nmap <leader>cdi                       <Plug>(coc-codelens-action)
 " (c)oc (f)ix (c)urrent                Try to run quickfix action for diagnostics on the current line.
 nmap <leader>cfc                       <Plug>(coc-fix-current)
 
+" (c)oc (f)ormat (s)elected
+xmap <leader>cfs                       <Plug>(coc-format-selected)
+nmap <leader>cfs                       <Plug>(coc-format-selected)
+
 " (c)oc (h)ide (f)loats                Hide all float windows.
 nmap <leader>chf                       <Plug>(coc-float-hide)
 
 " (c)oc (f)loat (j)ump                 Jump to first float window.
 nmap <leader>cfj                       <Plug>(coc-float-jump)
+
+" ----
+
+" (c)oc (l)ist (d)iagnostics           Show all diagnostics.
+nnoremap <silent> <leader>cld          :<C-u>CocList diagnostics<cr>
+
+" (c)oc (l)ist (e)xtensions            Manage extensions.
+nnoremap <silent> <leader>cle          :<C-u>CocList extensions<cr>
+
+" (c)oc (l)ist (c)ommands              Show commands.
+nnoremap <silent> <leader>clc          :<C-u>CocList commands<cr>
+
+" (c)oc (l)ist (o)utline               Find symbol of current document.
+nnoremap <silent> <leader>clo          :<C-u>CocList outline<cr>
+
+" (c)oc (l)ist (s)ymbols               Search workspace symbols.
+nnoremap <silent> <leader>cls          :<C-u>CocList -I symbols<cr>
+
+" (c)oc (l)ist (j)                     Do default action for next item.
+nnoremap <silent> <leader>clj          :<C-u>CocNext<CR>
+
+" (c)oc (l)ist (k)                     Do default action for previous item.
+nnoremap <silent> <leader>clk          :<C-u>CocPrev<CR>
+
+" (c)oc (l)ist (p)                     Resume latest coc list.
+nnoremap <silent> <leader>clp          :<C-u>CocListResume<CR>
 
 
 " (f)ile tasks -------------------------

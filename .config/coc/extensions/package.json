@@ -1,10 +1,10 @@
 {
   "dependencies": {
     "coc-actions": ">=1.4.0",
-    "coc-clangd": ">=0.4.1",
+    "coc-clangd": ">=0.4.2",
     "coc-conjure": ">=3.0.0",
     "coc-eslint": ">=1.2.6",
-    "coc-flutter": ">=1.2.3",
+    "coc-flutter": ">=1.2.4",
     "coc-highlight": ">=1.2.5",
     "coc-html": ">=1.2.4",
     "coc-json": ">=1.2.5",
