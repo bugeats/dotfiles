@@ -35,7 +35,6 @@ export PATH="$PATH":"/opt/flutter/bin/cache/dart-sdk/bin"
 export ANDROID_NDK_HOME="~/Android/Sdk/ndk/21.2.6472646"
 export PATH="$PATH:/opt/flutter/bin"
 
-
 # Neovim -----------------------------------------------------------------------
 
 export EDITOR="nvim -f"
