@@ -616,6 +616,9 @@ call s:linkGroup('RedshiftChromePanel', [
 
 call s:linkGroup('RedshiftChromePanelActive', [
     \"CocFloating",
+    \"CocInfoFloat",
+    \"CocHintFloat",
+    \"CocCodeLens",
     \"PmenuSel",
     \"StatusLine",
     \"TabLineSel",

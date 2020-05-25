@@ -30,6 +30,8 @@ export GOPATH=$(go env GOPATH)
 
 # flutter
 export CHROME_EXECUTABLE="/usr/bin/chromium"
+export PATH="$PATH":"/opt/flutter/.pub-cache/bin"
+export PATH="$PATH":"/opt/flutter/bin/cache/dart-sdk/bin"
 
 
 # Neovim -----------------------------------------------------------------------
@@ -61,6 +63,7 @@ alias gb='git branch'
 alias gbd='git branch --delete '
 alias gbda='git branch | egrep -v "(^\*|master|develop)" | xargs git branch -D'
 alias gc='git commit'
+alias gca='git commit --amend'
 alias gcf='git commit --fixup'
 alias gcm='git commit --message'
 alias gco='git checkout'
