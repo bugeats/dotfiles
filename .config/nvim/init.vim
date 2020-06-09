@@ -43,6 +43,8 @@ Plug 'tpope/vim-surround'
 Plug 'yuku-t/unite-git'
 Plug 'zhaocai/GoldenView.Vim'
 
+Plug 'alexherbo2/kakoune.vim'
+
 Plug 'jremmen/vim-ripgrep'
 
 " COC
@@ -189,6 +191,15 @@ set backspace=indent,eol,start
 
 " Use 'M' to jump to a mark and center viewport
 map <expr> M printf('`%c zz', getchar())
+
+
+" Kakoune ----------------------------------------------------------------------
+
+" From Vim: Press Return to call Kakoune.
+" From Kakoune: Press Escape to save and quit.
+
+nmap <CR> <Plug>(Kakoune)
+vmap <CR> <Plug>(Kakoune)
 
 
 " Movement ---------------------------------------------------------------------

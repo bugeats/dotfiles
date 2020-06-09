@@ -443,6 +443,7 @@ call s:linkGroup('RedshiftKeyword', [
     \"javascriptTry",
     \"javascriptVariable",
     \"jsCatch",
+    \"jsClassMethodType",
     \"jsConditional",
     \"jsException",
     \"jsExport",

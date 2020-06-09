@@ -1,7 +1,8 @@
 {
     "coc.preferences.colorSupport": false,
     "coc.preferences.formatOnSaveFiletypes": [
-      "dart"
+      "dart",
+      "rust"
     ],
     "diagnostic.checkCurrentLine": true,
     "eslint.autoFixOnSave": true,

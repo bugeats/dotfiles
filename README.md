@@ -5,6 +5,23 @@ Now managed by [yadm](https://github.com/TheLocehiliosan/yadm), which is pretty 
 My environment is based around [alacritty](https://github.com/jwilm/alacritty), [tmux](https://github.com/tmux/tmux), and [neovim](https://neovim.io/). [xmonad](https://xmonad.org/) on Linux. [Divvy](https://apps.apple.com/us/app/divvy-window-manager/id413857545?mt=12) on macOS.
 
 
+## Default Keybindings
+
+xmonad
+  https://xmonad.org/manpage.html
+kakoune
+  https://github.com/mawww/kakoune/blob/master/doc/pages/keys.asciidoc
+tmux
+  https://gist.github.com/mzmonsour/8791835
+tmux-tilish
+  https://github.com/jabirali/tmux-tilish
+i3m
+  https://i3wm.org/docs/refcard.html
+
+Kakoune keybindings that use control:
+  MANY
+
+
 ## Key binding strategy
 
 There are three nested layers in which operations are performed.
