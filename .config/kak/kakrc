@@ -1,0 +1,86 @@
+colorscheme lucius
+
+# add-highlighter global/ number-lines
+
+
+# Plugins ----------------------------------------------------------------------
+ 
+try %{
+    source "%val{config}/plugins/plug.kak/rc/plug.kak"
+}
+
+# bootstrap the plugin manager
+evaluate-commands %sh{
+    plugins="$HOME/.config/kak/plugins"
+    mkdir -p $plugins
+    [ ! -e "$plugins/plug.kak" ] && \
+        git clone -q https://gitlab.com/andreyorst/plug.kak.git "$plugins/plug.kak"
+    printf "%s\n" "source '$plugins/plug.kak/rc/plug.kak'"
+}
+
+# ----
+
+plug "andreyorst/fzf.kak"
+
+plug "alexherbo2/auto-pairs.kak"
+
+plug "alexherbo2/connect.kak" config %{
+    require-module connect-fzf
+}
+
+plug "alexherbo2/explore.kak" config %{
+    alias global explore-files fzf-files
+    alias global explore-buffers fzf-buffers
+}
+
+plug "ul/kak-lsp" do %{
+    cargo install --locked --force --path .
+}
+
+plug "andreyorst/kaktree" config %{
+    hook global WinSetOption filetype=kaktree %{
+        remove-highlighter buffer/numbers
+        remove-highlighter buffer/matching
+        remove-highlighter buffer/wrap
+        remove-highlighter buffer/show-whitespaces
+    }
+    kaktree-enable
+}
+
+
+# Misc -------------------------------------------------------------------------
+
+set global ui_options ncurses_assistant=none
+
+# eval %sh{kak-lsp --kakoune -s $kak_session}
+# lsp-enable
+
+
+# Hooks ------------------------------------------------------------------------
+
+hook global BufWritePost .* %{
+    git show-diff
+}
+
+hook global BufOpenFile .* %{
+    git show-diff
+}
+
+hook global BufNewFile .* %{
+    git show-diff
+}
+
+hook global BufReload .* %{
+    git show-diff
+}
+
+hook global WinCreate ^[^*]+$ %{ add-highlighter window/ number-lines -hlcursor }
+
+
+# User Mode Bindings -----------------------------------------------------------
+ 
+# space is my leader
+map global normal <space> , -docstring 'leader'
+
+map global user d ':kaktree-toggle<ret>' -docstring 'show/hide file tree'
+
