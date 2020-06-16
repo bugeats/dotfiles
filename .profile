@@ -24,16 +24,14 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # ripgrep grep replacement
 export RIPGREP_CONFIG_PATH="~/.config/ripgrep/ripgreprc"
 
-# golang junk
-export PATH=$PATH:$(go env GOPATH)/bin
-export GOPATH=$(go env GOPATH)
-
 # flutter
 export CHROME_EXECUTABLE="/usr/bin/chromium"
 export PATH="$PATH":"/opt/flutter/.pub-cache/bin"
 export PATH="$PATH":"/opt/flutter/bin/cache/dart-sdk/bin"
 export ANDROID_NDK_HOME="~/Android/Sdk/ndk/21.2.6472646"
 export PATH="$PATH:/opt/flutter/bin"
+export ANDROID_NDK_HOME="/Users/chadwick/Library/Android/sdk/ndk/21.2.6472646"
+
 
 # Neovim -----------------------------------------------------------------------
 
@@ -49,7 +47,6 @@ export NODE_PATH=$NODE_PATH:`npm root -g`
 
 # nvm / node version manager
 # source /usr/share/nvm/init-nvm.sh
-
 
 # Aliases ----------------------------------------------------------------------
 
