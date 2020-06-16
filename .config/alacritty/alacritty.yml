@@ -206,7 +206,7 @@ key_bindings:
 
   # macOS specific
   - { key: Comma, mods: Command, command: { program: "open", args: ["~/.config/alacritty/alacritty.yml"] } }
-  - { key: N,     mods: Command, action: SpawnNewInstance }
+  - { key: N,     mods: Command, chars: "\x1bn" }
   - { key: Key0,  mods: Command, chars: "\x1b0" }
   - { key: Key1,  mods: Command, chars: "\x1b1" }
   - { key: Key2,  mods: Command, chars: "\x1b2" }
