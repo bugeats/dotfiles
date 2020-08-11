@@ -23,6 +23,8 @@ augroup FileType_javascript
     autocmd FileType javascript syn match jsReturn /return/
 augroup END
 
+autocmd FileType dart syn match dartKeyword /new/
+
 " Palette ----------------------------------------------------------------------
 
 let s:p = {}
@@ -273,6 +275,7 @@ call s:linkGroup('RedshiftControl', [
     \"clojureParen",
     \"cssBraces",
     \"cssNoise",
+    \"dartOperator",
     \"dotBraceEncl",
     \"dotBrackEncl",
     \"dotKeyChar",
@@ -345,7 +348,7 @@ call s:linkGroup('RedshiftControl', [
     \"pythonDot",
     \"rubyInterpolationDelimiter",
     \"rustArrowCharacter",
-    \"rustOperator",
+    \"rustFoldBraces",
     \"rustSigil",
     \"shVarAssign",
     \"stylusProperty",
@@ -376,6 +379,7 @@ call s:linkGroup('RedshiftControlDim', [
 
 call s:linkGroup('RedshiftType', [
     \"dartUserType",
+    \"elmType",
 \])
 
 call s:linkGroup('RedshiftKeyword', [
@@ -383,14 +387,19 @@ call s:linkGroup('RedshiftKeyword', [
     \"Boolean",
     \"Keyword",
     \"cConditional",
+    \"cDefine",
     \"cInclude",
+    \"cPreCondit",
     \"cStatement",
+    \"cStorageClass",
+    \"cStructure",
     \"cType",
     \"clojureCond",
     \"clojureConstant",
     \"clojureDefine",
     \"clojureFunc",
     \"clojureSpecial",
+    \"cppType",
     \"cssBackgroundProp",
     \"cssBorderProp",
     \"cssBoxProp",
@@ -401,7 +410,10 @@ call s:linkGroup('RedshiftKeyword', [
     \"cssTextProp",
     \"cssVisualProp",
     \"dartClassDecl",
+    \"dartConditional",
+    \"dartConstant",
     \"dartCoreType",
+    \"dartKeyword",
     \"dartLibrary",
     \"dartSdkClass",
     \"dartStatement",
@@ -486,10 +498,12 @@ call s:linkGroup('RedshiftKeyword', [
     \"rubyInclude",
     \"rubyMacro",
     \"rustConditional",
+    \"rustOperator",
     \"rustRepeat",
     \"rustSelf",
     \"rustStorage",
     \"rustType",
+    \"rustUnsafeKeyword",
     \"shEcho",
     \"shFunctionKey",
     \"stylusImport",

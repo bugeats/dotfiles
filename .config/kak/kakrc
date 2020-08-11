@@ -20,13 +20,17 @@ evaluate-commands %sh{
 
 # ----
 
-plug "andreyorst/fzf.kak"
+plug "andreyorst/fzf.kak" defer fzf %{
+    set-option global fzf_file_command 'fd' # 'rg', 'ag', 'fd', or 'find'
+} config %{
+    map global normal <c-p> ': fzf-mode<ret>'
+}
 
 plug "alexherbo2/auto-pairs.kak"
 
-plug "alexherbo2/connect.kak" config %{
-    require-module connect-fzf
-}
+# plug "alexherbo2/connect.kak" config %{
+#    require-module connect-fzf
+# }
 
 plug "alexherbo2/explore.kak" config %{
     alias global explore-files fzf-files
@@ -76,11 +80,30 @@ hook global BufReload .* %{
 
 hook global WinCreate ^[^*]+$ %{ add-highlighter window/ number-lines -hlcursor }
 
+hook global ModeChange .* %{
+    echo -debug ModeChange %val{hook_param}
+}
+
+# Enter insert mode from any other mode
+hook global ModeChange push:.*:insert %{
+    set-face global PrimaryCursor      rgb:ffffff,rgb:b46f8c+F
+}
+
+# Exit insert mode from any other mode
+hook global ModeChange pop:insert:.* %{
+    set-face global PrimaryCursor      rgb:ffffff,rgb:418da9+F
+}
+
+
 
 # User Mode Bindings -----------------------------------------------------------
  
 # space is my leader
 map global normal <space> , -docstring 'leader'
 
-map global user d ':kaktree-toggle<ret>' -docstring 'show/hide file tree'
-
+map global user d ': kaktree-toggle<ret>' -docstring 'toggle (d)irectory tree'
+map global user c ': edit ~/.config/kak/kakrc<ret>' -docstring 'edit kakrc (c)onfig'
+map global user n ': new<ret>' -docstring '(n)ew window'
+map global user p ': fzf-mode<ret>' -docstring 'fuzzy finder'
+map global user q ': quit<ret>' -docstring '(q)uit'
+map global user s ': edit ~/.config/kak/kakrc<ret>' -docstring '(s)ource kakrc'

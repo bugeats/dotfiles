@@ -11,3 +11,5 @@
 	autocrfl = false
 [commit]
 	gpgsign = false
+[pull]
+	rebase = true

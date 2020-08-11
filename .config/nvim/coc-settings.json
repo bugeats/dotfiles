@@ -1,8 +1,9 @@
 {
     "coc.preferences.colorSupport": false,
     "coc.preferences.formatOnSaveFiletypes": [
-      "dart",
-      "rust"
+        "dart",
+        "rust",
+        "json"
     ],
     "diagnostic.checkCurrentLine": true,
     "eslint.autoFixOnSave": true,
@@ -11,33 +12,41 @@
     "tsserver.enable": false,
     "diagnostic.messageTarget": "echo",
     "coc-actions.hideCursor": false,
+    "json.enable": true,
+    "json.format.enable": true,
     "languageserver": {
-      "haskell": {
-        "command": "hie-wrapper",
-        "args": ["--lsp"],
-        "rootPatterns": [
-          "stack.yaml",
-          "cabal.config",
-          "package.yaml"
-        ],
-        "filetypes": [
-          "hs",
-          "lhs",
-          "haskell"
-        ],
-        "initializationOptions": {
-          "languageServerHaskell": {
-            "hlintOn": true
-          }
+        "haskell": {
+            "command": "hie-wrapper",
+            "args": [
+                "--lsp"
+            ],
+            "rootPatterns": [
+                "stack.yaml",
+                "cabal.config",
+                "package.yaml"
+            ],
+            "filetypes": [
+                "hs",
+                "lhs",
+                "haskell"
+            ],
+            "initializationOptions": {
+                "languageServerHaskell": {
+                    "hlintOn": true
+                }
+            }
+        },
+        "elmLS": {
+            "command": "elm-language-server",
+            "filetypes": [
+                "elm"
+            ],
+            "rootPatterns": [
+                "elm.json"
+            ],
+            "initializationOptions": {
+                "elmAnalyseTrigger": "change"
+            }
         }
-      },
-      "elmLS": {
-        "command": "elm-language-server",
-        "filetypes": ["elm"],
-        "rootPatterns": ["elm.json"],
-        "initializationOptions": {
-          "elmAnalyseTrigger": "change"
-        }
-      }
     }
 }

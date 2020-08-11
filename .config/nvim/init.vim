@@ -23,7 +23,7 @@ Plug 'Lokaltog/vim-easymotion'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
 " Plug 'airblade/vim-rooter'
-Plug 'editorconfig/editorconfig-vim'
+" Plug 'editorconfig/editorconfig-vim'
 Plug 'freitass/todo.txt-vim'
 Plug 'godlygeek/tabular'
 Plug 'ivyl/vim-bling'
@@ -52,20 +52,22 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
 
 " Misc Language
+Plug 'andys8/vim-elm-syntax',     { 'for': ['elm'] }
+Plug 'dart-lang/dart-vim-plugin', { 'for': ['dart'] }
 Plug 'digitaltoad/vim-pug',       { 'for': ['pug'] }
 Plug 'elzr/vim-json',             { 'for': ['json'] }
 Plug 'fatih/vim-go',              { 'for': ['go'] }
+Plug 'jjo/vim-cue',               { 'for': ['cue'] }
 Plug 'jparise/vim-graphql',       { 'for': ['graphql'] }
+Plug 'keith/swift.vim',           { 'for': ['swift'] }
 Plug 'neovimhaskell/haskell-vim', { 'for': ['haskell'] }
 Plug 'nono/vim-handlebars',       { 'for': ['handlebars'] }
 Plug 'plasticboy/vim-markdown',   { 'for': ['markdown'] }
 Plug 'rust-lang/rust.vim',        { 'for': ['rust'] }
+Plug 'udalov/kotlin-vim',         { 'for': ['kotlin'] }
 Plug 'vim-python/python-syntax',  { 'for': ['python'] }
 Plug 'vim-ruby/vim-ruby',         { 'for': ['ruby'] }
 Plug 'wavded/vim-stylus',         { 'for': ['stylus'] }
-Plug 'jjo/vim-cue',               { 'for': ['cue'] }
-Plug 'andys8/vim-elm-syntax',     { 'for': ['elm'] }
-Plug 'dart-lang/dart-vim-plugin', { 'for': ['dart'] }
 
 " Javascript Plugins
 Plug 'chemzqm/vim-jsx-improve',  { 'for': ['javascript.jsx'] }
@@ -198,8 +200,8 @@ map <expr> M printf('`%c zz', getchar())
 " From Vim: Press Return to call Kakoune.
 " From Kakoune: Press Escape to save and quit.
 
-nmap <CR> <Plug>(Kakoune)
-vmap <CR> <Plug>(Kakoune)
+" nmap <CR> <Plug>(Kakoune)
+" vmap <CR> <Plug>(Kakoune)
 
 
 " Movement ---------------------------------------------------------------------
