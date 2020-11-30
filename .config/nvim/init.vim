@@ -34,7 +34,7 @@ Plug 'mkitt/tabline.vim'
 Plug 'neovim/node-host'
 Plug 'ntpeters/vim-better-whitespace' " causes all trailing whitespace characters to be highlighted.
 Plug 'othree/csscomplete.vim'
-Plug 'scrooloose/nerdtree'
+Plug 'preservim/nerdtree'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-fugitive'
@@ -193,6 +193,14 @@ set backspace=indent,eol,start
 
 " Use 'M' to jump to a mark and center viewport
 map <expr> M printf('`%c zz', getchar())
+
+" Make search results appear in the middle of the screen 
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap * *zz
+nnoremap # #zz
+nnoremap g* g*zz
+nnoremap g# g#zz
 
 
 " Kakoune ----------------------------------------------------------------------
@@ -513,21 +521,6 @@ endif
 au TermOpen * setlocal nonumber norelativenumber
 
 
-" Color Scheme -----------------------------------------------------------------
-
-" CTRL-S show syntax highlighting groups for word under cursor
-nmap <C-S> :call <SID>SynStack()<CR>
-function! <SID>SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
-
-" currently using a custom color scheme (in progress)
-colorscheme mine
-
-
 " Misc Stuff -------------------------------------------------------------------
 
 let g:comfortable_motion_scroll_down_key = "j"
@@ -810,7 +803,6 @@ nnoremap <leader>ts                    :%s/test(/test.skip(/g<CR>
 nnoremap <leader>tu                    :%s/test.skip(/test(/g<CR>
 
 
-
 " The New Unified Keybindings Attempt ------------------------------------------
 
 " X-n (n)ew tab
@@ -825,6 +817,21 @@ nnoremap <leader>h                     :wincmd h<cr>
 nnoremap <leader>j                     :wincmd j<cr>
 nnoremap <leader>k                     :wincmd k<cr>
 nnoremap <leader>l                     :wincmd l<cr>
+
+
+" Color Scheme -----------------------------------------------------------------
+
+" CTRL-S show syntax highlighting groups for word under cursor
+nmap <C-S> :call <SID>SynStack()<CR>
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
+" currently using a custom color scheme (in progress)
+colorscheme mine
 
 
 " < That's all folks >

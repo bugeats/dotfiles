@@ -150,17 +150,6 @@ call s:smartHi('Normal',                    s:p.d1, s:p.a6)
 call s:smartHi('RedshiftAttention',         s:p.t1, s:p.t4)
 call s:smartHi('RedshiftAttentionFg',       s:p.t1, '')
 
-call s:smartHi('RedshiftChromeHighlighted', s:p.a1, s:p.a6)
-call s:smartHi('RedshiftChromeMin',         s:p.a3, s:p.a6)
-call s:smartHi('RedshiftChromeNormal',      s:p.a2, s:p.a6)
-call s:smartHi('RedshiftChromePanel',       s:p.a2, s:p.a4)
-call s:smartHi('RedshiftChromePanelActive', s:p.a1, s:p.a4)
-
-
-call s:smartHi('RedshiftChromeWarning',     s:p.t1, s:p.a4)
-call s:smartHi('RedshiftChromeError',       s:p.t1, s:p.a4)
-
-
 call s:smartHi('RedshiftComment',           s:p.d2, '')
 call s:smartHi('RedshiftControl',           s:p.a2, '')
 call s:smartHi('RedshiftControlActive',     s:p.a1, '')
@@ -178,10 +167,18 @@ call s:smartHi('RedshiftNormal',            s:p.d1, s:p.a6)
 call s:smartHi('RedshiftNormalDim',         s:p.d1, s:p.g5)
 call s:smartHi('RedshiftSelected',          '',     s:p.k4)
 
-
 call s:smartHi('RedshiftGreen',  s:p.greennormal, '')
 call s:smartHi('RedshiftYellow', s:p.yellownormal, '')
 call s:smartHi('RedshiftRed',    s:p.rednormal, '')
+
+call s:smartHi('RedshiftChromeHighlighted', s:p.a1, s:p.a6)
+call s:smartHi('RedshiftChromeMin',         s:p.a3, s:p.a6)
+call s:smartHi('RedshiftChromeNormal',      s:p.a2, s:p.a6)
+call s:smartHi('RedshiftChromePanel',       s:p.a2, s:p.a4)
+call s:smartHi('RedshiftChromePanelActive', s:p.a1, s:p.a4)
+
+call s:smartHi('RedshiftChromeWarning',     s:p.t1, s:p.a4)
+call s:smartHi('RedshiftChromeError',       s:p.t1, s:p.a4)
 
 highlight RedshiftType gui=bold
 highlight RedshiftType cterm=bold
@@ -259,6 +256,7 @@ call s:linkGroup('RedshiftNormalDim', [
 
 call s:linkGroup('RedshiftComment', [
     \"Comment",
+    \"cPreProc",
     \"javascriptDocComment",
     \"javascriptDocNamedDocParamType",
     \"javascriptDocNamedParamType",
@@ -272,6 +270,7 @@ call s:linkGroup('RedshiftComment', [
 \])
 
 call s:linkGroup('RedshiftControl', [
+    \"cParen",
     \"clojureParen",
     \"cssBraces",
     \"cssNoise",
@@ -389,7 +388,9 @@ call s:linkGroup('RedshiftKeyword', [
     \"cConditional",
     \"cDefine",
     \"cInclude",
+    \"cLabel",
     \"cPreCondit",
+    \"cRepeat",
     \"cStatement",
     \"cStorageClass",
     \"cStructure",
@@ -399,6 +400,10 @@ call s:linkGroup('RedshiftKeyword', [
     \"clojureDefine",
     \"clojureFunc",
     \"clojureSpecial",
+    \"cppAccess",
+    \"cppModifier",
+    \"cppStatement",
+    \"cppStructure",
     \"cppType",
     \"cssBackgroundProp",
     \"cssBorderProp",
@@ -409,12 +414,15 @@ call s:linkGroup('RedshiftKeyword', [
     \"cssProp",
     \"cssTextProp",
     \"cssVisualProp",
+    \"dartBranch",
     \"dartClassDecl",
     \"dartConditional",
     \"dartConstant",
     \"dartCoreType",
+    \"dartExceptions",
     \"dartKeyword",
     \"dartLibrary",
+    \"dartRepeat",
     \"dartSdkClass",
     \"dartStatement",
     \"dartStorageClass",
@@ -603,6 +611,7 @@ call s:linkGroup('RedshiftChromeNormal', [
     \"NERDTreeExecFile",
     \"NERDTreeFile",
     \"NERDTreeLinkFile",
+    \"NERDTreeNodeDelimiters",
     \"qfFileName",
 \])
 

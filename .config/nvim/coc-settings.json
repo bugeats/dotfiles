@@ -1,9 +1,10 @@
 {
     "coc.preferences.colorSupport": false,
     "coc.preferences.formatOnSaveFiletypes": [
+        "cpp",
         "dart",
-        "rust",
-        "json"
+        "json",
+        "rust"
     ],
     "diagnostic.checkCurrentLine": true,
     "eslint.autoFixOnSave": true,
