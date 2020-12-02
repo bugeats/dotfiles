@@ -177,7 +177,7 @@ key_bindings:
   - { key: C,        mods: Control|Shift, action: Copy                   }
 
   - { key: Equals,   mods: Control,       action: ResetFontSize }
-  - { key: Add,      mods: Control|Shift, action: IncreaseFontSize }
+  - { key: Plus,     mods: Control|Shift, action: IncreaseFontSize }
   - { key: Minus,    mods: Control,       action: DecreaseFontSize }
 
   # The "\x1b0" actually sends Alt-<number>, which tmux can respond to.
