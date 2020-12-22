@@ -80,7 +80,6 @@ call plug#end()
 
 " Global extension names to install when they aren't installed.
 let g:coc_global_extensions = [
-    \'coc-actions',
     \'coc-clangd',
     \'coc-conjure',
     \'coc-eslint',
@@ -293,8 +292,8 @@ xmap <silent> <TAB> <Plug>(coc-range-select)
 
 " ---- coc shift-tab behavior ----
 
-nnoremap <silent><S-Tab> :CocCommand actions.open<CR>
-xmap <silent><S-Tab> <Plug>(coc-codeaction-selected)
+nmap <silent><S-Tab> v<Plug>(coc-codeaction-selected)
+
 
 " ---- coc misc behavior ----
 
@@ -536,6 +535,7 @@ let mapleader = "\<Space>"
 " R LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER
 " DER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEAD
 " ADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEA
+
 
 " (c)oc tasks --------------------------
 
