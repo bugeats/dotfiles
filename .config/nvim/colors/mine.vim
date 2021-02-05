@@ -1,10 +1,12 @@
 " Reset -----------------------------------------------------------------------
 
 set background=dark
-highlight clear
-if exists("syntax_on")
-    syntax reset
-endif
+
+" highlight clear
+" if exists("syntax_on")
+"     syntax reset
+" endif
+
 let g:colors_name = "mine"
 
 " hide hidden chars in nerdtree
@@ -15,56 +17,71 @@ au TermOpen * setlocal nolist
 
 " General Syntax Matches -------------------------------------------------------
 
-autocmd BufRead,BufNewFile * syn match generalParens /[(){}]/
-autocmd BufRead,BufNewFile * syn match generalBrackets /[\[\]]/
-autocmd BufRead,BufNewFile * syn match generalControlChar /[\?\.:\+!=;\,*<>|]/
 
-augroup FileType_javascript
-    autocmd FileType javascript syn match jsReturn /return/
-augroup END
+" autocmd Syntax * syn match generalBrackets /[\[\]{}]/
+" autocmd BufRead,BufNewFile * syn match generalControlChar /[\?\.:\+!=;\,*<>|]/
 
-autocmd FileType dart syn match dartKeyword /new/
+autocmd Syntax ruby syn match generalControlChar /[,|@]/
+autocmd Syntax ruby,javascript syn match generalParens /[()]/
+autocmd Syntax javascript syn match jsReturn /return/
+autocmd Syntax dart syn match dartKeyword /new/
 
 " Palette ----------------------------------------------------------------------
 
 let s:p = {}
 
+" alpha - redish
 let s:p.a1 = "#d8af8e"
 let s:p.a2 = "#a57b55"
 let s:p.a3 = "#645851"
 let s:p.a4 = "#413c39"
 let s:p.a5 = "#2d2b29"
 let s:p.a6 = "#272524"
+
+" beta - green
 let s:p.b1 = "#94c390"
 let s:p.b2 = "#5d9058"
 let s:p.b3 = "#525e51"
 let s:p.b4 = "#393e39"
 let s:p.b5 = "#2a2c29"
 let s:p.b6 = "#242624"
+
+" delta - white/gray
 let s:p.d1 = "#b8b8aa"
 let s:p.d2 = "#84847c"
 let s:p.d3 = "#5b5b56"
 let s:p.d4 = "#3d3d3a"
 let s:p.d5 = "#2c2c29"
 let s:p.d6 = "#262624"
+
+" gamma - yellow
 let s:p.g1 = "#bbba81"
 let s:p.g2 = "#888744"
 let s:p.g3 = "#5c5b4e"
 let s:p.g4 = "#3d3d37"
 let s:p.g5 = "#2c2c29"
 let s:p.g6 = "#262624"
+
+" kappa - blue
 let s:p.k1 = "#83bfda"
 let s:p.k2 = "#418da9"
 let s:p.k3 = "#4f5d64"
 let s:p.k4 = "#383e41"
 let s:p.k5 = "#292c2d"
 let s:p.k6 = "#242627"
+
+" tau - pink
 let s:p.t1 = "#e6a4be"
 let s:p.t2 = "#b46f8c"
 let s:p.t3 = "#67565c"
 let s:p.t4 = "#433b3e"
 let s:p.t5 = "#2e2a2c"
 let s:p.t6 = "#282526"
+
+" lambda - between green and yellow
+let s:p.l1 = "#A8BF89"
+
+" ----
 
 " let s:p.d1_shade = #b8b8aa
 let s:p.d1_shade = "#aaaa9c"
@@ -144,6 +161,47 @@ function! s:smartHi(group, ...)
 endfunction
 
 
+" Vim Core Groups --------------------------------------------------------------
+
+" Link the core default highlight groups to redshift groups.
+" This is done so foreign syntax plugins behave mostly ok by default.
+
+hi! link Comment RedshiftComment
+hi! link Constant RedshiftNormal
+hi! link String RedshiftLiteral
+hi! link SpecialComment RedshiftNormal
+hi! link Character RedshiftNormal
+hi! link Number RedshiftNormal
+hi! link Boolean RedshiftKeyword
+hi! link Float RedshiftNormal
+hi! link Identifier RedshiftNormal
+hi! link Function RedshiftNormal
+hi! link Statement RedshiftNormal
+hi! link Conditional RedshiftKeyword
+hi! link Repeat RedshiftKeyword
+hi! link Label RedshiftKeyword
+hi! link Keyword RedshiftKeyword
+hi! link Exception RedshiftKeyword
+hi! link PreProc RedshiftNormal
+hi! link Include RedshiftNormal
+hi! link Define RedshiftNormal
+hi! link Macro RedshiftNormal
+hi! link PreCondit RedshiftNormal
+hi! link Type RedshiftNormal
+hi! link StorageClass RedshiftNormal
+hi! link Structure RedshiftKeyword
+hi! link Error RedshiftAttention
+hi! link Ignore RedshiftNormal
+hi! link Typedef RedshiftNormal
+hi! link Special RedshiftNormal
+hi! link SpecialChar RedshiftNormal
+hi! link Tag RedshiftNormal
+hi! link Delimiter RedshiftNormal
+hi! link Debug RedshiftNormal
+hi! link Underlined RedshiftNormal
+hi! link Todo RedshiftAttention
+hi! link Operator RedshiftNormal
+
 " Main Groups ------------------------------------------------------------------
 
 call s:smartHi('Normal',                    s:p.d1, s:p.a6)
@@ -159,13 +217,14 @@ call s:smartHi('RedshiftGhostActive',       s:p.a2, s:p.a5)
 call s:smartHi('RedshiftHighlighted',       s:p.d1, s:p.t4)
 call s:smartHi('RedshiftHighlightedAlt',    s:p.a6, s:p.a1)
 call s:smartHi('RedshiftKeyword',           s:p.b1, '')
-call s:smartHi('RedshiftType',              s:p.d1_shade, '')
 call s:smartHi('RedshiftLiteral',           s:p.g1, s:p.a6)
 call s:smartHi('RedshiftLiteralDim',        s:p.g2, s:p.a6)
 call s:smartHi('RedshiftLocated',           '',     s:p.a5)
 call s:smartHi('RedshiftNormal',            s:p.d1, s:p.a6)
 call s:smartHi('RedshiftNormalDim',         s:p.d1, s:p.g5)
 call s:smartHi('RedshiftSelected',          '',     s:p.k4)
+call s:smartHi('RedshiftSymbol',            s:p.l1, s:p.a6)
+call s:smartHi('RedshiftType',              s:p.d1_shade, '')
 
 call s:smartHi('RedshiftGreen',  s:p.greennormal, '')
 call s:smartHi('RedshiftYellow', s:p.yellownormal, '')
@@ -185,10 +244,10 @@ highlight RedshiftType cterm=bold
 
 " Links ------------------------------------------------------------------------
 
+
 call s:linkGroup('RedshiftNormal', [
     \"ColorColumn",
     \"Conceal",
-    \"Constant",
     \"CursorIM",
     \"DiffAdd",
     \"DiffChange",
@@ -198,25 +257,18 @@ call s:linkGroup('RedshiftNormal', [
     \"EndOfBuffer",
     \"FoldColumn",
     \"Folded",
-    \"Function",
-    \"Identifier",
     \"ModeMsg",
     \"MoreMsg",
     \"Normal",
-    \"PreProc",
     \"Question",
     \"SignColumn",
-    \"Special",
     \"SpecialKey",
     \"SpellBad",
     \"SpellCap",
     \"SpellLocal",
     \"SpellRare",
-    \"Statement",
     \"TermCursorNC",
     \"Title",
-    \"Type",
-    \"Underlined",
     \"VisualNOS",
     \"WarningMsg",
     \"WildMenu",
@@ -255,7 +307,6 @@ call s:linkGroup('RedshiftNormalDim', [
 \])
 
 call s:linkGroup('RedshiftComment', [
-    \"Comment",
     \"cPreProc",
     \"javascriptDocComment",
     \"javascriptDocNamedDocParamType",
@@ -345,7 +396,6 @@ call s:linkGroup('RedshiftControl', [
     \"pugInterpolationDelimiter",
     \"pugPipeChar",
     \"pythonDot",
-    \"rubyInterpolationDelimiter",
     \"rustArrowCharacter",
     \"rustFoldBraces",
     \"rustSigil",
@@ -366,6 +416,15 @@ call s:linkGroup('RedshiftControl', [
     \"xmlEqual",
     \"xmlTag",
     \"yamlKeyValueDelimiter",
+    \"rubySuperClassOperator",
+    \"rubyScopeOperator",
+    \"rubyCurlyBlockDelimiter",
+    \"rubyDotOperator",
+    \"rubyProcOperator",
+    \"rubyBooleanOperator",
+    \"rubySymbolDelimiter",
+    \"rubyArrayDelimiter",
+    \"rubyOperator",
 \])
 
 call s:linkGroup('RedshiftControlActive', [
@@ -383,8 +442,6 @@ call s:linkGroup('RedshiftType', [
 
 call s:linkGroup('RedshiftKeyword', [
     \"4dglKeyword",
-    \"Boolean",
-    \"Keyword",
     \"cConditional",
     \"cDefine",
     \"cInclude",
@@ -499,12 +556,6 @@ call s:linkGroup('RedshiftKeyword', [
     \"pythonRaiseFromStatement",
     \"pythonRepeat",
     \"pythonStatement",
-    \"rubyConditional",
-    \"rubyControl",
-    \"rubyDefine",
-    \"rubyExceptional",
-    \"rubyInclude",
-    \"rubyMacro",
     \"rustConditional",
     \"rustOperator",
     \"rustRepeat",
@@ -533,10 +584,13 @@ call s:linkGroup('RedshiftKeyword', [
     \"typescriptVariable",
     \"vimCommand",
     \"vimLet",
+    \"rubyClass",
+    \"rubyMacro",
+    \"rubyDefine",
+    \"rubyControl",
 \])
 
 call s:linkGroup('RedshiftLiteral', [
-    \"String",
     \"dartString",
     \"javascriptPropertyNameString",
     \"javascriptRegexpString",
@@ -545,12 +599,15 @@ call s:linkGroup('RedshiftLiteral', [
     \"markdownCode",
     \"markdownCodeBlock",
     \"pugPipedText",
-    \"rubyStringDelimiter",
     \"yamlPlainScalar",
 \])
 
 call s:linkGroup('RedshiftLiteralDim', [
     \"pythonBytesEscape",
+\])
+
+call s:linkGroup('RedshiftSymbol', [
+    \"rubySymbol",
 \])
 
 call s:linkGroup('RedshiftGhost', [
@@ -593,11 +650,9 @@ call s:linkGroup('RedshiftAttention', [
     \"ExtraWhitespace",
     \"JavascriptCommentTodo",
     \"SpellBad",
-    \"Todo",
 \])
 
 call s:linkGroup('RedshiftAttentionFg', [
-    \"Error",
     \"ErrorMsg",
     \"NeomakeErrorMsg",
     \"WarningMsg",
