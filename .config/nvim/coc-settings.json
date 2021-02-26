@@ -3,18 +3,20 @@
     "coc.preferences.formatOnSaveFiletypes": [
         "cpp",
         "dart",
+        "javascript",
         "json",
         "rust"
     ],
     "diagnostic.checkCurrentLine": true,
+    "diagnostic.messageTarget": "echo",
     "eslint.autoFixOnSave": true,
     "html.validate.scripts": true,
-    "suggest.enablePreview": true,
-    "tsserver.enable": false,
-    "diagnostic.messageTarget": "echo",
-    "coc-actions.hideCursor": false,
     "json.enable": true,
     "json.format.enable": true,
+    "solargraph.formatting": true,
+    "suggest.enablePreview": true,
+    "tsserver.enable": true,
+    "typescript.format.enabled": true,
     "languageserver": {
         "haskell": {
             "command": "hie-wrapper",

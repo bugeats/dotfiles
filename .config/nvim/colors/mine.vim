@@ -18,10 +18,10 @@ au TermOpen * setlocal nolist
 " General Syntax Matches -------------------------------------------------------
 
 
-" autocmd Syntax * syn match generalBrackets /[\[\]{}]/
 " autocmd BufRead,BufNewFile * syn match generalControlChar /[\?\.:\+!=;\,*<>|]/
 
-autocmd Syntax ruby syn match generalControlChar /[,|@]/
+autocmd Syntax javascript,typescript syn match generalBrackets /[\[\]{}]/
+autocmd Syntax ruby,javascript,typescript syn match generalControlChar /[,|@;=<>]/
 autocmd Syntax ruby,javascript syn match generalParens /[()]/
 autocmd Syntax javascript syn match jsReturn /return/
 autocmd Syntax dart syn match dartKeyword /new/
@@ -81,10 +81,13 @@ let s:p.t6 = "#282526"
 " lambda - between green and yellow
 let s:p.l1 = "#A8BF89"
 
+" epsilon - between green and white
+let s:p.e1 = "#a7bac5"
+
 " ----
 
 " let s:p.d1_shade = #b8b8aa
-let s:p.d1_shade = "#aaaa9c"
+let s:p.d1_shade = "#b2b2a5"
 
 let s:p.blacknormal   = "#5f5955"
 let s:p.blackbright   = "#5f5955"
@@ -300,6 +303,8 @@ call s:linkGroup('RedshiftNormal', [
     \"javascriptStringMethod",
     \"xmlEndTag",
     \"xmlTagName",
+    \"typescriptObjectLabel",
+    \"rubyRegexp",
 \])
 
 call s:linkGroup('RedshiftNormalDim', [
@@ -396,6 +401,16 @@ call s:linkGroup('RedshiftControl', [
     \"pugInterpolationDelimiter",
     \"pugPipeChar",
     \"pythonDot",
+    \"rubyArrayDelimiter",
+    \"rubyBooleanOperator",
+    \"rubyCurlyBlockDelimiter",
+    \"rubyDotOperator",
+    \"rubyMethodDeclaration",
+    \"rubyOperator",
+    \"rubyProcOperator",
+    \"rubyScopeOperator",
+    \"rubySuperClassOperator",
+    \"rubySymbolDelimiter",
     \"rustArrowCharacter",
     \"rustFoldBraces",
     \"rustSigil",
@@ -409,22 +424,16 @@ call s:linkGroup('RedshiftControl', [
     \"typescriptBinaryOp",
     \"typescriptBraces",
     \"typescriptDotNotation",
+    \"typescriptObjectColon",
     \"typescriptParens",
     \"typescriptTemplateSB",
+    \"typescriptTypeAnnotation",
+    \"typescriptTypeBrackets",
     \"vimContinue",
     \"vimParenSep",
     \"xmlEqual",
     \"xmlTag",
     \"yamlKeyValueDelimiter",
-    \"rubySuperClassOperator",
-    \"rubyScopeOperator",
-    \"rubyCurlyBlockDelimiter",
-    \"rubyDotOperator",
-    \"rubyProcOperator",
-    \"rubyBooleanOperator",
-    \"rubySymbolDelimiter",
-    \"rubyArrayDelimiter",
-    \"rubyOperator",
 \])
 
 call s:linkGroup('RedshiftControlActive', [
@@ -438,6 +447,7 @@ call s:linkGroup('RedshiftControlDim', [
 call s:linkGroup('RedshiftType', [
     \"dartUserType",
     \"elmType",
+    \"rubyConstant",
 \])
 
 call s:linkGroup('RedshiftKeyword', [
@@ -588,6 +598,10 @@ call s:linkGroup('RedshiftKeyword', [
     \"rubyMacro",
     \"rubyDefine",
     \"rubyControl",
+    \"rubyInclude",
+    \"typescriptPredefinedType",
+    \"typescriptMethodAccessor",
+    \"typescriptExceptions",
 \])
 
 call s:linkGroup('RedshiftLiteral', [
@@ -599,11 +613,15 @@ call s:linkGroup('RedshiftLiteral', [
     \"markdownCode",
     \"markdownCodeBlock",
     \"pugPipedText",
+    \"rubyStringDelimiter",
     \"yamlPlainScalar",
 \])
 
 call s:linkGroup('RedshiftLiteralDim', [
     \"pythonBytesEscape",
+    \"rubyPercentRegexpDelimiter",
+    \"rubyInterpolationDelimiter",
+    \"typescriptTemplateSB",
 \])
 
 call s:linkGroup('RedshiftSymbol', [

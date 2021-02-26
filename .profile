@@ -51,6 +51,12 @@ export NODE_PATH=$NODE_PATH:`npm root -g`
 # source /usr/share/nvm/init-nvm.sh
 
 
+# Ruby -------------------------------------------------------------------------
+
+# use rbenv to manage ruby versions
+eval "$(rbenv init -)"
+
+
 # Aliases ----------------------------------------------------------------------
 
 alias vd='git diff | nvim -'
