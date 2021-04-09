@@ -18,13 +18,26 @@ au TermOpen * setlocal nolist
 " General Syntax Matches -------------------------------------------------------
 
 
-" autocmd BufRead,BufNewFile * syn match generalControlChar /[\?\.:\+!=;\,*<>|]/
+" autocmd Syntax * matchadd('generalControlChar', '[\?\.:\+!=;\,*<>|]')
 
-autocmd Syntax javascript,typescript syn match generalBrackets /[\[\]{}]/
-autocmd Syntax ruby,javascript,typescript syn match generalControlChar /[,|@;=<>]/
-autocmd Syntax ruby,javascript syn match generalParens /[()]/
+" autocmd Syntax ruby,javascript,typescript call matchadd('generalControlChar', '[,|;=<>]')
+" autocmd Syntax javascript,typescript call matchadd('generalBrackets', '[\[\]{}]')
+" autocmd Syntax ruby,javascript call matchadd('generalParens', '[()]')
+
+" autocmd Syntax ruby,javascript,typescript call matchadd('generalControlChar', '[\?\.:\+!=;\,*<>|]')
+" autocmd FileType ruby,javascript,typescript call matchadd('generalControlChar', '[\?\.:\+!=;\,*<>|]')
+autocmd FileType ruby,javascript,typescript,reason,elm,purescript,dhall syn match generalControlChar /[\?\.:\+!=;\,*<>|~]/ containedin=typescriptBlock,typescriptObjectLiteral,typescriptClassBlock,typescriptConditionalParen,reasonFoldBraces,reasonModPath,sassDefinition,purescriptModuleName contained
+autocmd FileType ruby,javascript,typescript,reason,elm,purescript,dhall syn match generalBrackets /[\[\]{}]'/ containedin=typescriptBlock,typescriptProperty,typescriptConditionalParen,reasonFoldBraces,sassDefinition
+autocmd FileType purescript syn match generalParens /\(\)/ containedin=purescriptImportParams contained
+
+autocmd Syntax ruby,javascript,typescript,reason,elm,purescript,dhall syn match RedshiftControl /[,|;=<>]/
+autocmd Syntax ruby,javascript,reason,elm,purescript,dhall syn match RedshiftControl /[()]/
+
 autocmd Syntax javascript syn match jsReturn /return/
 autocmd Syntax dart syn match dartKeyword /new/
+
+highlight RedshiftType gui=bold
+highlight RedshiftType cterm=bold
 
 " Palette ----------------------------------------------------------------------
 
@@ -301,10 +314,11 @@ call s:linkGroup('RedshiftNormal', [
     \"javascriptRequestProp",
     \"javascriptResponseProp",
     \"javascriptStringMethod",
+    \"rubyRegexp",
+    \"typescriptObjectLabel",
+    \"typescriptPaymentAddressProp",
     \"xmlEndTag",
     \"xmlTagName",
-    \"typescriptObjectLabel",
-    \"rubyRegexp",
 \])
 
 call s:linkGroup('RedshiftNormalDim', [
@@ -334,6 +348,7 @@ call s:linkGroup('RedshiftControl', [
     \"dotBraceEncl",
     \"dotBrackEncl",
     \"dotKeyChar",
+    \"elmBraces",
     \"elmOperator",
     \"generalBrackets",
     \"generalControlChar",
@@ -400,7 +415,11 @@ call s:linkGroup('RedshiftControl', [
     \"pugAttributesDelimiter",
     \"pugInterpolationDelimiter",
     \"pugPipeChar",
+    \"purescriptDelimiter",
+    \"purescriptOperatorType",
     \"pythonDot",
+    \"reasonFoldBraces",
+    \"reasonOperator",
     \"rubyArrayDelimiter",
     \"rubyBooleanOperator",
     \"rubyCurlyBlockDelimiter",
@@ -424,16 +443,22 @@ call s:linkGroup('RedshiftControl', [
     \"typescriptBinaryOp",
     \"typescriptBraces",
     \"typescriptDotNotation",
+    \"typescriptFuncComma",
     \"typescriptObjectColon",
     \"typescriptParens",
     \"typescriptTemplateSB",
+    \"typescriptTernaryOp",
     \"typescriptTypeAnnotation",
     \"typescriptTypeBrackets",
+    \"typescriptUnion",
     \"vimContinue",
     \"vimParenSep",
     \"xmlEqual",
     \"xmlTag",
     \"yamlKeyValueDelimiter",
+    \"purescriptOperator",
+    \"dhallParens",
+    \"dhallRecord",
 \])
 
 call s:linkGroup('RedshiftControlActive', [
@@ -448,6 +473,8 @@ call s:linkGroup('RedshiftType', [
     \"dartUserType",
     \"elmType",
     \"rubyConstant",
+    \"purescriptModuleName",
+    \"purescriptType",
 \])
 
 call s:linkGroup('RedshiftKeyword', [
@@ -558,6 +585,7 @@ call s:linkGroup('RedshiftKeyword', [
     \"luaStatement",
     \"pugScriptStatement",
     \"pugTag",
+    \"purescriptStatement",
     \"pythonConditional",
     \"pythonException",
     \"pythonImport",
@@ -566,6 +594,11 @@ call s:linkGroup('RedshiftKeyword', [
     \"pythonRaiseFromStatement",
     \"pythonRepeat",
     \"pythonStatement",
+    \"rubyClass",
+    \"rubyControl",
+    \"rubyDefine",
+    \"rubyInclude",
+    \"rubyMacro",
     \"rustConditional",
     \"rustOperator",
     \"rustRepeat",
@@ -583,25 +616,21 @@ call s:linkGroup('RedshiftKeyword', [
     \"typescriptConditional",
     \"typescriptDefault",
     \"typescriptEnumKeyword",
+    \"typescriptExceptions",
     \"typescriptExport",
     \"typescriptIdentifierName",
     \"typescriptImport",
     \"typescriptKeyword",
     \"typescriptKeywordOp",
+    \"typescriptMethodAccessor",
     \"typescriptModule",
     \"typescriptOperator",
+    \"typescriptPredefinedType",
     \"typescriptStatementKeyword",
+    \"typescriptTry",
     \"typescriptVariable",
     \"vimCommand",
     \"vimLet",
-    \"rubyClass",
-    \"rubyMacro",
-    \"rubyDefine",
-    \"rubyControl",
-    \"rubyInclude",
-    \"typescriptPredefinedType",
-    \"typescriptMethodAccessor",
-    \"typescriptExceptions",
 \])
 
 call s:linkGroup('RedshiftLiteral', [

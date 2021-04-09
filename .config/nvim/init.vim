@@ -25,7 +25,6 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'Lokaltog/vim-easymotion'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
-Plug 'cocopon/inspecthi.vim'
 Plug 'freitass/todo.txt-vim'
 Plug 'godlygeek/tabular'
 Plug 'ivyl/vim-bling'
@@ -69,6 +68,9 @@ Plug 'udalov/kotlin-vim',         { 'for': ['kotlin'] }
 Plug 'vim-python/python-syntax',  { 'for': ['python'] }
 Plug 'vim-ruby/vim-ruby',         { 'for': ['ruby'] }
 Plug 'wavded/vim-stylus',         { 'for': ['stylus'] }
+" Plug 'reasonml-editor/vim-reason-plus'
+Plug 'purescript-contrib/purescript-vim'
+Plug 'vmchale/dhall-vim'
 
 " Javascript Plugins
 Plug 'chemzqm/vim-jsx-improve',  { 'for': ['javascript.jsx'] }
@@ -99,6 +101,8 @@ let g:coc_global_extensions = [
     \'coc-tsserver',
     \'coc-yaml',
 \]
+
+" \'coc-reason',
 
 
 " Preferences / Defaults -----------------------------------------------------------------------------------------------
@@ -831,16 +835,14 @@ nnoremap <leader>l                     :wincmd l<cr>
 " Color Scheme -----------------------------------------------------------------
 
 " CTRL-S show syntax highlighting groups for word under cursor
-" nmap <C-S> :call <SID>SynStack()<CR>
+nmap <C-S> :call <SID>SynStack()<CR>
 
-nmap <C-S> :Inspecthi<CR>
-
-" function! <SID>SynStack()
-"   if !exists("*synstack")
-"     return
-"   endif
-"   echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-" endfunc
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
 
 " currently using a custom color scheme (in progress)
 colorscheme mine
