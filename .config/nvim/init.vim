@@ -63,20 +63,26 @@ Plug 'neovimhaskell/haskell-vim', { 'for': ['haskell'] }
 Plug 'ngmy/vim-rubocop',          { 'for': ['ruby'] }
 Plug 'nono/vim-handlebars',       { 'for': ['handlebars'] }
 Plug 'plasticboy/vim-markdown',   { 'for': ['markdown'] }
+Plug 'purescript-contrib/purescript-vim'
 Plug 'rust-lang/rust.vim',        { 'for': ['rust'] }
 Plug 'udalov/kotlin-vim',         { 'for': ['kotlin'] }
 Plug 'vim-python/python-syntax',  { 'for': ['python'] }
 Plug 'vim-ruby/vim-ruby',         { 'for': ['ruby'] }
-Plug 'wavded/vim-stylus',         { 'for': ['stylus'] }
-" Plug 'reasonml-editor/vim-reason-plus'
-Plug 'purescript-contrib/purescript-vim'
 Plug 'vmchale/dhall-vim'
+Plug 'wavded/vim-stylus',         { 'for': ['stylus'] }
 
 " Javascript Plugins
 Plug 'chemzqm/vim-jsx-improve',  { 'for': ['javascript.jsx'] }
 Plug 'othree/yajs.vim',          { 'for': ['javascript', 'javascript.jsx'] }
 
+Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }  " updating the parsers on update
+Plug 'nvim-treesitter/playground'
+
 call plug#end()
+
+" Lua Creep ------------------------------------------------------------------------------------------------------------
+
+lua require('plugins');
 
 
 " COC Extensions -------------------------------------------------------------------------------------------------------
@@ -101,8 +107,6 @@ let g:coc_global_extensions = [
     \'coc-tsserver',
     \'coc-yaml',
 \]
-
-" \'coc-reason',
 
 
 " Preferences / Defaults -----------------------------------------------------------------------------------------------
@@ -242,12 +246,14 @@ augroup filetypes
     autocmd FileType 4dgl            setlocal ts=4 sw=4 expandtab
     autocmd FileType c               setlocal equalprg=clang-format
     autocmd FileType clojure         setlocal ts=2 sw=2 expandtab
+    autocmd FileType lua             setlocal ts=2 sw=2 expandtab
     autocmd FileType dart            setlocal ts=2 sw=2 expandtab
     autocmd FileType javascript      setlocal ts=2 sw=2 expandtab equalprg=eslint-pretty ff=unix
     autocmd FileType javascriptreact setlocal ts=2 sw=2 expandtab equalprg=eslint-pretty ff=unix
     autocmd FileType json            setlocal equalprg=json_reformat " json_reformat is part of yajl: http://lloyd.github.com/yajl/
     autocmd FileType rust            setlocal ts=4 sw=4 expandtab equalprg=rustfmt
     autocmd FileType typescript      setlocal ts=2 sw=2 expandtab ff=unix
+    autocmd FileType typescriptreact setlocal ts=2 sw=2 expandtab ff=unix
     autocmd FileType xml             setlocal equalprg=xmllint\ --format\ -
     autocmd Filetype css             setlocal ts=2 sw=2 expandtab
     autocmd Filetype cucumber        setlocal ts=2 sw=2 expandtab
@@ -383,6 +389,22 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR
 imap <right> <Plug>(coc-snippets-expand)
 smap <right> <Plug>(coc-snippets-expand)
 xmap <right> <Plug>(coc-snippets-expand)
+
+
+" Treesitter -------------------------------------------------------------------
+
+" indent = {
+"   enable = true
+" },
+
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+  },
+}
+EOF
 
 
 " Dart / Flutter ---------------------------------------------------------------
@@ -835,7 +857,8 @@ nnoremap <leader>l                     :wincmd l<cr>
 " Color Scheme -----------------------------------------------------------------
 
 " CTRL-S show syntax highlighting groups for word under cursor
-nmap <C-S> :call <SID>SynStack()<CR>
+" nmap <C-S> :call <SID>SynStack()<CR>
+nmap <C-S> :TSHighlightCapturesUnderCursor<CR>
 
 function! <SID>SynStack()
   if !exists("*synstack")

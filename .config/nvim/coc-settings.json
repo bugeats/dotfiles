@@ -4,13 +4,16 @@
         "cpp",
         "dart",
         "elm",
+        "javascript",
+        "typescript",
+        "typescriptreact",
         "json",
         "purescript",
         "rust"
     ],
     "diagnostic.checkCurrentLine": true,
     "diagnostic.messageTarget": "echo",
-    "eslint.autoFixOnSave": false,
+    "eslint.autoFixOnSave": true,
     "html.validate.scripts": true,
     "json.enable": true,
     "json.format.enable": true,
@@ -20,16 +23,6 @@
     "typescript.format.enabled": true,
     "codeLens.enable": false,
     "languageserver": {
-        "ocaml": {
-            "command": "ocaml-language-server",
-            "args": [
-                "--stdio"
-            ],
-            "filetypes": [
-                "ocaml",
-                "reason"
-            ]
-        },
         "haskell": {
             "command": "hie-wrapper",
             "args": [

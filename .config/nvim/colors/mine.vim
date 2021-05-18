@@ -26,8 +26,8 @@ au TermOpen * setlocal nolist
 
 " autocmd Syntax ruby,javascript,typescript call matchadd('generalControlChar', '[\?\.:\+!=;\,*<>|]')
 " autocmd FileType ruby,javascript,typescript call matchadd('generalControlChar', '[\?\.:\+!=;\,*<>|]')
-autocmd FileType ruby,javascript,typescript,reason,elm,purescript,dhall syn match generalControlChar /[\?\.:\+!=;\,*<>|~]/ containedin=typescriptBlock,typescriptObjectLiteral,typescriptClassBlock,typescriptConditionalParen,reasonFoldBraces,reasonModPath,sassDefinition,purescriptModuleName contained
-autocmd FileType ruby,javascript,typescript,reason,elm,purescript,dhall syn match generalBrackets /[\[\]{}]'/ containedin=typescriptBlock,typescriptProperty,typescriptConditionalParen,reasonFoldBraces,sassDefinition
+autocmd FileType ruby,javascript,typescript,typescriptreact,reason,elm,purescript,dhall,json syn match generalControlChar /[\?\.:\+!=;\,*<>|~]/ containedin=typescriptBlock,typescriptParenExp,typescriptObjectLiteral,typescriptClassBlock,typescriptConditionalParen,reasonFoldBraces,reasonModPath,sassDefinition,purescriptModuleName,jsonFold contained
+autocmd FileType ruby,javascript,typescript,typescriptreact,reason,elm,purescript,dhall,json syn match generalBrackets /[\[\]{}]'/ containedin=typescriptBlock,typescriptProperty,typescriptConditionalParen,reasonFoldBraces,sassDefinition
 autocmd FileType purescript syn match generalParens /\(\)/ containedin=purescriptImportParams contained
 
 autocmd Syntax ruby,javascript,typescript,reason,elm,purescript,dhall syn match RedshiftControl /[,|;=<>]/
@@ -310,15 +310,18 @@ call s:linkGroup('RedshiftNormal', [
     \"javascriptPromiseStaticMethod",
     \"javascriptProp",
     \"javascriptReflectMethod",
-    \"javascriptRegexpString",
+    \"javascriptRegexpSteraltring",
     \"javascriptRequestProp",
     \"javascriptResponseProp",
     \"javascriptStringMethod",
+    \"jsonKeyword",
     \"rubyRegexp",
     \"typescriptObjectLabel",
     \"typescriptPaymentAddressProp",
     \"xmlEndTag",
     \"xmlTagName",
+    \"TSTag",
+    \"TSLabel",
 \])
 
 call s:linkGroup('RedshiftNormalDim', [
@@ -345,6 +348,8 @@ call s:linkGroup('RedshiftControl', [
     \"cssBraces",
     \"cssNoise",
     \"dartOperator",
+    \"dhallParens",
+    \"dhallRecord",
     \"dotBraceEncl",
     \"dotBrackEncl",
     \"dotKeyChar",
@@ -416,6 +421,7 @@ call s:linkGroup('RedshiftControl', [
     \"pugInterpolationDelimiter",
     \"pugPipeChar",
     \"purescriptDelimiter",
+    \"purescriptOperator",
     \"purescriptOperatorType",
     \"pythonDot",
     \"reasonFoldBraces",
@@ -437,12 +443,15 @@ call s:linkGroup('RedshiftControl', [
     \"stylusProperty",
     \"stylusVariableAssignment",
     \"taskpaperListItem",
+    \"tsxCloseString",
+    \"tsxEqual",
     \"typescriptArrowFunc",
     \"typescriptArrowFuncDef",
     \"typescriptAssign",
     \"typescriptBinaryOp",
     \"typescriptBraces",
     \"typescriptDotNotation",
+    \"typescriptEndColons",
     \"typescriptFuncComma",
     \"typescriptObjectColon",
     \"typescriptParens",
@@ -456,9 +465,11 @@ call s:linkGroup('RedshiftControl', [
     \"xmlEqual",
     \"xmlTag",
     \"yamlKeyValueDelimiter",
-    \"purescriptOperator",
-    \"dhallParens",
-    \"dhallRecord",
+    \"TSOperator",
+    \"TSPunctBracket",
+    \"TSPunctDelimiter",
+    \"TSPunctSpecial",
+    \"TSTagDelimiter",
 \])
 
 call s:linkGroup('RedshiftControlActive', [
@@ -475,6 +486,9 @@ call s:linkGroup('RedshiftType', [
     \"rubyConstant",
     \"purescriptModuleName",
     \"purescriptType",
+    \"TSType",
+    \"TSConstructor",
+    \"TSTypeBuiltin",
 \])
 
 call s:linkGroup('RedshiftKeyword', [
@@ -618,7 +632,6 @@ call s:linkGroup('RedshiftKeyword', [
     \"typescriptEnumKeyword",
     \"typescriptExceptions",
     \"typescriptExport",
-    \"typescriptIdentifierName",
     \"typescriptImport",
     \"typescriptKeyword",
     \"typescriptKeywordOp",
@@ -631,6 +644,9 @@ call s:linkGroup('RedshiftKeyword', [
     \"typescriptVariable",
     \"vimCommand",
     \"vimLet",
+    \"TSInclude",
+    \"TSVariableBuiltin",
+    \"TSKeywordOperator",
 \])
 
 call s:linkGroup('RedshiftLiteral', [
@@ -643,7 +659,11 @@ call s:linkGroup('RedshiftLiteral', [
     \"markdownCodeBlock",
     \"pugPipedText",
     \"rubyStringDelimiter",
+    \"tsxRegion",
     \"yamlPlainScalar",
+    \"jsonStringMatch",
+    \"TSURI",
+    \"TSString",
 \])
 
 call s:linkGroup('RedshiftLiteralDim', [
