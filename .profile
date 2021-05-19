@@ -19,7 +19,6 @@ export PATH="/Users/chadwick/anaconda3/bin:$PATH"
 export PATH="/opt/genymotion/tools:$PATH"
 
 # rust cargo package manager
-export PATH="$HOME/.cargo/bin:$PATH"
 
 # ripgrep grep replacement
 export RIPGREP_CONFIG_PATH="~/.config/ripgrep/ripgreprc"
@@ -100,3 +99,4 @@ alias gsts='git stash save'
 export PATH="$PATH:$HOME/.rvm/bin"
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+source "$HOME/.cargo/env"

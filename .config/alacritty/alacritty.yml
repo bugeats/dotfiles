@@ -19,29 +19,30 @@ window:
 
 font:
   use_thin_strokes: true
-  # scale_with_dpi: false
+  scale_with_dpi: true
 
   normal:
     family: DejaVu Sans Mono
+    style: Book
   bold:
     family: DejaVu Sans Mono
     style: Bold
   italic:
     family: DejaVu Sans Mono
     style: Bold Oblique
-  size: 14
+  size: 16
 
   # Offset is the extra space around each character.
   # offset.y can be thought of as modifying the linespacing, and offset.x as modifying the letter spacing.
-  offset:
-    x: 1
-    y: 1
+  # offset:
+  #   x: 1
+  #   y: 1
 
   # Glyph offset determines the locations of the glyphs within their cells with the default being at the bottom.
   # Increase the x offset to move the glyph to the right, increase the y offset to move the glyph upward.
-  glyph_offset:
-    x: 0
-    y: 0
+  # glyph_offset:
+  #   x: 0
+  #   y: 0
 
 
 # Palette ----------------------------------------------------------------------
@@ -177,7 +178,7 @@ key_bindings:
   - { key: C,        mods: Control|Shift, action: Copy                   }
 
   - { key: Equals,   mods: Control,       action: ResetFontSize }
-  - { key: Add,      mods: Control|Shift, action: IncreaseFontSize }
+  - { key: Plus,     mods: Control|Shift, action: IncreaseFontSize }
   - { key: Minus,    mods: Control,       action: DecreaseFontSize }
 
   # The "\x1b0" actually sends Alt-<number>, which tmux can respond to.
