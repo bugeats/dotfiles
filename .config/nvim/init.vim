@@ -97,6 +97,7 @@ let g:coc_global_extensions = [
     \'coc-html',
     \'coc-json',
     \'coc-lists',
+    \'coc-lua',
     \'coc-marketplace',
     \'coc-pairs',
     \'coc-python',
