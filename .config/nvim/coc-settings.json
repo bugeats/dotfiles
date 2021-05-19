@@ -3,18 +3,25 @@
     "coc.preferences.formatOnSaveFiletypes": [
         "cpp",
         "dart",
+        "elm",
+        "javascript",
+        "typescript",
+        "typescriptreact",
         "json",
+        "purescript",
         "rust"
     ],
     "diagnostic.checkCurrentLine": true,
+    "diagnostic.messageTarget": "echo",
     "eslint.autoFixOnSave": true,
     "html.validate.scripts": true,
-    "suggest.enablePreview": true,
-    "tsserver.enable": false,
-    "diagnostic.messageTarget": "echo",
-    "coc-actions.hideCursor": false,
     "json.enable": true,
     "json.format.enable": true,
+    "solargraph.formatting": true,
+    "suggest.enablePreview": true,
+    "tsserver.enable": true,
+    "typescript.format.enabled": true,
+    "codeLens.enable": false,
     "languageserver": {
         "haskell": {
             "command": "hie-wrapper",
@@ -47,6 +54,27 @@
             ],
             "initializationOptions": {
                 "elmAnalyseTrigger": "change"
+            }
+        },
+        "purescript": {
+            "command": "purescript-language-server",
+            "args": [
+                "--stdio"
+            ],
+            "filetypes": [
+                "purescript"
+            ],
+            "trace.server": "off",
+            "rootPatterns": [
+                "bower.json",
+                "psc-package.json",
+                "spago.dhall"
+            ],
+            "settings": {
+                "purescript": {
+                    "addSpagoSources": true,
+                    "addNpmPath": true
+                }
             }
         }
     },

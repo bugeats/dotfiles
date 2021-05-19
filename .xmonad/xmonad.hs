@@ -29,8 +29,8 @@ myKeys = [ ((mod4Mask .|. shiftMask, xK_backslash), popOldestHiddenWindow)
          , ((mod4Mask, xK_n), spawn terminalCommand) -- (n)ew terminal
          , ((mod4Mask, xK_p), spawn "xfce4-popup-whiskermenu")
          , ((mod4Mask, xK_s), spawn "systemctl suspend & slock")
+         , ((mod4Mask, xK_space), spawn "xfce4-popup-whiskermenu")
          , ((mod4Mask, xK_x), spawn "slock")
-         -- , ((mod4Mask, xK_w), kill)
          ]
 
 main :: IO ()

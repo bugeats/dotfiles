@@ -9,8 +9,9 @@
 set nocompatible " be iMproved
 filetype off " required!
 
-" vim-plug
-" ------------------------------------------------------------------------------
+
+" vim-plug ---------------------------------------------------------------------
+
 " https://github.com/junegunn/vim-plug
 
 " :PlugUpdate - install or update plugins
@@ -19,15 +20,16 @@ filetype off " required!
 call plug#begin('~/.config/nvim/plugged')
 
 " Core / UI
+" Plug 'airblade/vim-rooter'
+" Plug 'editorconfig/editorconfig-vim'
 Plug 'Lokaltog/vim-easymotion'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
-" Plug 'airblade/vim-rooter'
-" Plug 'editorconfig/editorconfig-vim'
 Plug 'freitass/todo.txt-vim'
 Plug 'godlygeek/tabular'
 Plug 'ivyl/vim-bling'
 Plug 'jeetsukumaran/vim-buffergator'
+Plug 'jremmen/vim-ripgrep'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'mkitt/tabline.vim'
@@ -38,14 +40,11 @@ Plug 'preservim/nerdtree'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rails'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'yuku-t/unite-git'
 Plug 'zhaocai/GoldenView.Vim'
-
-Plug 'alexherbo2/kakoune.vim'
-
-Plug 'jremmen/vim-ripgrep'
 
 " COC
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -61,26 +60,35 @@ Plug 'jjo/vim-cue',               { 'for': ['cue'] }
 Plug 'jparise/vim-graphql',       { 'for': ['graphql'] }
 Plug 'keith/swift.vim',           { 'for': ['swift'] }
 Plug 'neovimhaskell/haskell-vim', { 'for': ['haskell'] }
+Plug 'ngmy/vim-rubocop',          { 'for': ['ruby'] }
 Plug 'nono/vim-handlebars',       { 'for': ['handlebars'] }
 Plug 'plasticboy/vim-markdown',   { 'for': ['markdown'] }
+Plug 'purescript-contrib/purescript-vim'
 Plug 'rust-lang/rust.vim',        { 'for': ['rust'] }
 Plug 'udalov/kotlin-vim',         { 'for': ['kotlin'] }
 Plug 'vim-python/python-syntax',  { 'for': ['python'] }
 Plug 'vim-ruby/vim-ruby',         { 'for': ['ruby'] }
+Plug 'vmchale/dhall-vim'
 Plug 'wavded/vim-stylus',         { 'for': ['stylus'] }
 
 " Javascript Plugins
 Plug 'chemzqm/vim-jsx-improve',  { 'for': ['javascript.jsx'] }
 Plug 'othree/yajs.vim',          { 'for': ['javascript', 'javascript.jsx'] }
 
+Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }  " updating the parsers on update
+Plug 'nvim-treesitter/playground'
+
 call plug#end()
+
+" Lua Creep ------------------------------------------------------------------------------------------------------------
+
+lua require('plugins');
 
 
 " COC Extensions -------------------------------------------------------------------------------------------------------
 
 " Global extension names to install when they aren't installed.
 let g:coc_global_extensions = [
-    \'coc-actions',
     \'coc-clangd',
     \'coc-conjure',
     \'coc-eslint',
@@ -95,8 +103,9 @@ let g:coc_global_extensions = [
     \'coc-rls',
     \'coc-sh',
     \'coc-snippets',
+    \'coc-solargraph',
     \'coc-tsserver',
-    \'coc-yaml'
+    \'coc-yaml',
 \]
 
 
@@ -112,6 +121,7 @@ set clipboard=unnamedplus                     " support OS clipboard
 set conceallevel=0                            " don't ever hide text in the name of concealing syntax
 set cursorline                                " highlighted cursor row
 set expandtab                                 " insert spaces instead when pressing <tab>
+set foldlevelstart=1                          " Don't fold things. Folds are annoying.
 set formatoptions-=cro                        " no annoying comment autoformat foo
 set guifont=DejaVuSansMono:h14                " This is the best programming font. I declare it.
 set hidden                                    " Don't need to see abandoned buffers
@@ -161,6 +171,11 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " never ever use tab characters you filthy heathens
 autocmd BufReadPre set expandtab
 
+
+" Ruby -------------------------------------------------------------------------
+
+let ruby_operators        = 1
+let ruby_pseudo_operators = 1
 
 
 " Mappings -------------------------------------------------------------------------------------------------------------
@@ -231,11 +246,14 @@ augroup filetypes
     autocmd FileType 4dgl            setlocal ts=4 sw=4 expandtab
     autocmd FileType c               setlocal equalprg=clang-format
     autocmd FileType clojure         setlocal ts=2 sw=2 expandtab
+    autocmd FileType lua             setlocal ts=2 sw=2 expandtab
     autocmd FileType dart            setlocal ts=2 sw=2 expandtab
     autocmd FileType javascript      setlocal ts=2 sw=2 expandtab equalprg=eslint-pretty ff=unix
     autocmd FileType javascriptreact setlocal ts=2 sw=2 expandtab equalprg=eslint-pretty ff=unix
     autocmd FileType json            setlocal equalprg=json_reformat " json_reformat is part of yajl: http://lloyd.github.com/yajl/
     autocmd FileType rust            setlocal ts=4 sw=4 expandtab equalprg=rustfmt
+    autocmd FileType typescript      setlocal ts=2 sw=2 expandtab ff=unix
+    autocmd FileType typescriptreact setlocal ts=2 sw=2 expandtab ff=unix
     autocmd FileType xml             setlocal equalprg=xmllint\ --format\ -
     autocmd Filetype css             setlocal ts=2 sw=2 expandtab
     autocmd Filetype cucumber        setlocal ts=2 sw=2 expandtab
@@ -293,8 +311,8 @@ xmap <silent> <TAB> <Plug>(coc-range-select)
 
 " ---- coc shift-tab behavior ----
 
-nnoremap <silent><S-Tab> :CocCommand actions.open<CR>
-xmap <silent><S-Tab> <Plug>(coc-codeaction-selected)
+nmap <silent><S-Tab> v<Plug>(coc-codeaction-selected)
+
 
 " ---- coc misc behavior ----
 
@@ -371,6 +389,22 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR
 imap <right> <Plug>(coc-snippets-expand)
 smap <right> <Plug>(coc-snippets-expand)
 xmap <right> <Plug>(coc-snippets-expand)
+
+
+" Treesitter -------------------------------------------------------------------
+
+" indent = {
+"   enable = true
+" },
+
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+  },
+}
+EOF
 
 
 " Dart / Flutter ---------------------------------------------------------------
@@ -536,6 +570,7 @@ let mapleader = "\<Space>"
 " R LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER
 " DER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEAD
 " ADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEADER LEA
+
 
 " (c)oc tasks --------------------------
 
@@ -822,7 +857,9 @@ nnoremap <leader>l                     :wincmd l<cr>
 " Color Scheme -----------------------------------------------------------------
 
 " CTRL-S show syntax highlighting groups for word under cursor
-nmap <C-S> :call <SID>SynStack()<CR>
+" nmap <C-S> :call <SID>SynStack()<CR>
+nmap <C-S> :TSHighlightCapturesUnderCursor<CR>
+
 function! <SID>SynStack()
   if !exists("*synstack")
     return

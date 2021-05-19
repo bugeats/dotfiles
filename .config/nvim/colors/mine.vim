@@ -1,10 +1,12 @@
 " Reset -----------------------------------------------------------------------
 
 set background=dark
-highlight clear
-if exists("syntax_on")
-    syntax reset
-endif
+
+" highlight clear
+" if exists("syntax_on")
+"     syntax reset
+" endif
+
 let g:colors_name = "mine"
 
 " hide hidden chars in nerdtree
@@ -15,50 +17,73 @@ au TermOpen * setlocal nolist
 
 " General Syntax Matches -------------------------------------------------------
 
-autocmd BufRead,BufNewFile * syn match generalParens /[(){}]/
-autocmd BufRead,BufNewFile * syn match generalBrackets /[\[\]]/
-autocmd BufRead,BufNewFile * syn match generalControlChar /[\?\.:\+!=;\,*<>|]/
 
-augroup FileType_javascript
-    autocmd FileType javascript syn match jsReturn /return/
-augroup END
+" autocmd Syntax * matchadd('generalControlChar', '[\?\.:\+!=;\,*<>|]')
 
-autocmd FileType dart syn match dartKeyword /new/
+" autocmd Syntax ruby,javascript,typescript call matchadd('generalControlChar', '[,|;=<>]')
+" autocmd Syntax javascript,typescript call matchadd('generalBrackets', '[\[\]{}]')
+" autocmd Syntax ruby,javascript call matchadd('generalParens', '[()]')
+
+" autocmd Syntax ruby,javascript,typescript call matchadd('generalControlChar', '[\?\.:\+!=;\,*<>|]')
+" autocmd FileType ruby,javascript,typescript call matchadd('generalControlChar', '[\?\.:\+!=;\,*<>|]')
+autocmd FileType ruby,javascript,typescript,typescriptreact,reason,elm,purescript,dhall,json syn match generalControlChar /[\?\.:\+!=;\,*<>|~]/ containedin=typescriptBlock,typescriptParenExp,typescriptObjectLiteral,typescriptClassBlock,typescriptConditionalParen,reasonFoldBraces,reasonModPath,sassDefinition,purescriptModuleName,jsonFold contained
+autocmd FileType ruby,javascript,typescript,typescriptreact,reason,elm,purescript,dhall,json syn match generalBrackets /[\[\]{}]'/ containedin=typescriptBlock,typescriptProperty,typescriptConditionalParen,reasonFoldBraces,sassDefinition
+autocmd FileType purescript syn match generalParens /\(\)/ containedin=purescriptImportParams contained
+
+autocmd Syntax ruby,javascript,typescript,reason,elm,purescript,dhall syn match RedshiftControl /[,|;=<>]/
+autocmd Syntax ruby,javascript,reason,elm,purescript,dhall syn match RedshiftControl /[()]/
+
+autocmd Syntax javascript syn match jsReturn /return/
+autocmd Syntax dart syn match dartKeyword /new/
+
+highlight RedshiftType gui=bold
+highlight RedshiftType cterm=bold
 
 " Palette ----------------------------------------------------------------------
 
 let s:p = {}
 
+" alpha - redish
 let s:p.a1 = "#d8af8e"
 let s:p.a2 = "#a57b55"
 let s:p.a3 = "#645851"
 let s:p.a4 = "#413c39"
 let s:p.a5 = "#2d2b29"
 let s:p.a6 = "#272524"
+
+" beta - green
 let s:p.b1 = "#94c390"
 let s:p.b2 = "#5d9058"
 let s:p.b3 = "#525e51"
 let s:p.b4 = "#393e39"
 let s:p.b5 = "#2a2c29"
 let s:p.b6 = "#242624"
+
+" delta - white/gray
 let s:p.d1 = "#b8b8aa"
 let s:p.d2 = "#84847c"
 let s:p.d3 = "#5b5b56"
 let s:p.d4 = "#3d3d3a"
 let s:p.d5 = "#2c2c29"
 let s:p.d6 = "#262624"
+
+" gamma - yellow
 let s:p.g1 = "#bbba81"
 let s:p.g2 = "#888744"
 let s:p.g3 = "#5c5b4e"
 let s:p.g4 = "#3d3d37"
 let s:p.g5 = "#2c2c29"
 let s:p.g6 = "#262624"
+
+" kappa - blue
 let s:p.k1 = "#83bfda"
 let s:p.k2 = "#418da9"
 let s:p.k3 = "#4f5d64"
 let s:p.k4 = "#383e41"
 let s:p.k5 = "#292c2d"
 let s:p.k6 = "#242627"
+
+" tau - pink
 let s:p.t1 = "#e6a4be"
 let s:p.t2 = "#b46f8c"
 let s:p.t3 = "#67565c"
@@ -66,8 +91,16 @@ let s:p.t4 = "#433b3e"
 let s:p.t5 = "#2e2a2c"
 let s:p.t6 = "#282526"
 
+" lambda - between green and yellow
+let s:p.l1 = "#A8BF89"
+
+" epsilon - between green and white
+let s:p.e1 = "#a7bac5"
+
+" ----
+
 " let s:p.d1_shade = #b8b8aa
-let s:p.d1_shade = "#aaaa9c"
+let s:p.d1_shade = "#b2b2a5"
 
 let s:p.blacknormal   = "#5f5955"
 let s:p.blackbright   = "#5f5955"
@@ -144,6 +177,47 @@ function! s:smartHi(group, ...)
 endfunction
 
 
+" Vim Core Groups --------------------------------------------------------------
+
+" Link the core default highlight groups to redshift groups.
+" This is done so foreign syntax plugins behave mostly ok by default.
+
+hi! link Comment RedshiftComment
+hi! link Constant RedshiftNormal
+hi! link String RedshiftLiteral
+hi! link SpecialComment RedshiftNormal
+hi! link Character RedshiftNormal
+hi! link Number RedshiftNormal
+hi! link Boolean RedshiftKeyword
+hi! link Float RedshiftNormal
+hi! link Identifier RedshiftNormal
+hi! link Function RedshiftNormal
+hi! link Statement RedshiftNormal
+hi! link Conditional RedshiftKeyword
+hi! link Repeat RedshiftKeyword
+hi! link Label RedshiftKeyword
+hi! link Keyword RedshiftKeyword
+hi! link Exception RedshiftKeyword
+hi! link PreProc RedshiftNormal
+hi! link Include RedshiftNormal
+hi! link Define RedshiftNormal
+hi! link Macro RedshiftNormal
+hi! link PreCondit RedshiftNormal
+hi! link Type RedshiftNormal
+hi! link StorageClass RedshiftNormal
+hi! link Structure RedshiftKeyword
+hi! link Error RedshiftAttention
+hi! link Ignore RedshiftNormal
+hi! link Typedef RedshiftNormal
+hi! link Special RedshiftNormal
+hi! link SpecialChar RedshiftNormal
+hi! link Tag RedshiftNormal
+hi! link Delimiter RedshiftNormal
+hi! link Debug RedshiftNormal
+hi! link Underlined RedshiftNormal
+hi! link Todo RedshiftAttention
+hi! link Operator RedshiftNormal
+
 " Main Groups ------------------------------------------------------------------
 
 call s:smartHi('Normal',                    s:p.d1, s:p.a6)
@@ -159,13 +233,14 @@ call s:smartHi('RedshiftGhostActive',       s:p.a2, s:p.a5)
 call s:smartHi('RedshiftHighlighted',       s:p.d1, s:p.t4)
 call s:smartHi('RedshiftHighlightedAlt',    s:p.a6, s:p.a1)
 call s:smartHi('RedshiftKeyword',           s:p.b1, '')
-call s:smartHi('RedshiftType',              s:p.d1_shade, '')
 call s:smartHi('RedshiftLiteral',           s:p.g1, s:p.a6)
 call s:smartHi('RedshiftLiteralDim',        s:p.g2, s:p.a6)
 call s:smartHi('RedshiftLocated',           '',     s:p.a5)
 call s:smartHi('RedshiftNormal',            s:p.d1, s:p.a6)
 call s:smartHi('RedshiftNormalDim',         s:p.d1, s:p.g5)
 call s:smartHi('RedshiftSelected',          '',     s:p.k4)
+call s:smartHi('RedshiftSymbol',            s:p.l1, s:p.a6)
+call s:smartHi('RedshiftType',              s:p.d1_shade, '')
 
 call s:smartHi('RedshiftGreen',  s:p.greennormal, '')
 call s:smartHi('RedshiftYellow', s:p.yellownormal, '')
@@ -185,10 +260,10 @@ highlight RedshiftType cterm=bold
 
 " Links ------------------------------------------------------------------------
 
+
 call s:linkGroup('RedshiftNormal', [
     \"ColorColumn",
     \"Conceal",
-    \"Constant",
     \"CursorIM",
     \"DiffAdd",
     \"DiffChange",
@@ -198,25 +273,18 @@ call s:linkGroup('RedshiftNormal', [
     \"EndOfBuffer",
     \"FoldColumn",
     \"Folded",
-    \"Function",
-    \"Identifier",
     \"ModeMsg",
     \"MoreMsg",
     \"Normal",
-    \"PreProc",
     \"Question",
     \"SignColumn",
-    \"Special",
     \"SpecialKey",
     \"SpellBad",
     \"SpellCap",
     \"SpellLocal",
     \"SpellRare",
-    \"Statement",
     \"TermCursorNC",
     \"Title",
-    \"Type",
-    \"Underlined",
     \"VisualNOS",
     \"WarningMsg",
     \"WildMenu",
@@ -242,12 +310,18 @@ call s:linkGroup('RedshiftNormal', [
     \"javascriptPromiseStaticMethod",
     \"javascriptProp",
     \"javascriptReflectMethod",
-    \"javascriptRegexpString",
+    \"javascriptRegexpSteraltring",
     \"javascriptRequestProp",
     \"javascriptResponseProp",
     \"javascriptStringMethod",
+    \"jsonKeyword",
+    \"rubyRegexp",
+    \"typescriptObjectLabel",
+    \"typescriptPaymentAddressProp",
     \"xmlEndTag",
     \"xmlTagName",
+    \"TSTag",
+    \"TSLabel",
 \])
 
 call s:linkGroup('RedshiftNormalDim', [
@@ -255,7 +329,6 @@ call s:linkGroup('RedshiftNormalDim', [
 \])
 
 call s:linkGroup('RedshiftComment', [
-    \"Comment",
     \"cPreProc",
     \"javascriptDocComment",
     \"javascriptDocNamedDocParamType",
@@ -275,9 +348,12 @@ call s:linkGroup('RedshiftControl', [
     \"cssBraces",
     \"cssNoise",
     \"dartOperator",
+    \"dhallParens",
+    \"dhallRecord",
     \"dotBraceEncl",
     \"dotBrackEncl",
     \"dotKeyChar",
+    \"elmBraces",
     \"elmOperator",
     \"generalBrackets",
     \"generalControlChar",
@@ -344,8 +420,22 @@ call s:linkGroup('RedshiftControl', [
     \"pugAttributesDelimiter",
     \"pugInterpolationDelimiter",
     \"pugPipeChar",
+    \"purescriptDelimiter",
+    \"purescriptOperator",
+    \"purescriptOperatorType",
     \"pythonDot",
-    \"rubyInterpolationDelimiter",
+    \"reasonFoldBraces",
+    \"reasonOperator",
+    \"rubyArrayDelimiter",
+    \"rubyBooleanOperator",
+    \"rubyCurlyBlockDelimiter",
+    \"rubyDotOperator",
+    \"rubyMethodDeclaration",
+    \"rubyOperator",
+    \"rubyProcOperator",
+    \"rubyScopeOperator",
+    \"rubySuperClassOperator",
+    \"rubySymbolDelimiter",
     \"rustArrowCharacter",
     \"rustFoldBraces",
     \"rustSigil",
@@ -353,19 +443,33 @@ call s:linkGroup('RedshiftControl', [
     \"stylusProperty",
     \"stylusVariableAssignment",
     \"taskpaperListItem",
+    \"tsxCloseString",
+    \"tsxEqual",
     \"typescriptArrowFunc",
     \"typescriptArrowFuncDef",
     \"typescriptAssign",
     \"typescriptBinaryOp",
     \"typescriptBraces",
     \"typescriptDotNotation",
+    \"typescriptEndColons",
+    \"typescriptFuncComma",
+    \"typescriptObjectColon",
     \"typescriptParens",
     \"typescriptTemplateSB",
+    \"typescriptTernaryOp",
+    \"typescriptTypeAnnotation",
+    \"typescriptTypeBrackets",
+    \"typescriptUnion",
     \"vimContinue",
     \"vimParenSep",
     \"xmlEqual",
     \"xmlTag",
     \"yamlKeyValueDelimiter",
+    \"TSOperator",
+    \"TSPunctBracket",
+    \"TSPunctDelimiter",
+    \"TSPunctSpecial",
+    \"TSTagDelimiter",
 \])
 
 call s:linkGroup('RedshiftControlActive', [
@@ -379,12 +483,16 @@ call s:linkGroup('RedshiftControlDim', [
 call s:linkGroup('RedshiftType', [
     \"dartUserType",
     \"elmType",
+    \"rubyConstant",
+    \"purescriptModuleName",
+    \"purescriptType",
+    \"TSType",
+    \"TSConstructor",
+    \"TSTypeBuiltin",
 \])
 
 call s:linkGroup('RedshiftKeyword', [
     \"4dglKeyword",
-    \"Boolean",
-    \"Keyword",
     \"cConditional",
     \"cDefine",
     \"cInclude",
@@ -492,6 +600,7 @@ call s:linkGroup('RedshiftKeyword', [
     \"luaStatement",
     \"pugScriptStatement",
     \"pugTag",
+    \"purescriptStatement",
     \"pythonConditional",
     \"pythonException",
     \"pythonImport",
@@ -500,10 +609,9 @@ call s:linkGroup('RedshiftKeyword', [
     \"pythonRaiseFromStatement",
     \"pythonRepeat",
     \"pythonStatement",
-    \"rubyConditional",
+    \"rubyClass",
     \"rubyControl",
     \"rubyDefine",
-    \"rubyExceptional",
     \"rubyInclude",
     \"rubyMacro",
     \"rustConditional",
@@ -524,21 +632,26 @@ call s:linkGroup('RedshiftKeyword', [
     \"typescriptConditional",
     \"typescriptDefault",
     \"typescriptEnumKeyword",
+    \"typescriptExceptions",
     \"typescriptExport",
-    \"typescriptIdentifierName",
     \"typescriptImport",
     \"typescriptKeyword",
     \"typescriptKeywordOp",
+    \"typescriptMethodAccessor",
     \"typescriptModule",
     \"typescriptOperator",
+    \"typescriptPredefinedType",
     \"typescriptStatementKeyword",
+    \"typescriptTry",
     \"typescriptVariable",
     \"vimCommand",
     \"vimLet",
+    \"TSInclude",
+    \"TSVariableBuiltin",
+    \"TSKeywordOperator",
 \])
 
 call s:linkGroup('RedshiftLiteral', [
-    \"String",
     \"dartString",
     \"javascriptPropertyNameString",
     \"javascriptRegexpString",
@@ -548,11 +661,22 @@ call s:linkGroup('RedshiftLiteral', [
     \"markdownCodeBlock",
     \"pugPipedText",
     \"rubyStringDelimiter",
+    \"tsxRegion",
     \"yamlPlainScalar",
+    \"jsonStringMatch",
+    \"TSURI",
+    \"TSString",
 \])
 
 call s:linkGroup('RedshiftLiteralDim', [
     \"pythonBytesEscape",
+    \"rubyPercentRegexpDelimiter",
+    \"rubyInterpolationDelimiter",
+    \"typescriptTemplateSB",
+\])
+
+call s:linkGroup('RedshiftSymbol', [
+    \"rubySymbol",
 \])
 
 call s:linkGroup('RedshiftGhost', [
@@ -595,11 +719,9 @@ call s:linkGroup('RedshiftAttention', [
     \"ExtraWhitespace",
     \"JavascriptCommentTodo",
     \"SpellBad",
-    \"Todo",
 \])
 
 call s:linkGroup('RedshiftAttentionFg', [
-    \"Error",
     \"ErrorMsg",
     \"NeomakeErrorMsg",
     \"WarningMsg",

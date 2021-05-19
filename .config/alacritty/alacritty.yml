@@ -18,6 +18,7 @@ window:
 # Font -------------------------------------------------------------------------
 
 font:
+  size: 16
   use_thin_strokes: true
   scale_with_dpi: true
 
@@ -30,7 +31,6 @@ font:
   italic:
     family: DejaVu Sans Mono
     style: Bold Oblique
-  size: 16
 
   # Offset is the extra space around each character.
   # offset.y can be thought of as modifying the linespacing, and offset.x as modifying the letter spacing.
