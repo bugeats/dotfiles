@@ -18,7 +18,11 @@ export PATH="/Users/chadwick/anaconda3/bin:$PATH"
 # genymotion adb sharing with expo
 export PATH="/opt/genymotion/tools:$PATH"
 
+# yarn global modules
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
 # rust cargo package manager
+source "$HOME/.cargo/env"
 
 # ripgrep grep replacement
 export RIPGREP_CONFIG_PATH="~/.config/ripgrep/ripgreprc"
@@ -99,4 +103,3 @@ alias gsts='git stash save'
 export PATH="$PATH:$HOME/.rvm/bin"
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-source "$HOME/.cargo/env"
