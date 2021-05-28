@@ -18,24 +18,26 @@ window:
 # Font -------------------------------------------------------------------------
 
 font:
-  size: 11
-  use_thin_strokes: true
-  # scale_with_dpi: false
+  size: 12
 
   normal:
-    family: DejaVu Sans Mono
+    family: Hack Nerd Font Mono
+    style: Regular
   bold:
-    family: DejaVu Sans Mono
+    family: Hack Nerd Font Mono
     style: Bold
   italic:
-    family: DejaVu Sans Mono
-    style: Bold Oblique
+    family: Hack Nerd Font Mono
+    style: Italic
+  bold_italic:
+    family: Hack Nerd Font Mono
+    style: Bold Italic
 
   # Offset is the extra space around each character.
   # offset.y can be thought of as modifying the linespacing, and offset.x as modifying the letter spacing.
   offset:
-    x: 1
-    y: 1
+    x: 0
+    y: 0
 
   # Glyph offset determines the locations of the glyphs within their cells with the default being at the bottom.
   # Increase the x offset to move the glyph to the right, increase the y offset to move the glyph upward.
