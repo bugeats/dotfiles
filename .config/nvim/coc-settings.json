@@ -24,12 +24,14 @@
     "codeLens.enable": false,
     "languageserver": {
         "haskell": {
-            "command": "hie-wrapper",
+            "command": "haskell-language-server-wrapper",
             "args": [
                 "--lsp"
             ],
             "rootPatterns": [
-                "stack.yaml",
+                ".stack.yaml",
+                ".hie-bios",
+                "BUILD.bazel",
                 "cabal.config",
                 "package.yaml"
             ],
@@ -40,7 +42,9 @@
             ],
             "initializationOptions": {
                 "languageServerHaskell": {
-                    "hlintOn": true
+                    "hlintOn": true,
+                    "maxNumberOfProblems": 10,
+                    "completionSnippetsOn": true
                 }
             }
         },

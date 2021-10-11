@@ -46,6 +46,10 @@ Plug 'tpope/vim-surround'
 Plug 'yuku-t/unite-git'
 Plug 'zhaocai/GoldenView.Vim'
 
+" Telescope
+" Plug 'nvim-lua/plenary.nvim'
+" Plug 'nvim-telescope/telescope.nvim'
+
 " COC
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'honza/vim-snippets'
@@ -106,6 +110,7 @@ let g:coc_global_extensions = [
     \'coc-solargraph',
     \'coc-tsserver',
     \'coc-yaml',
+    \'coc-css',
 \]
 
 
@@ -811,6 +816,8 @@ nnoremap <leader>rl                    vip:sort<CR>
 " global text search (grep)
 " nnoremap <leader>/                      :CocList grep<cr>
 nnoremap <leader>/                      :Rg<Space>
+" nnoremap <leader>/ <cmd>Telescope live_grep<cr>
+" nnoremap <leader>/ <cmd>lua require('telescope.builtin').live_grep()<cr>
 " global text search for word under cursor
 nnoremap <leader>?                      :Rg<Space>"<C-r><C-w>"<CR>
 " \; auto append semicolon

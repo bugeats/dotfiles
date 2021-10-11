@@ -489,6 +489,7 @@ call s:linkGroup('RedshiftType', [
     \"TSType",
     \"TSConstructor",
     \"TSTypeBuiltin",
+    \"haskellType",
 \])
 
 call s:linkGroup('RedshiftKeyword', [
@@ -675,6 +676,7 @@ call s:linkGroup('RedshiftLiteralDim', [
 
 call s:linkGroup('RedshiftSymbol', [
     \"rubySymbol",
+    \"TSSymbol",
 \])
 
 call s:linkGroup('RedshiftGhost', [
